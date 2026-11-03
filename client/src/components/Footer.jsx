@@ -92,7 +92,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                <span>Batu (Ziway) Agro-Processing Hub</span>
+                <span>Bulbula Integrated Agro-Industrial Park (IAIP)</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>

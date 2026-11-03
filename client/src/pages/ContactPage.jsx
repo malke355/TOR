@@ -260,7 +260,7 @@ export default function ContactPage() {
               <li>• <strong>Adama Hub:</strong> Adama Free Trade & Economic Zone Center</li>
               <li>• <strong>Bishoftu Hub:</strong> Special Zone Agro-Industrial Desk</li>
               <li>• <strong>Jimma Hub:</strong> Southwestern Coffee & Commodity Desk</li>
-              <li>• <strong>Batu Hub:</strong> Rift Valley Horticulture Facilitation Office</li>
+              <li>• <strong>Bulbula & Batu Hub:</strong> Bulbula IAIP & Rift Valley Facilitation Office</li>
             </ul>
           </div>
         </div>

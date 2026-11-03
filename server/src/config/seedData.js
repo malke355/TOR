@@ -20,16 +20,16 @@ export const initialUsers = [
 export const initialOpportunities = [
   {
     id: "opp-01",
-    title: "Batu Agro-Industrial Processing Hub & Cold Chain Park",
+    title: "Bulbula Integrated Agro-Industrial Park (IAIP)",
     sector: "Agro-Processing",
-    location: "Batu (Ziway), East Shewa Zone",
+    location: "Bulbula (near Batu/Ziway), East Shewa / West Arsi Corridor",
     investmentType: "Joint Venture / Public-Private Partnership (PPP)",
     requiredCapital: "1.85 Billion ETB",
     landAvailable: "45 Hectares allocated with utility access",
     status: "Published",
-    imageUrl: "https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=1200&q=80",
-    summary: "Large-scale integrated horticulture, floriculture processing, and cold-storage logistics facility near Lake Ziway export corridor.",
-    description: "The Batu Agro-Processing Hub is positioned directly on the Ethio-Djibouti expressway corridor. It provides integrated washing, packaging, cold storage, and export logistics for high-value fruits, vegetables, and floriculture products.",
+    imageUrl: "/images/hero/bulbula-industrial-park.png",
+    summary: "Flagship integrated agro-processing park equipped with cold chain logistics, processing sheds, and direct expressway connectivity.",
+    description: "Bulbula Integrated Agro-Industrial Park (IAIP) is a major government-developed industrial zone along the Modjo-Hawassa corridor. It features pre-serviced plots, centralized effluent treatment plants, cold storage, quality laboratories, and dedicated utility access.",
     incentives: [
       "100% exemption from customs duties on capital goods",
       "Up to 6 years income tax holiday",
