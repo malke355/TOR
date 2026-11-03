@@ -29,7 +29,8 @@ router.get('/', (req, res) => {
       activeInvestmentZones: 12,
       priorityExportSectors: 6,
       licensedInvestorsYTD: 248,
-      regionalExportVolumeUSD: '$2.4 Billion'
+      regionalExportVolumeUSD: '295 Billion ETB',
+      regionalExportVolumeETB: '295 Billion ETB'
     }
   });
 });

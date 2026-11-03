@@ -20,7 +20,7 @@ import {
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
   const { isAuthenticated, user, logout } = useAuth();
-  const { isDark, setLightMode, setDarkMode } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -60,37 +60,22 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* Right Tools: Segmented Theme Switcher, Language & Staff Portal */}
+          {/* Right Tools: Compact Theme Icon Button, Language & Staff Portal */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Clear Dual Segmented Theme Switcher */}
-            <div className="inline-flex items-center p-0.5 rounded-lg bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700">
-              <button
-                type="button"
-                onClick={setLightMode}
-                title="Switch to Pure White Light Mode"
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold transition-all ${
-                  !isDark
-                    ? 'bg-white text-emerald-800 shadow-sm border border-slate-200'
-                    : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                <Sun className="w-3 h-3 text-amber-500" />
-                <span>Light</span>
-              </button>
-              <button
-                type="button"
-                onClick={setDarkMode}
-                title="Switch to Dark Mode"
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold transition-all ${
-                  isDark
-                    ? 'bg-emerald-600 text-white shadow-sm'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
-                }`}
-              >
-                <Moon className="w-3 h-3 text-slate-300" />
-                <span>Dark</span>
-              </button>
-            </div>
+            {/* Compact Icon-Only Theme Switcher */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              aria-label="Toggle Dark Mode"
+              className="p-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 shadow-sm hover:scale-105 transition-all text-slate-700 dark:text-amber-400 flex items-center justify-center"
+            >
+              {isDark ? (
+                <Sun className="w-3.5 h-3.5 text-amber-400" />
+              ) : (
+                <Moon className="w-3.5 h-3.5 text-slate-700" />
+              )}
+            </button>
 
             {/* Multilingual Selector */}
             <div className="relative inline-flex items-center gap-1.5 bg-white dark:bg-slate-800 text-slate-700 dark:text-white px-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 shadow-sm transition-colors">

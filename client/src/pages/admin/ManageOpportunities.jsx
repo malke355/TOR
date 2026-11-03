@@ -24,7 +24,7 @@ export default function ManageOpportunities() {
     sector: 'Agro-Processing',
     location: '',
     investmentType: 'Joint Venture / PPP',
-    requiredCapital: '$10,000,000 USD',
+    requiredCapital: '1.50 Billion ETB',
     landAvailable: '30 Hectares with road connectivity',
     status: 'Published',
     imageUrl: 'https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=1200&q=80',
@@ -63,7 +63,7 @@ export default function ManageOpportunities() {
       sector: 'Agro-Processing',
       location: '',
       investmentType: 'Joint Venture / PPP',
-      requiredCapital: '$10,000,000 USD',
+      requiredCapital: '1.50 Billion ETB',
       landAvailable: '30 Hectares with road connectivity',
       status: 'Published',
       imageUrl: 'https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=1200&q=80',
@@ -304,7 +304,7 @@ export default function ManageOpportunities() {
                     required
                     value={formData.requiredCapital}
                     onChange={(e) => setFormData({ ...formData, requiredCapital: e.target.value })}
-                    placeholder="e.g., $15,000,000 USD"
+                    placeholder="e.g., 1.50 Billion ETB"
                     className="w-full px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:border-emerald-600 text-xs sm:text-sm"
                   />
                 </div>

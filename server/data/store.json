@@ -24,7 +24,7 @@
       "sector": "Agro-Processing",
       "location": "Batu (Ziway), East Shewa Zone",
       "investmentType": "Joint Venture / Public-Private Partnership (PPP)",
-      "requiredCapital": "$15,000,000 USD",
+      "requiredCapital": "1.85 Billion ETB",
       "landAvailable": "45 Hectares allocated with utility access",
       "status": "Published",
       "imageUrl": "https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=1200&q=80",
@@ -38,7 +38,7 @@
       ],
       "contactPerson": "Directorate of Agribusiness Investment, Phone: +251 11 551 2233",
       "featured": true,
-      "createdAt": "2026-11-03T11:45:05.658Z"
+      "createdAt": "2026-11-03T13:00:25.074Z"
     },
     {
       "id": "opp-02",
@@ -46,7 +46,7 @@
       "sector": "Manufacturing & Textiles",
       "location": "Dukem, Special Zone Surrounding Finfine",
       "investmentType": "100% Foreign Direct Investment (FDI) or JV",
-      "requiredCapital": "$25,000,000 USD",
+      "requiredCapital": "3.10 Billion ETB",
       "landAvailable": "60 Hectares industrial grade land ready",
       "status": "Published",
       "imageUrl": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=80",
@@ -59,7 +59,7 @@
       ],
       "contactPerson": "Directorate of Industrial Promotion, Phone: +251 11 552 4455",
       "featured": true,
-      "createdAt": "2026-11-03T11:45:05.659Z"
+      "createdAt": "2026-11-03T13:00:25.075Z"
     },
     {
       "id": "opp-03",
@@ -67,7 +67,7 @@
       "sector": "Agriculture & Agro-Processing",
       "location": "Jimma Zone & Limmu Kossa",
       "investmentType": "Private / Cooperative Partnership",
-      "requiredCapital": "$8,500,000 USD",
+      "requiredCapital": "1.05 Billion ETB",
       "landAvailable": "20 Hectares with water and power connections",
       "status": "Published",
       "imageUrl": "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80",
@@ -80,7 +80,7 @@
       ],
       "contactPerson": "Oromia Coffee & Spices Export Desk, Phone: +251 11 553 7788",
       "featured": true,
-      "createdAt": "2026-11-03T11:45:05.659Z"
+      "createdAt": "2026-11-03T13:00:25.075Z"
     },
     {
       "id": "opp-04",
@@ -88,7 +88,7 @@
       "sector": "Renewable Energy & Technology",
       "location": "Adama Free Trade & Industrial Zone",
       "investmentType": "Joint Venture",
-      "requiredCapital": "$18,000,000 USD",
+      "requiredCapital": "2.25 Billion ETB",
       "landAvailable": "15 Hectares within Adama Special Economic Zone",
       "status": "Published",
       "imageUrl": "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1200&q=80",
@@ -101,7 +101,7 @@
       ],
       "contactPerson": "Energy & Infrastructure Directorate, Phone: +251 11 554 9900",
       "featured": false,
-      "createdAt": "2026-11-03T11:45:05.659Z"
+      "createdAt": "2026-11-03T13:00:25.075Z"
     },
     {
       "id": "opp-05",
@@ -109,7 +109,7 @@
       "sector": "Livestock & Meat",
       "location": "Yabello, Borena Zone",
       "investmentType": "Private Commercial Investment",
-      "requiredCapital": "$12,000,000 USD",
+      "requiredCapital": "1.50 Billion ETB",
       "landAvailable": "50 Hectares with quarantine facilities nearby",
       "status": "Published",
       "imageUrl": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=1200&q=80",
@@ -122,7 +122,7 @@
       ],
       "contactPerson": "Livestock Development Directorate, Phone: +251 11 556 1122",
       "featured": false,
-      "createdAt": "2026-11-03T11:45:05.659Z"
+      "createdAt": "2026-11-03T13:00:25.075Z"
     }
   ],
   "tradeProducts": [
@@ -262,7 +262,7 @@
     },
     {
       "id": "news-02",
-      "title": "Bureau Signs $65 Million Investment Agreements for Modern Agro-Processing Clusters",
+      "title": "Bureau Signs 8.2 Billion ETB Investment Agreements for Modern Agro-Processing Clusters",
       "category": "Investment",
       "summary": "New private-public partnerships signed for modern dairy, avocado oil extraction, and honey processing facilities in Arsi and Jimma zones.",
       "content": "During the quarterly regional economic forum held in Finfine, Bureau leadership signed agreements with five prominent international and domestic consortiums. The projects will create over 4,200 direct employment opportunities and anchor regional smallholder contract farming.",
@@ -343,7 +343,7 @@
       "subject": "Inquiry on Batu Agro-Processing Hub Lease Terms",
       "message": "Greetings Bureau team. We represent a consortium of organic juice packagers looking to secure 5 hectares of land in the Batu cluster with cold storage access. We would like to request an official consultation with the investment desk.",
       "status": "New",
-      "createdAt": "2026-11-03T07:45:05.659Z"
+      "createdAt": "2026-11-03T09:00:25.075Z"
     },
     {
       "id": "msg-02",
@@ -354,7 +354,7 @@
       "subject": "Application for B2B European Trade Fair Participation",
       "message": "We would like to register our union delegates for the upcoming European Specialty Coffee Association trade mission sponsored by the Bureau.",
       "status": "Read",
-      "createdAt": "2026-11-02T07:45:05.659Z"
+      "createdAt": "2026-11-02T09:00:25.075Z"
     }
   ]
 }

@@ -6,7 +6,6 @@ import {
   Package,
   Layers,
   ArrowRight,
-  ShieldCheck,
   CheckCircle2,
   Building,
   Globe2,
@@ -51,11 +50,6 @@ export default function Home() {
         
         <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-900/70 border border-emerald-300 dark:border-emerald-600/50 text-emerald-900 dark:text-emerald-300 text-xs font-bold tracking-wide">
-              <ShieldCheck className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-              <span>{t.hero.badge}</span>
-            </div>
-
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-slate-950 dark:text-white">
               {t.hero.title}
             </h1>
@@ -142,7 +136,7 @@ export default function Home() {
           </div>
           <div className="space-y-1">
             <div className="text-2xl sm:text-3xl font-extrabold text-amber-600 dark:text-amber-400">
-              {stats?.institutionalMetrics?.regionalExportVolumeUSD || '$2.4B+'}
+              {stats?.institutionalMetrics?.regionalExportVolumeETB || stats?.institutionalMetrics?.regionalExportVolumeUSD || '295B+ ETB'}
             </div>
             <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">{t.hero.stats.exportValue}</div>
           </div>
