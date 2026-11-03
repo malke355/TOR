@@ -46,17 +46,17 @@ export default function AdminDashboard() {
   }, [token]);
 
   return (
-    <div className="space-y-8 max-w-7xl">
+    <div className="space-y-8 max-w-7xl transition-colors duration-200">
       {/* Welcome Header */}
-      <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4 transition-colors">
         <div>
-          <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
+          <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider">
             Management Console
           </span>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
             Welcome back, {user?.name || 'Administrator'}
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
             Department: {user?.department || 'Executive Bureau'} • Role: {user?.role || 'Staff'}
           </p>
         </div>
@@ -71,7 +71,7 @@ export default function AdminDashboard() {
           </Link>
           <Link
             to="/admin/news"
-            className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-sm transition-colors"
+            className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-sm transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>Publish News</span>
@@ -83,97 +83,97 @@ export default function AdminDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         <Link
           to="/admin/applications"
-          className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3 hover:border-emerald-500 transition-all group cursor-pointer"
+          className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 hover:border-emerald-500 dark:hover:border-emerald-500 transition-all group cursor-pointer"
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase">Applications</span>
-            <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white transition-colors">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Applications</span>
+            <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white transition-colors">
               <ClipboardCheck className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-3xl font-black text-slate-900">
+          <div className="text-3xl font-black text-slate-900 dark:text-white">
             {appStats.total}
           </div>
-          <div className="text-xs text-slate-500 flex items-center gap-1.5">
+          <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-            <strong className="text-amber-700">{appStats.pending} pending review</strong>
+            <strong className="text-amber-700 dark:text-amber-400">{appStats.pending} pending review</strong>
           </div>
         </Link>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase">Opportunities</span>
-            <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Opportunities</span>
+            <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 flex items-center justify-center">
               <TrendingUp className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-3xl font-black text-slate-900">
+          <div className="text-3xl font-black text-slate-900 dark:text-white">
             {stats?.opportunities?.total || 0}
           </div>
-          <div className="text-xs text-slate-500 flex items-center gap-2">
-            <span className="text-emerald-700 font-semibold">{stats?.opportunities?.published || 0} Published</span>
+          <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
+            <span className="text-emerald-700 dark:text-emerald-400 font-semibold">{stats?.opportunities?.published || 0} Published</span>
             <span>•</span>
-            <span className="text-amber-700 font-semibold">{stats?.opportunities?.draft || 0} Drafts</span>
+            <span className="text-amber-700 dark:text-amber-400 font-semibold">{stats?.opportunities?.draft || 0} Drafts</span>
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase">News & Articles</span>
-            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">News & Articles</span>
+            <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 flex items-center justify-center">
               <Newspaper className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-3xl font-black text-slate-900">
+          <div className="text-3xl font-black text-slate-900 dark:text-white">
             {stats?.news || 0}
           </div>
-          <div className="text-xs text-slate-500">
+          <div className="text-xs text-slate-500 dark:text-slate-400">
             Official communications published
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase">Downloads</span>
-            <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Downloads</span>
+            <div className="w-8 h-8 rounded-lg bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 flex items-center justify-center">
               <FileText className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-3xl font-black text-slate-900">
+          <div className="text-3xl font-black text-slate-900 dark:text-white">
             {stats?.documents || 0}
           </div>
-          <div className="text-xs text-slate-500">
+          <div className="text-xs text-slate-500 dark:text-slate-400">
             Active directives & application forms
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <div className="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3 transition-colors">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-slate-500 uppercase">Public Inquiries</span>
-            <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center">
+            <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Public Inquiries</span>
+            <div className="w-8 h-8 rounded-lg bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-400 flex items-center justify-center">
               <Mail className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-3xl font-black text-slate-900">
+          <div className="text-3xl font-black text-slate-900 dark:text-white">
             {stats?.messages?.total || 0}
           </div>
-          <div className="text-xs text-slate-500 flex items-center gap-1.5">
+          <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-purple-600"></span>
-            <strong className="text-purple-700">{stats?.messages?.new || 0} new incoming</strong>
+            <strong className="text-purple-700 dark:text-purple-400">{stats?.messages?.new || 0} new incoming</strong>
           </div>
         </div>
       </div>
 
       {/* Recent Service Applications Table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden space-y-4 p-6">
-        <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden space-y-4 p-6 transition-colors">
+        <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
           <div>
-            <h3 className="font-bold text-slate-900 text-base">Recent Service Applications</h3>
-            <p className="text-xs text-slate-500">Electronic permit, duty-free exemption, and license filings.</p>
+            <h3 className="font-bold text-slate-900 dark:text-white text-base">Recent Service Applications</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Electronic permit, duty-free exemption, and license filings.</p>
           </div>
           <Link
             to="/admin/applications"
-            className="text-xs font-bold text-emerald-700 hover:underline inline-flex items-center gap-1"
+            className="text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline inline-flex items-center gap-1"
           >
             <span>Open Applications Desk</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -181,11 +181,11 @@ export default function AdminDashboard() {
         </div>
 
         {recentApps.length === 0 ? (
-          <p className="text-xs text-slate-400 py-6 text-center">No service applications currently filed.</p>
+          <p className="text-xs text-slate-400 dark:text-slate-500 py-6 text-center">No service applications currently filed.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 text-slate-500 uppercase text-[10px] tracking-wider font-semibold">
+              <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 uppercase text-[10px] tracking-wider font-semibold">
                 <tr>
                   <th className="py-3 px-4">Reference No.</th>
                   <th className="py-3 px-4">Applicant</th>
@@ -194,28 +194,28 @@ export default function AdminDashboard() {
                   <th className="py-3 px-4 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {recentApps.map((app) => (
-                  <tr key={app.id} className="hover:bg-slate-50 transition-colors">
-                    <td className="py-3 px-4 font-mono font-bold text-emerald-800">
+                  <tr key={app.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                    <td className="py-3 px-4 font-mono font-bold text-emerald-800 dark:text-emerald-400">
                       {app.referenceNumber}
                     </td>
-                    <td className="py-3 px-4 font-semibold text-slate-900">
+                    <td className="py-3 px-4 font-semibold text-slate-900 dark:text-white">
                       <div>{app.applicantName}</div>
-                      <div className="text-[11px] text-slate-400 font-normal">{app.companyName || 'Enterprise'}</div>
+                      <div className="text-[11px] text-slate-400 dark:text-slate-500 font-normal">{app.companyName || 'Enterprise'}</div>
                     </td>
-                    <td className="py-3 px-4 text-slate-700">
+                    <td className="py-3 px-4 text-slate-700 dark:text-slate-300">
                       {app.serviceTitle}
                     </td>
                     <td className="py-3 px-4">
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                         (app.status || '').toLowerCase().includes('approved')
-                          ? 'bg-emerald-100 text-emerald-800'
+                          ? 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300'
                           : (app.status || '').toLowerCase().includes('rejected')
-                          ? 'bg-red-100 text-red-800'
+                          ? 'bg-red-100 dark:bg-red-950/80 text-red-800 dark:text-red-300'
                           : (app.status || '').toLowerCase().includes('under')
-                          ? 'bg-blue-100 text-blue-800'
-                          : 'bg-amber-100 text-amber-800'
+                          ? 'bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300'
+                          : 'bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300'
                       }`}>
                         {app.status || 'Pending'}
                       </span>
@@ -223,7 +223,7 @@ export default function AdminDashboard() {
                     <td className="py-3 px-4 text-right">
                       <Link
                         to="/admin/applications"
-                        className="text-xs font-bold text-emerald-700 hover:underline inline-flex items-center gap-1"
+                        className="text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline inline-flex items-center gap-1"
                       >
                         <Eye className="w-3.5 h-3.5" />
                         <span>Review</span>
@@ -238,15 +238,15 @@ export default function AdminDashboard() {
       </div>
 
       {/* Recent Inquiries Table */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden space-y-4 p-6">
-        <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden space-y-4 p-6 transition-colors">
+        <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
           <div>
-            <h3 className="font-bold text-slate-900 text-base">Recent Citizen & Investor Inquiries</h3>
-            <p className="text-xs text-slate-500">Inbound submissions awaiting response or action.</p>
+            <h3 className="font-bold text-slate-900 dark:text-white text-base">Recent Citizen & Investor Inquiries</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Inbound submissions awaiting response or action.</p>
           </div>
           <Link
             to="/admin/messages"
-            className="text-xs font-bold text-emerald-700 hover:underline inline-flex items-center gap-1"
+            className="text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline inline-flex items-center gap-1"
           >
             <span>View All Inquiries</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -254,11 +254,11 @@ export default function AdminDashboard() {
         </div>
 
         {recentMessages.length === 0 ? (
-          <p className="text-xs text-slate-400 py-6 text-center">No inquiries currently received.</p>
+          <p className="text-xs text-slate-400 dark:text-slate-500 py-6 text-center">No inquiries currently received.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 text-slate-500 uppercase text-[10px] tracking-wider font-semibold">
+              <thead className="bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 uppercase text-[10px] tracking-wider font-semibold">
                 <tr>
                   <th className="py-3 px-4">Sender</th>
                   <th className="py-3 px-4">Subject</th>
@@ -267,24 +267,24 @@ export default function AdminDashboard() {
                   <th className="py-3 px-4 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {recentMessages.map((msg) => (
-                  <tr key={msg.id} className="hover:bg-slate-50 transition-colors">
-                    <td className="py-3 px-4 font-semibold text-slate-900">
+                  <tr key={msg.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors">
+                    <td className="py-3 px-4 font-semibold text-slate-900 dark:text-white">
                       <div>{msg.name}</div>
-                      <div className="text-[11px] text-slate-400 font-normal">{msg.email}</div>
+                      <div className="text-[11px] text-slate-400 dark:text-slate-500 font-normal">{msg.email}</div>
                     </td>
-                    <td className="py-3 px-4 text-slate-700 max-w-xs truncate">
+                    <td className="py-3 px-4 text-slate-700 dark:text-slate-300 max-w-xs truncate">
                       {msg.subject}
                     </td>
-                    <td className="py-3 px-4 text-slate-500 text-[11px]">
+                    <td className="py-3 px-4 text-slate-500 dark:text-slate-400 text-[11px]">
                       {new Date(msg.createdAt).toLocaleDateString()}
                     </td>
                     <td className="py-3 px-4">
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                         msg.status === 'New'
-                          ? 'bg-purple-100 text-purple-800'
-                          : 'bg-slate-100 text-slate-600'
+                          ? 'bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300'
+                          : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
                       }`}>
                         {msg.status}
                       </span>
@@ -292,7 +292,7 @@ export default function AdminDashboard() {
                     <td className="py-3 px-4 text-right">
                       <Link
                         to="/admin/messages"
-                        className="text-xs font-bold text-emerald-700 hover:underline"
+                        className="text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
                       >
                         Read
                       </Link>

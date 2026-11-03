@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import {
   LayoutDashboard,
   TrendingUp,
@@ -11,11 +12,14 @@ import {
   ExternalLink,
   Shield,
   UserCheck,
-  ClipboardCheck
+  ClipboardCheck,
+  Sun,
+  Moon
 } from 'lucide-react';
 
 export default function AdminLayout() {
   const { isAuthenticated, user, logout, loading } = useAuth();
+  const { isDark, toggleTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -117,14 +121,40 @@ export default function AdminLayout() {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col min-w-0">
-        <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 sm:px-8 py-4 flex items-center justify-between transition-colors">
-          <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-            Oromia Trade and Investment Bureau Administration
+      <main className="flex-1 flex flex-col min-w-0 bg-slate-100 dark:bg-slate-950 transition-colors duration-200">
+        <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 sm:px-8 py-3.5 flex items-center justify-between transition-colors shadow-sm">
+          <div className="text-xs text-slate-500 dark:text-slate-400 font-medium flex items-center gap-2">
+            <span className="hidden sm:inline">Oromia Trade and Investment Bureau</span>
+            <span className="hidden sm:inline text-slate-300 dark:text-slate-600">•</span>
+            <span className="text-emerald-700 dark:text-emerald-400 font-semibold">Staff CMS Console</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">API Connected</span>
+
+          <div className="flex items-center gap-3">
+            {/* White & Black Mode Switcher */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              aria-label="Toggle Theme"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700/80 text-slate-700 dark:text-slate-200 shadow-sm transition-all text-xs font-semibold cursor-pointer"
+            >
+              {isDark ? (
+                <>
+                  <Sun className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span className="hidden sm:inline">Light Mode</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-3.5 h-3.5 text-slate-700 shrink-0" />
+                  <span className="hidden sm:inline">Dark Mode</span>
+                </>
+              )}
+            </button>
+
+            <div className="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-700">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">API Connected</span>
+            </div>
           </div>
         </header>
 

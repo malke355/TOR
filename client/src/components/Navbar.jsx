@@ -60,20 +60,26 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* Right Tools: Compact Theme Icon Button, Language & Staff Portal */}
+          {/* Right Tools: Theme Switcher, Language & Staff Portal */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Compact Icon-Only Theme Switcher */}
+            {/* White & Black Mode Switcher */}
             <button
               type="button"
               onClick={toggleTheme}
-              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              aria-label="Toggle Dark Mode"
-              className="p-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 shadow-sm hover:scale-105 transition-all text-slate-700 dark:text-amber-400 flex items-center justify-center"
+              title={isDark ? "Switch to White (Light) Mode" : "Switch to Black (Dark) Mode"}
+              aria-label="Toggle Theme Mode"
+              className="px-2 sm:px-2.5 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 shadow-sm hover:scale-105 active:scale-95 transition-all text-slate-700 dark:text-slate-200 flex items-center gap-1.5 cursor-pointer"
             >
               {isDark ? (
-                <Sun className="w-3.5 h-3.5 text-amber-400" />
+                <>
+                  <Sun className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span className="hidden sm:inline text-[11px] font-semibold text-amber-400">Light</span>
+                </>
               ) : (
-                <Moon className="w-3.5 h-3.5 text-slate-700" />
+                <>
+                  <Moon className="w-3.5 h-3.5 text-slate-700 shrink-0" />
+                  <span className="hidden sm:inline text-[11px] font-semibold text-slate-700">Dark</span>
+                </>
               )}
             </button>
 
@@ -221,6 +227,25 @@ export default function Navbar() {
               <span>{t.nav.investCTA || 'Invest in Oromia'}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
+
+            {/* Mobile White / Black Mode Switcher */}
+            <button
+              type="button"
+              onClick={() => toggleTheme()}
+              className="w-full inline-flex items-center justify-center gap-2 py-2 px-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs font-semibold"
+            >
+              {isDark ? (
+                <>
+                  <Sun className="w-4 h-4 text-amber-400" />
+                  <span>Switch to White (Light) Mode</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-4 h-4 text-slate-700" />
+                  <span>Switch to Black (Dark) Mode</span>
+                </>
+              )}
+            </button>
 
             {isAuthenticated ? (
               <Link
