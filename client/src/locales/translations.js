@@ -2,7 +2,7 @@ export const translations = {
   en: {
     nav: {
       home: "Home",
-      about: "About Bureau",
+      about: "About Us",
       investment: "Investment",
       trade: "Trade & Export",
       services: "Services",
@@ -10,11 +10,13 @@ export const translations = {
       documents: "Downloads",
       contact: "Contact",
       admin: "Staff CMS",
+      investCTA: "Invest in Oromia",
       logout: "Sign Out"
     },
     bureau: {
-      title: "Oromia Trade and Investment Bureau",
-      tagline: "Official Gateway for Global Investment & Trade in Oromia, Ethiopia",
+      region: "NATIONAL REGIONAL STATE OF OROMIA",
+      title: "Trade & Investment Bureau",
+      tagline: "Gateway for Global Investment, Trade & Industrial Growth",
       mandate: "Driving industrialization, export growth, and one-stop investor facilitation.",
       office: "Finfine (Addis Ababa), Oromia Regional Government"
     },
@@ -50,16 +52,18 @@ export const translations = {
       about: "Waa'ee Biiroo",
       investment: "Invastimantii",
       trade: "Daldala fi Alergaa",
-      services: "Tajaajiloota",
+      services: "Tajaajila",
       news: "Oduu fi Miidiyaa",
       documents: "Galmeewwan",
       contact: "Nu Qunnamaa",
       admin: "Seensa Hojjettootaa",
+      investCTA: "Oromiyaatti Invast Godhaa",
       logout: "Ba'i"
     },
     bureau: {
-      title: "Biiroo Daldalaa fi Invastimantii Oromiyaa",
-      tagline: "Balbala Ofisaalaa Invastimantii fi Daldala Idil-addunyaa Oromiyaa",
+      region: "MOOTUMMAA NAANNOO OROMIYAA",
+      title: "Biiroo Daldalaa fi Invastimantii",
+      tagline: "Balbala Ofisaalaa Invastimantii fi Daldala Idil-addunyaa",
       mandate: "Warshaaleessuu, guddina alergaa fi tajaajila invastaraa bakka tokkotti saffisiisuu.",
       office: "Finfinnee, Mootummaa Naannoo Oromiyaa"
     },
@@ -94,17 +98,19 @@ export const translations = {
       home: "ዋና ገጽ",
       about: "ስለ ቢሮው",
       investment: "ኢንቨስትመንት",
-      trade: "ንግድ እና ወጪ ንግድ",
+      trade: "ንግድና ወጪ ንግድ",
       services: "አገልግሎቶች",
-      news: "ዜና እና ሚዲያ",
+      news: "ዜናና ሚዲያ",
       documents: "ሰነዶች",
       contact: "ያግኙን",
       admin: "የሰራተኞች መግቢያ",
+      investCTA: "በኦሮሚያ ኢንቨስት ያድርጉ",
       logout: "ውጣ"
     },
     bureau: {
-      title: "የኦሮሚያ ንግድ እና ኢንቨስትመንት ቢሮ",
-      tagline: "በኦሮሚያ ዓለም አቀፍ ኢንቨስትመንት እና ንግድ ይፋዊ መግቢያ በር",
+      region: "የኦሮሚያ ብሔራዊ ክልላዊ መንግሥት",
+      title: "የንግድ እና ኢንቨስትመንት ቢሮ",
+      tagline: "የዓለም አቀፍ ኢንቨስትመንት እና ንግድ ይፋዊ መግቢያ በር",
       mandate: "ኢንዱስትሪ መስፋፋትን፣ የወጪ ንግድ እድገትን እና ፈጣን የአንድ መስኮት አገልግሎትን ማሳለጥ።",
       office: "ፊንፊኔ (አዲስ አበባ)፣ የኦሮሚያ ብሔራዊ ክልላዊ መንግሥት"
     },
