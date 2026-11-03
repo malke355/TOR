@@ -55,7 +55,7 @@ const SERVICE_FORMS = {
         { name: 'estimatedCapital', label: 'Estimated Investment Capital (ETB)', type: 'text', placeholder: 'e.g., 50,000,000', required: true },
         { name: 'employmentProjection', label: 'Projected Employment (Number of Jobs)', type: 'text', placeholder: 'e.g., 150', required: true },
         { name: 'projectDescription', label: 'Detailed Project Description', type: 'textarea', placeholder: 'Describe your investment project, objectives, production capacity, and market strategy...', required: true },
-        { name: 'landRequirement', label: 'Land Requirement (hectares or sq. meters)', type: 'text', placeholder: 'e.g., 5 hectares', required: false }
+        { name: 'landRequirement', label: 'Land Requirement (hectares or sq. meters)', type: 'text', placeholder: 'e.g., 5000', required: false }
       ],
       // Step 3 — Documents
       [
@@ -234,6 +234,45 @@ export default function ServicePortal() {
         }
       }
 
+      // Project Title validation (text only, no numbers allowed)
+      if (field.name === 'projectTitle' && val && typeof val === 'string' && val.trim()) {
+        if (/\d/.test(val)) {
+          stepErrors[field.name] = 'Project Title must contain text only, no numbers are allowed.';
+        }
+      }
+
+      // Estimated Investment Capital (ETB) validation: numbers only, minimum 100,000
+      if (field.name === 'estimatedCapital' && val !== undefined && val !== null && String(val).trim()) {
+        const rawDigits = String(val).replace(/\D/g, '');
+        const num = Number(rawDigits);
+        if (!rawDigits || isNaN(num) || num < 100000) {
+          stepErrors[field.name] = 'Estimated Investment Capital must be a number of at least 100,000 ETB.';
+        }
+      }
+
+      // Projected Employment validation: numbers only
+      if (field.name === 'employmentProjection' && val !== undefined && val !== null && String(val).trim()) {
+        const rawDigits = String(val).replace(/\D/g, '');
+        const num = Number(rawDigits);
+        if (!rawDigits || isNaN(num) || num <= 0) {
+          stepErrors[field.name] = 'Projected Employment must be a valid number.';
+        }
+      }
+
+      // Detailed Project Description validation (text only, no numbers allowed)
+      if (field.name === 'projectDescription' && val && typeof val === 'string' && val.trim()) {
+        if (/\d/.test(val)) {
+          stepErrors[field.name] = 'Detailed Project Description must contain text only, no numbers are allowed.';
+        }
+      }
+
+      // Land Requirement validation: numbers only if provided
+      if (field.name === 'landRequirement' && val && typeof val === 'string' && val.trim()) {
+        if (!/^\d+$/.test(val.trim())) {
+          stepErrors[field.name] = 'Land Requirement must contain numbers only.';
+        }
+      }
+
       // Passport / National ID Number validation
       // If starts with FIN: must be followed by exactly 12 digits
       // If starts with A: must be followed by exactly 8 digits
@@ -338,6 +377,55 @@ export default function ServicePortal() {
       } else {
         setErrors(prev => { const n = { ...prev }; delete n.tinNumber; return n; });
       }
+      return;
+    }
+
+    if (name === 'projectTitle') {
+      if (/\d/.test(finalValue)) {
+        setErrors(prev => ({ ...prev, projectTitle: 'Numbers are not allowed. Please enter text only.' }));
+      } else {
+        setErrors(prev => { const n = { ...prev }; delete n.projectTitle; return n; });
+      }
+      return;
+    }
+
+    if (name === 'estimatedCapital') {
+      // Only numbers allowed
+      const digitsOnly = (value || '').replace(/\D/g, '');
+      setFormData(prev => ({ ...prev, estimatedCapital: digitsOnly }));
+      const num = Number(digitsOnly);
+      if (digitsOnly && num < 100000) {
+        if (errors.estimatedCapital) {
+          setErrors(prev => ({ ...prev, estimatedCapital: 'Estimated Investment Capital must be at least 100,000 ETB.' }));
+        }
+      } else {
+        setErrors(prev => { const n = { ...prev }; delete n.estimatedCapital; return n; });
+      }
+      return;
+    }
+
+    if (name === 'employmentProjection') {
+      // Only numbers allowed
+      const digitsOnly = (value || '').replace(/\D/g, '');
+      setFormData(prev => ({ ...prev, employmentProjection: digitsOnly }));
+      setErrors(prev => { const n = { ...prev }; delete n.employmentProjection; return n; });
+      return;
+    }
+
+    if (name === 'projectDescription') {
+      if (/\d/.test(finalValue)) {
+        setErrors(prev => ({ ...prev, projectDescription: 'Numbers are not allowed. Please enter text only.' }));
+      } else {
+        setErrors(prev => { const n = { ...prev }; delete n.projectDescription; return n; });
+      }
+      return;
+    }
+
+    if (name === 'landRequirement') {
+      // Only numbers allowed
+      const digitsOnly = (value || '').replace(/\D/g, '');
+      setFormData(prev => ({ ...prev, landRequirement: digitsOnly }));
+      setErrors(prev => { const n = { ...prev }; delete n.landRequirement; return n; });
       return;
     }
 

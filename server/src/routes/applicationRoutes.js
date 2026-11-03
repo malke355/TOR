@@ -74,6 +74,51 @@ router.post('/', (req, res) => {
     }
   }
 
+  // Project Title validation (text only, no numbers allowed)
+  if (formData && formData.projectTitle && /\d/.test(formData.projectTitle)) {
+    return res.status(400).json({
+      error: 'Project Title must contain text only, no numbers are allowed.'
+    });
+  }
+
+  // Estimated Investment Capital validation: numbers only, minimum 100,000 ETB
+  if (formData && formData.estimatedCapital) {
+    const rawDigits = String(formData.estimatedCapital).replace(/\D/g, '');
+    const num = Number(rawDigits);
+    if (!rawDigits || isNaN(num) || num < 100000) {
+      return res.status(400).json({
+        error: 'Estimated Investment Capital must be a number of at least 100,000 ETB.'
+      });
+    }
+  }
+
+  // Projected Employment validation: numbers only
+  if (formData && formData.employmentProjection) {
+    const rawDigits = String(formData.employmentProjection).replace(/\D/g, '');
+    const num = Number(rawDigits);
+    if (!rawDigits || isNaN(num) || num <= 0) {
+      return res.status(400).json({
+        error: 'Projected Employment must be a valid positive number.'
+      });
+    }
+  }
+
+  // Detailed Project Description validation: text only, no numbers allowed
+  if (formData && formData.projectDescription && /\d/.test(formData.projectDescription)) {
+    return res.status(400).json({
+      error: 'Detailed Project Description must contain text only, no numbers are allowed.'
+    });
+  }
+
+  // Land Requirement validation: numbers only if provided
+  if (formData && formData.landRequirement && String(formData.landRequirement).trim()) {
+    if (!/^\d+$/.test(String(formData.landRequirement).trim())) {
+      return res.status(400).json({
+        error: 'Land Requirement must contain numbers only.'
+      });
+    }
+  }
+
   // Passport / National ID Number validation (if provided in formData)
   // National ID: FIN + exactly 12 digits (e.g. FIN123456789012)
   // US Passport: A + exactly 8 digits (e.g. A12345678)
