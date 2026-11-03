@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { AuthProvider } from './context/AuthContext';
 
@@ -30,7 +31,7 @@ import MessagesInbox from './pages/admin/MessagesInbox';
 
 function PublicLayout() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 selection:bg-emerald-600 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 selection:bg-emerald-600 selection:text-white transition-colors duration-200">
       <Navbar />
       <main className="flex-1">
         <Outlet />
@@ -42,42 +43,44 @@ function PublicLayout() {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            {/* Public Portal Layout */}
-            <Route path="/" element={<PublicLayout />}>
-              <Route index element={<Home />} />
-              <Route path="about" element={<About />} />
-              <Route path="investment" element={<InvestmentPortal />} />
-              <Route path="investment/:id" element={<InvestmentDetail />} />
-              <Route path="trade" element={<TradePortal />} />
-              <Route path="services" element={<ServicesDirectory />} />
-              <Route path="news" element={<NewsPortal />} />
-              <Route path="news/:id" element={<NewsDetail />} />
-              <Route path="documents" element={<DocumentsPage />} />
-              <Route path="contact" element={<ContactPage />} />
-            </Route>
+    <ThemeProvider>
+      <LanguageProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
+              {/* Public Portal Layout */}
+              <Route path="/" element={<PublicLayout />}>
+                <Route index element={<Home />} />
+                <Route path="about" element={<About />} />
+                <Route path="investment" element={<InvestmentPortal />} />
+                <Route path="investment/:id" element={<InvestmentDetail />} />
+                <Route path="trade" element={<TradePortal />} />
+                <Route path="services" element={<ServicesDirectory />} />
+                <Route path="news" element={<NewsPortal />} />
+                <Route path="news/:id" element={<NewsDetail />} />
+                <Route path="documents" element={<DocumentsPage />} />
+                <Route path="contact" element={<ContactPage />} />
+              </Route>
 
-            {/* Staff CMS Authentication */}
-            <Route path="/admin/login" element={<AdminLogin />} />
+              {/* Staff CMS Authentication */}
+              <Route path="/admin/login" element={<AdminLogin />} />
 
-            {/* Protected Staff CMS Area */}
-            <Route path="/admin" element={<AdminLayout />}>
-              <Route index element={<Navigate to="/admin/dashboard" replace />} />
-              <Route path="dashboard" element={<AdminDashboard />} />
-              <Route path="opportunities" element={<ManageOpportunities />} />
-              <Route path="news" element={<ManageNews />} />
-              <Route path="documents" element={<ManageDocuments />} />
-              <Route path="messages" element={<MessagesInbox />} />
-            </Route>
+              {/* Protected Staff CMS Area */}
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<Navigate to="/admin/dashboard" replace />} />
+                <Route path="dashboard" element={<AdminDashboard />} />
+                <Route path="opportunities" element={<ManageOpportunities />} />
+                <Route path="news" element={<ManageNews />} />
+                <Route path="documents" element={<ManageDocuments />} />
+                <Route path="messages" element={<MessagesInbox />} />
+              </Route>
 
-            {/* Fallback */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
-    </LanguageProvider>
+              {/* Fallback */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }

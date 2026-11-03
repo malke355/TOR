@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import {
   Globe,
   Phone,
@@ -12,12 +13,14 @@ import {
   LogOut,
   ChevronDown,
   ArrowRight,
-  Sparkles
+  Sun,
+  Moon
 } from 'lucide-react';
 
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage();
   const { isAuthenticated, user, logout } = useAuth();
+  const { isDark, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -38,12 +41,12 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 transition-all">
+    <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 dark:border-slate-800 transition-colors duration-200">
       {/* Regional Flag Tricolor Header Accent (Red, Black, White + Gold) */}
       <div className="h-1 w-full bg-gradient-to-r from-red-600 via-stone-900 to-amber-500"></div>
 
       {/* Top Utility Meta Bar */}
-      <div className="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 sm:px-8 border-b border-slate-800/80">
+      <div className="bg-slate-900 dark:bg-slate-950 text-slate-300 text-xs py-1.5 px-4 sm:px-8 border-b border-slate-800/80">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           {/* Contact Direct Line */}
           <div className="flex items-center gap-5">
@@ -57,8 +60,27 @@ export default function Navbar() {
             </span>
           </div>
 
-          {/* Right Tools: Language & Staff Portal */}
-          <div className="flex items-center gap-3">
+          {/* Right Tools: Theme Toggle, Language & Staff Portal */}
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            {/* Dark / Light Mode Switcher */}
+            <button
+              onClick={toggleTheme}
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-400 hover:text-amber-300 border border-slate-700 transition-all flex items-center gap-1.5 text-xs font-semibold"
+            >
+              {isDark ? (
+                <>
+                  <Sun className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="hidden sm:inline text-slate-200 text-[11px]">Light</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-3.5 h-3.5 text-slate-300" />
+                  <span className="hidden sm:inline text-slate-300 text-[11px]">Dark</span>
+                </>
+              )}
+            </button>
+
             {/* Multilingual Selector */}
             <div className="relative inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700/80 text-white px-2.5 py-1 rounded-lg border border-slate-700 transition-colors">
               <Globe className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
@@ -115,13 +137,13 @@ export default function Navbar() {
           </div>
 
           <div className="space-y-0.5">
-            <span className="text-[9px] font-extrabold tracking-widest text-amber-700 uppercase block">
+            <span className="text-[9px] font-extrabold tracking-widest text-amber-600 dark:text-amber-400 uppercase block">
               {t.bureau.region}
             </span>
-            <div className="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight leading-none group-hover:text-emerald-800 transition-colors">
+            <div className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight leading-none group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
               {t.bureau.title}
             </div>
-            <p className="text-[11px] text-slate-500 font-medium hidden md:block">
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden md:block">
               Biiroo Daldalaa fi Invastimantii Oromiyaa
             </p>
           </div>
@@ -137,13 +159,13 @@ export default function Navbar() {
                 to={link.path}
                 className={`relative px-3 py-2 text-[13px] font-semibold whitespace-nowrap transition-colors rounded-lg ${
                   active
-                    ? 'text-emerald-800 font-bold bg-emerald-50/80'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/70'
+                    ? 'text-emerald-800 dark:text-emerald-400 font-bold bg-emerald-50/80 dark:bg-emerald-950/50'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/80'
                 }`}
               >
                 {link.name}
                 {active && (
-                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-emerald-600 rounded-full"></span>
+                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full"></span>
                 )}
               </Link>
             );
@@ -165,7 +187,7 @@ export default function Navbar() {
         <div className="lg:hidden flex items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none transition-colors"
+            className="p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -175,7 +197,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-1.5 shadow-xl animate-fadeIn">
+        <div className="lg:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-3 pb-6 space-y-1.5 shadow-xl animate-fadeIn">
           {navLinks.map((link) => {
             const active = isActive(link.path);
             return (
@@ -186,7 +208,7 @@ export default function Navbar() {
                 className={`block px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-colors ${
                   active
                     ? 'bg-emerald-700 text-white shadow-sm'
-                    : 'text-slate-700 hover:bg-slate-100'
+                    : 'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
                 {link.name}
@@ -194,7 +216,7 @@ export default function Navbar() {
             );
           })}
 
-          <div className="pt-3 border-t border-slate-100 space-y-2">
+          <div className="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2">
             <Link
               to="/investment"
               onClick={() => setMobileMenuOpen(false)}
@@ -208,7 +230,7 @@ export default function Navbar() {
               <Link
                 to="/admin/dashboard"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-center gap-2 bg-emerald-50 text-emerald-800 text-xs font-bold py-2 rounded-xl"
+                className="w-full inline-flex items-center justify-center gap-2 bg-emerald-50 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 text-xs font-bold py-2 rounded-xl"
               >
                 <Shield className="w-4 h-4" />
                 <span>Admin CMS Console</span>
@@ -217,7 +239,7 @@ export default function Navbar() {
               <Link
                 to="/admin/login"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-center gap-2 bg-slate-100 text-slate-700 text-xs font-semibold py-2 rounded-xl"
+                className="w-full inline-flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold py-2 rounded-xl"
               >
                 <Shield className="w-4 h-4 text-slate-500" />
                 <span>Staff CMS Login</span>

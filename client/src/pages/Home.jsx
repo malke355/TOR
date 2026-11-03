@@ -127,49 +127,49 @@ export default function Home() {
 
       {/* KPI Stats Bar */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center transition-colors">
           <div className="space-y-1">
-            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-800">
+            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-800 dark:text-emerald-400">
               {stats?.institutionalMetrics?.licensedInvestorsYTD || '240+'}
             </div>
-            <div className="text-xs sm:text-sm text-slate-500 font-medium">{t.hero.stats.projects}</div>
+            <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">{t.hero.stats.projects}</div>
           </div>
           <div className="space-y-1">
-            <div className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+            <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
               {stats?.institutionalMetrics?.activeInvestmentZones || '12'}
             </div>
-            <div className="text-xs sm:text-sm text-slate-500 font-medium">{t.hero.stats.zones}</div>
+            <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">{t.hero.stats.zones}</div>
           </div>
           <div className="space-y-1">
-            <div className="text-2xl sm:text-3xl font-extrabold text-amber-600">
+            <div className="text-2xl sm:text-3xl font-extrabold text-amber-600 dark:text-amber-400">
               {stats?.institutionalMetrics?.regionalExportVolumeUSD || '$2.4B+'}
             </div>
-            <div className="text-xs sm:text-sm text-slate-500 font-medium">{t.hero.stats.exportValue}</div>
+            <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">{t.hero.stats.exportValue}</div>
           </div>
           <div className="space-y-1">
-            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-700">
+            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-700 dark:text-emerald-400">
               {stats?.institutionalMetrics?.priorityExportSectors || '6'}
             </div>
-            <div className="text-xs sm:text-sm text-slate-500 font-medium">{t.hero.stats.prioritySectors}</div>
+            <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">{t.hero.stats.prioritySectors}</div>
           </div>
         </div>
       </section>
 
       {/* Section 1: Featured Investment Opportunities */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
           <div>
-            <div className="text-xs font-bold text-emerald-700 tracking-wider uppercase">Strategic Growth</div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+            <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase">Strategic Growth</div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
               Featured Investment Opportunities
             </h2>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
               Pre-profiled commercial projects with allocated land, utility infrastructure, and fiscal incentives.
             </p>
           </div>
           <Link
             to="/investment"
-            className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 hover:text-emerald-800 hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
           >
             <span>{t.common.viewAll} ({featuredOpps.length})</span>
             <ChevronRight className="w-4 h-4" />
@@ -180,7 +180,7 @@ export default function Home() {
           {featuredOpps.map((opp) => (
             <div
               key={opp.id}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col group"
+              className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col group"
             >
               <div className="h-48 overflow-hidden relative">
                 <img
@@ -188,32 +188,32 @@ export default function Home() {
                   alt={opp.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <span className="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-md">
+                <span className="absolute top-3 right-3 bg-slate-900/85 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-md">
                   {opp.sector}
                 </span>
               </div>
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2">
-                  <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                    <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+                  <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium">
+                    <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                     <span>{opp.location}</span>
                   </div>
-                  <h3 className="font-bold text-slate-900 text-lg leading-snug group-hover:text-emerald-700 transition-colors">
+                  <h3 className="font-bold text-slate-900 dark:text-white text-lg leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                     {opp.title}
                   </h3>
-                  <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
                     {opp.summary}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                   <div>
                     <span className="text-[11px] text-slate-400 block font-medium">Est. Capital</span>
-                    <span className="text-xs font-bold text-slate-800">{opp.requiredCapital}</span>
+                    <span className="text-xs font-bold text-slate-800 dark:text-slate-200">{opp.requiredCapital}</span>
                   </div>
                   <Link
                     to={`/investment/${opp.id}`}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg transition-colors"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 px-3 py-1.5 rounded-lg transition-colors"
                   >
                     <span>View Profile</span>
                     <ArrowRight className="w-3 h-3" />
@@ -226,21 +226,21 @@ export default function Home() {
       </section>
 
       {/* Section 2: Priority Export Commodities */}
-      <section className="bg-slate-100 py-16 px-4 sm:px-8 border-y border-slate-200">
+      <section className="bg-slate-100 dark:bg-slate-900/50 py-16 px-4 sm:px-8 border-y border-slate-200 dark:border-slate-800 transition-colors">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-              <div className="text-xs font-bold text-emerald-700 tracking-wider uppercase">Trade Promotion</div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+              <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase">Trade Promotion</div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
                 Priority Regional Export Products
               </h2>
-              <p className="text-sm text-slate-500 mt-1">
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
                 World-renowned single-origin agricultural commodities, organic livestock, and manufactured goods.
               </p>
             </div>
             <Link
               to="/trade"
-              className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 hover:text-emerald-800 hover:underline"
+              className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
             >
               <span>Explore Trade Portal</span>
               <ChevronRight className="w-4 h-4" />
@@ -251,7 +251,7 @@ export default function Home() {
             {tradeProducts.map((prod) => (
               <div
                 key={prod.id}
-                className="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow group flex flex-col"
+                className="bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all group flex flex-col"
               >
                 <div className="h-40 overflow-hidden relative">
                   <img
@@ -259,20 +259,20 @@ export default function Home() {
                     alt={prod.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                   />
-                  <span className="absolute bottom-2 left-2 bg-slate-900/80 text-white text-[11px] font-medium px-2 py-0.5 rounded">
+                  <span className="absolute bottom-2 left-2 bg-slate-900/85 text-white text-[11px] font-medium px-2 py-0.5 rounded">
                     {prod.category}
                   </span>
                 </div>
                 <div className="p-4 flex-1 flex flex-col justify-between space-y-2">
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition-colors">
+                    <h4 className="font-bold text-slate-900 dark:text-white text-sm group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                       {prod.name}
                     </h4>
-                    <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
                       {prod.description}
                     </p>
                   </div>
-                  <div className="text-[11px] text-emerald-800 font-semibold pt-2 border-t border-slate-100">
+                  <div className="text-[11px] text-emerald-800 dark:text-emerald-400 font-semibold pt-2 border-t border-slate-100 dark:border-slate-800">
                     Origin: {prod.originZones}
                   </div>
                 </div>
@@ -284,19 +284,19 @@ export default function Home() {
 
       {/* Section 3: Essential Bureau Services */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
           <div>
-            <div className="text-xs font-bold text-emerald-700 tracking-wider uppercase">Public Facilitation</div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+            <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase">Public Facilitation</div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
               Investor & Trader Services
             </h2>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
               Transparent service charters detailing requirements, processing timelines, and responsible desks.
             </p>
           </div>
           <Link
             to="/services"
-            className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 hover:text-emerald-800 hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
           >
             <span>All Services</span>
             <ChevronRight className="w-4 h-4" />
@@ -307,28 +307,28 @@ export default function Home() {
           {services.map((srv) => (
             <div
               key={srv.id}
-              className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-emerald-500/60 transition-all flex flex-col justify-between space-y-4"
+              className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500/60 transition-all flex flex-col justify-between space-y-4"
             >
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">
+                  <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-md">
                     {srv.category}
                   </span>
-                  <span className="text-xs text-slate-500 font-medium">
-                    Time: <strong className="text-slate-700">{srv.processingTime}</strong>
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                    Time: <strong className="text-slate-700 dark:text-slate-300">{srv.processingTime}</strong>
                   </span>
                 </div>
-                <h3 className="font-bold text-slate-900 text-base">{srv.title}</h3>
-                <p className="text-xs text-slate-600 leading-relaxed">{srv.description}</p>
+                <h3 className="font-bold text-slate-900 dark:text-white text-base">{srv.title}</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{srv.description}</p>
               </div>
 
-              <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                <span className="text-slate-500">
-                  Office: <span className="text-slate-700 font-medium">{srv.responsibleOffice}</span>
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                <span className="text-slate-500 dark:text-slate-400">
+                  Office: <span className="text-slate-700 dark:text-slate-200 font-medium">{srv.responsibleOffice}</span>
                 </span>
                 <Link
                   to="/services"
-                  className="font-bold text-emerald-700 hover:underline inline-flex items-center gap-1"
+                  className="font-bold text-emerald-700 dark:text-emerald-400 hover:underline inline-flex items-center gap-1"
                 >
                   <span>Details</span>
                   <ArrowRight className="w-3 h-3" />
@@ -341,19 +341,19 @@ export default function Home() {
 
       {/* Section 4: Latest News & Public Notices */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
           <div>
-            <div className="text-xs font-bold text-emerald-700 tracking-wider uppercase">Media Center</div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+            <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase">Media Center</div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
               Latest News & Announcements
             </h2>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
               Official press releases, policy updates, and regional trade announcements.
             </p>
           </div>
           <Link
             to="/news"
-            className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 hover:text-emerald-800 hover:underline"
+            className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
           >
             <span>All News</span>
             <ChevronRight className="w-4 h-4" />
@@ -364,7 +364,7 @@ export default function Home() {
           {news.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col group"
+              className="bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col group"
             >
               <div className="h-44 overflow-hidden">
                 <img
@@ -376,21 +376,21 @@ export default function Home() {
               <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-xs text-slate-400">
-                    <Calendar className="w-3.5 h-3.5 text-emerald-600" />
+                    <Calendar className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                     <span>{item.publishedAt}</span>
                     <span>•</span>
-                    <span className="text-emerald-700 font-semibold">{item.category}</span>
+                    <span className="text-emerald-700 dark:text-emerald-400 font-semibold">{item.category}</span>
                   </div>
-                  <h4 className="font-bold text-slate-900 text-base leading-snug group-hover:text-emerald-700 transition-colors">
+                  <h4 className="font-bold text-slate-900 dark:text-white text-base leading-snug group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
                     {item.title}
                   </h4>
-                  <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
                     {item.summary}
                   </p>
                 </div>
                 <Link
                   to={`/news/${item.id}`}
-                  className="pt-2 text-xs font-bold text-emerald-700 inline-flex items-center gap-1 group-hover:underline"
+                  className="pt-2 text-xs font-bold text-emerald-700 dark:text-emerald-400 inline-flex items-center gap-1 group-hover:underline"
                 >
                   <span>Read Article</span>
                   <ArrowRight className="w-3 h-3" />
@@ -403,7 +403,7 @@ export default function Home() {
 
       {/* Leadership Spotlight Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="bg-gradient-to-r from-emerald-900 to-slate-900 text-white rounded-2xl p-8 sm:p-10 border border-emerald-800/80 shadow-md flex flex-col md:flex-row items-center gap-8">
+        <div className="bg-gradient-to-r from-emerald-900 via-slate-900 to-slate-950 text-white rounded-2xl p-8 sm:p-10 border border-emerald-800/80 shadow-md flex flex-col md:flex-row items-center gap-8">
           <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-2 border-emerald-400/40 shrink-0 shadow-lg">
             <img
               src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"

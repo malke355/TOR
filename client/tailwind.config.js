@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -14,9 +15,9 @@ export default {
           green: '#008751',
           gold: '#E5A823',
           dark: '#0F172A',
-          primary: '#0B4F37', // Deep institutional emerald green
-          accent: '#C53030',  // Institutional crimson
-          secondary: '#D97706' // Warm gold
+          primary: '#0B4F37',
+          accent: '#C53030',
+          secondary: '#D97706'
         }
       }
     },
