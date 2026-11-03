@@ -61,4 +61,41 @@ router.post('/', requireAuth, (req, res) => {
   res.status(201).json({ message: 'Trade product registered successfully', data: newProduct });
 });
 
+// PUT /api/trade/:id (Protected)
+router.put('/:id', requireAuth, (req, res) => {
+  const store = getStore();
+  const product = store.tradeProducts.find(p => p.id === req.params.id);
+
+  if (!product) {
+    return res.status(404).json({ error: 'Trade product not found.' });
+  }
+
+  const { name, category, originZones, exportSpecs, description, seasonality, imageUrl } = req.body;
+
+  if (name) product.name = name;
+  if (category) product.category = category;
+  if (originZones) product.originZones = originZones;
+  if (exportSpecs) product.exportSpecs = exportSpecs;
+  if (description) product.description = description;
+  if (seasonality) product.seasonality = seasonality;
+  if (imageUrl) product.imageUrl = imageUrl;
+
+  saveStore();
+  res.json({ message: 'Trade product updated successfully', data: product });
+});
+
+// DELETE /api/trade/:id (Protected)
+router.delete('/:id', requireAuth, (req, res) => {
+  const store = getStore();
+  const index = store.tradeProducts.findIndex(p => p.id === req.params.id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'Trade product not found.' });
+  }
+
+  const removed = store.tradeProducts.splice(index, 1)[0];
+  saveStore();
+  res.json({ message: 'Trade product removed successfully', data: removed });
+});
+
 export default router;

@@ -69,4 +69,57 @@ router.post('/', requireAuth, (req, res) => {
   res.status(201).json({ message: 'Service added successfully', data: newService });
 });
 
+// PUT /api/services/:id (Protected)
+router.put('/:id', requireAuth, (req, res) => {
+  const store = getStore();
+  const service = store.services.find(s => s.id === req.params.id);
+
+  if (!service) {
+    return res.status(404).json({ error: 'Service not found.' });
+  }
+
+  const {
+    title,
+    category,
+    description,
+    eligibility,
+    requirements,
+    procedure,
+    processingTime,
+    fees,
+    responsibleOffice,
+    isOnline,
+    portalUrl
+  } = req.body;
+
+  if (title) service.title = title;
+  if (category) service.category = category;
+  if (description) service.description = description;
+  if (eligibility) service.eligibility = eligibility;
+  if (requirements) service.requirements = requirements;
+  if (procedure) service.procedure = procedure;
+  if (processingTime) service.processingTime = processingTime;
+  if (fees) service.fees = fees;
+  if (responsibleOffice) service.responsibleOffice = responsibleOffice;
+  if (isOnline !== undefined) service.isOnline = Boolean(isOnline);
+  if (portalUrl !== undefined) service.portalUrl = portalUrl;
+
+  saveStore();
+  res.json({ message: 'Service updated successfully', data: service });
+});
+
+// DELETE /api/services/:id (Protected)
+router.delete('/:id', requireAuth, (req, res) => {
+  const store = getStore();
+  const index = store.services.findIndex(s => s.id === req.params.id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: 'Service not found.' });
+  }
+
+  const removed = store.services.splice(index, 1)[0];
+  saveStore();
+  res.json({ message: 'Service removed successfully', data: removed });
+});
+
 export default router;

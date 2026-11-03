@@ -40,13 +40,74 @@ app.use('/api/documents', documentRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/stats', statsRoutes);
 
-// Health check
+// Health check & Institutional Registry
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'online',
     bureau: 'Oromia Trade and Investment Bureau',
+    region: 'National Regional State of Oromia, Ethiopia',
     version: '1.0.0-mvp',
+    currency: 'ETB',
     timestamp: new Date().toISOString()
+  });
+});
+
+// Interactive API Directory / Catalog
+app.get(['/api', '/api/docs'], (req, res) => {
+  res.json({
+    institution: 'Oromia Trade and Investment Bureau (OTIB)',
+    officialPortal: 'https://investoromia.gov.et',
+    documentationVersion: '1.0',
+    endpoints: {
+      auth: {
+        'POST /api/auth/login': 'Staff authentication and JWT token issuance',
+        'GET /api/auth/me': 'Current user profile verification (Bearer token required)'
+      },
+      opportunities: {
+        'GET /api/opportunities': 'Query priority investment projects (filter by sector, location, search)',
+        'GET /api/opportunities/:id': 'Fetch specific project profile and feasibility parameters',
+        'POST /api/opportunities': 'Register new project (Admin/Editor role)',
+        'PUT /api/opportunities/:id': 'Update existing project specifications (Protected)',
+        'DELETE /api/opportunities/:id': 'Archive or delete project (Protected)'
+      },
+      trade: {
+        'GET /api/trade': 'Browse regional export commodities catalog (coffee, sesame, honey, minerals)',
+        'GET /api/trade/:id': 'Detailed export specs and harvest calendars',
+        'POST /api/trade': 'Register new export commodity (Protected)',
+        'PUT /api/trade/:id': 'Update commodity profile (Protected)',
+        'DELETE /api/trade/:id': 'Remove commodity (Protected)'
+      },
+      services: {
+        'GET /api/services': 'Citizen and investor service charters and turnaround timelines',
+        'GET /api/services/:id': 'Individual service requirements and procedures',
+        'POST /api/services': 'Register institutional public service (Protected)',
+        'PUT /api/services/:id': 'Update service charter (Protected)',
+        'DELETE /api/services/:id': 'Remove service (Protected)'
+      },
+      news: {
+        'GET /api/news': 'Official press releases, pacts, and regional updates',
+        'GET /api/news/:id': 'Read full news release',
+        'POST /api/news': 'Publish new release (Protected)',
+        'PUT /api/news/:id': 'Update article (Protected)',
+        'DELETE /api/news/:id': 'Remove article (Protected)'
+      },
+      documents: {
+        'GET /api/documents': 'Downloadable legal directives, proclamations, and forms',
+        'POST /api/documents': 'Upload document metadata (Protected)',
+        'PUT /api/documents/:id': 'Update document metadata (Protected)',
+        'DELETE /api/documents/:id': 'Remove document (Protected)'
+      },
+      messages: {
+        'POST /api/messages': 'Public citizen/investor inquiry submission',
+        'GET /api/messages': 'Review submitted messages (Protected - Staff CMS)',
+        'PATCH /api/messages/:id/status': 'Update inquiry workflow status (Protected)',
+        'DELETE /api/messages/:id': 'Remove message record (Protected)'
+      },
+      stats: {
+        'GET /api/stats': 'Real-time KPIs, active projects count, and regional metrics',
+        'GET /api/stats/backup': 'Export complete Bureau database snapshot (Protected)'
+      }
+    }
   });
 });
 

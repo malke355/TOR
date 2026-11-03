@@ -50,6 +50,28 @@ router.post('/', requireAuth, (req, res) => {
   res.status(201).json({ message: 'Document added to repository', data: newDoc });
 });
 
+// PUT /api/documents/:id (Protected)
+router.put('/:id', requireAuth, (req, res) => {
+  const store = getStore();
+  const doc = store.documents.find(d => d.id === req.params.id);
+
+  if (!doc) {
+    return res.status(404).json({ error: 'Document not found.' });
+  }
+
+  const { title, category, fileType, fileSize, refNumber, downloadUrl } = req.body;
+
+  if (title) doc.title = title;
+  if (category) doc.category = category;
+  if (fileType) doc.fileType = fileType;
+  if (fileSize) doc.fileSize = fileSize;
+  if (refNumber) doc.refNumber = refNumber;
+  if (downloadUrl) doc.downloadUrl = downloadUrl;
+
+  saveStore();
+  res.json({ message: 'Document updated successfully', data: doc });
+});
+
 // DELETE /api/documents/:id (Protected)
 router.delete('/:id', requireAuth, (req, res) => {
   const store = getStore();
