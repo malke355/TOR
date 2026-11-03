@@ -37,7 +37,29 @@ export const translations = {
         zones: "Industrial & Agribusiness Zones",
         exportValue: "Annual Regional Export Value",
         prioritySectors: "Priority Growth Sectors"
-      }
+      },
+      slides: [
+        {
+          tag: "Industrial Infrastructure",
+          title: "Bulbula Integrated Agro-Industrial Park (BIAIP)",
+          desc: "State-of-the-art agro-processing hub with dedicated water, power, cold chains, and express highway connectivity."
+        },
+        {
+          tag: "World-Class Commodities",
+          title: "Premium Oromia Specialty Coffee Harvesting",
+          desc: "Birthplace of Arabica coffee producing globally acclaimed certified organic Jimma, Guji, Limmu, and Harar varieties."
+        },
+        {
+          tag: "Manufacturing Excellence",
+          title: "Export-Oriented Textile & Apparel Manufacturing",
+          desc: "Modern manufacturing plants driving industrial transformation, competitive energy tariffs, and duty-free trade access."
+        },
+        {
+          tag: "Livestock & Agro-Pastoral",
+          title: "Borana Pastoralist Livestock & Agro-Pastoral Trade",
+          desc: "World-renowned Borana breeds and modern abattoir clusters supplying premium organic livestock across East Africa and the Gulf."
+        }
+      ]
     },
     home: {
       featuredTitle: "Featured Investment Opportunities",
@@ -233,7 +255,29 @@ export const translations = {
         zones: "Zoonota Indaastirii fi Qonnaa",
         exportValue: "Gatii Alergaa Waggaa",
         prioritySectors: "Dameewwan Dursa Fudhatan"
-      }
+      },
+      slides: [
+        {
+          tag: "Bu'uura Misooma Indaastirii",
+          title: "Paarkii Indaastirii Qonnaa Walitti Qindaa'e Bulbulaa",
+          desc: "Giddugala qonnaa ammayyaa humna ibsaa, bishaan, kuusaa qabbaneessaa fi daandii saffisaa qabu."
+        },
+        {
+          tag: "Oomishaalee Alergaa Sadarkaa Addunyaa",
+          title: "Buna Addaa Oromiyaa Sadarkaa Addunyaa",
+          desc: "Madda Buna Arabikaa — Jimma, Gujii, Limmuu fi Harargee irraa gara gabaa addunyaatti qulqullina olaanaan dhihaatu."
+        },
+        {
+          tag: "Warshaalee & Oomisha",
+          title: "Warshaalee Huccuu fi Uffataa Alergaaf Qophaa'an",
+          desc: "Warshaalee ammayyaa jijjiirama indaastirii saffisiisan, gatii humna ibsaa madaalawaa fi carraa daldala alaa qaban."
+        },
+        {
+          tag: "Horii fi Beeylada",
+          title: "Horii Beeylada Booranaa fi Daldala Qonnaa",
+          desc: "Sanyii horii Booranaa beekamaa fi warshaalee foonii ammayyaa gabaa Baha Afriikaa fi Giddu-galeessa Bahaatiif dhihaatan."
+        }
+      ]
     },
     home: {
       featuredTitle: "Carraawwan Invastimantii Filatamo",
@@ -429,7 +473,29 @@ export const translations = {
         zones: "የኢንዱስትሪና ግብርና ዞኖች",
         exportValue: "ዓመታዊ የወጪ ንግድ ገቢ",
         prioritySectors: "ቅድሚያ የሚሰጣቸው ዘርፎች"
-      }
+      },
+      slides: [
+        {
+          tag: "የኢንዱስትሪ መሰረተ ልማት",
+          title: "ቡልቡላ የተቀናጀ የግብርና ኢንዱስትሪ ፓርክ",
+          desc: "ዘመናዊ የግብርና ማቀነባበሪያ ማዕከል ከሙሉ የውሃ፣ የመብራት፣ የማቀዝቀዣ እና የፈጣን መንገድ ትስስር ጋር።"
+        },
+        {
+          tag: "ዓለም አቀፍ ደረጃ የወጪ ምርቶች",
+          title: "የኦሮሚያ ምርጥ የተፈጥሮ ቡና ምርት",
+          desc: "የአረቢካ ቡና መገኛ — ከጅማ፣ ጉጂ፣ ሊሙ እና ሐረር የሚመረቱ በዓለም አቀፍ ደረጃ ተወዳጅ የኦርጋኒክ ቡና ዝርያዎች።"
+        },
+        {
+          tag: "የማኑፋክቸሪንግ ኢንዱስትሪ",
+          title: "ለወጪ ንግድ የተዘጋጁ የጨርቃጨርቅ እና አልባሳት ፋብሪካዎች",
+          desc: "የኢንዱስትሪ ሽግግርን የሚያፋጥኑ፣ ተወዳዳሪ የኃይል አቅርቦት እና ከቀረጥ ነፃ የንግድ ዕድል ያላቸው ዘመናዊ ፋብሪካዎች።"
+        },
+        {
+          tag: "የከብት እርባታና ማቀነባበሪያ",
+          title: "የቦረና ከብት እርባታ እና የቀንድ ከብት ንግድ",
+          desc: "በዓለም የታወቁ የቦረና ዝርያዎች እና ዘመናዊ ቄራዎች ለምስራቅ አፍሪካ እና ለመካከለኛው ምስራቅ ገበያ የሚያቀርቡበት ዘርፍ።"
+        }
+      ]
     },
     home: {
       featuredTitle: "ተመራጭ የኢንቨስትመንት እድሎች",

@@ -12,17 +12,60 @@ import {
   Calendar,
   ExternalLink,
   MapPin,
-  ChevronRight
+  ChevronRight,
+  ChevronLeft
 } from 'lucide-react';
+
+const HERO_SLIDES = [
+  {
+    image: '/images/hero/bulbula-industrial-park.png',
+    alt: 'Bulbula Integrated Agro-Industrial Park',
+    defaultTag: 'Industrial Infrastructure',
+    defaultTitle: 'Bulbula Integrated Agro-Industrial Park (BIAIP)',
+    defaultDesc: 'State-of-the-art processing infrastructure with complete utility hookups, cold chains, and direct logistics corridors.'
+  },
+  {
+    image: '/images/hero/coffee-harvesting.jpg',
+    alt: 'Oromia Specialty Coffee Harvesting & Washing',
+    defaultTag: 'World-Class Commodities',
+    defaultTitle: 'Premium Oromia Specialty Coffee Harvesting',
+    defaultDesc: 'Birthplace of Arabica coffee producing globally acclaimed certified organic Jimma, Guji, Limmu, and Harar varieties.'
+  },
+  {
+    image: '/images/hero/textile-manufacturing.jpg',
+    alt: 'Textile and Apparel Manufacturing in Oromia',
+    defaultTag: 'Manufacturing Excellence',
+    defaultTitle: 'Export-Oriented Textile & Apparel Manufacturing',
+    defaultDesc: 'Modern manufacturing plants driving industrial transformation, competitive energy tariffs, and duty-free trade access.'
+  },
+  {
+    image: '/images/hero/borana-livestock.jpg',
+    alt: 'Borana Pastoralist Livestock and Agro-pastoral Economy',
+    defaultTag: 'Livestock & Agro-Pastoral',
+    defaultTitle: 'Borana Pastoralist Livestock & Agro-Pastoral Trade',
+    defaultDesc: 'World-renowned Borana breeds and modern abattoir clusters supplying premium organic livestock across East Africa and the Gulf.'
+  }
+];
 
 export default function Home() {
   const { t } = useLanguage();
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [stats, setStats] = useState(null);
   const [featuredOpps, setFeaturedOpps] = useState([]);
   const [tradeProducts, setTradeProducts] = useState([]);
   const [services, setServices] = useState([]);
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % HERO_SLIDES.length);
+    }, 5500);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => setCurrentSlide(prev => (prev + 1) % HERO_SLIDES.length);
+  const prevSlide = () => setCurrentSlide(prev => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
 
   useEffect(() => {
     Promise.all([
@@ -47,7 +90,7 @@ export default function Home() {
       <section className="relative bg-gradient-to-br from-emerald-50/80 via-white to-slate-50 dark:bg-gradient-to-br dark:from-slate-950 dark:via-emerald-950 dark:to-slate-900 text-slate-900 dark:text-white overflow-hidden py-16 lg:py-24 px-4 sm:px-8 border-b border-slate-200 dark:border-emerald-900/40 transition-colors duration-200">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
         
-        <div className="relative max-w-7xl mx-auto">
+        <div className="relative max-w-7xl mx-auto space-y-10">
           <div className="max-w-3xl space-y-6">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-slate-950 dark:text-white">
               {t.hero.title}
@@ -71,6 +114,89 @@ export default function Home() {
               >
                 <span>{t.hero.servicesBtn}</span>
               </Link>
+            </div>
+          </div>
+
+          {/* Hero Image Showcase Carousel */}
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-emerald-900/50 bg-slate-950 aspect-[16/9] sm:aspect-[21/9] max-h-[500px] w-full select-none">
+            {/* Slides */}
+            {HERO_SLIDES.map((slide, index) => {
+              const slideText = t.hero?.slides?.[index];
+              const tag = slideText?.tag || slide.defaultTag;
+              const title = slideText?.title || slide.defaultTitle;
+              const desc = slideText?.desc || slide.defaultDesc;
+              const isActive = index === currentSlide;
+
+              return (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                    isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                  }`}
+                >
+                  <img
+                    src={slide.image}
+                    alt={slide.alt}
+                    className="w-full h-full object-cover object-center"
+                  />
+                  {/* Subtle Top & Bottom Gradient Overlays for Readability and Depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-black/30" />
+
+                  {/* Slide Content Caption */}
+                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10 text-white z-10">
+                    <div className="max-w-3xl space-y-2">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-emerald-600/90 text-white shadow-sm backdrop-blur-sm border border-emerald-400/30">
+                        {tag}
+                      </span>
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight drop-shadow-md">
+                        {title}
+                      </h3>
+                      <p className="hidden sm:block text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed line-clamp-2 max-w-2xl drop-shadow">
+                        {desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* Left Chevron Button */}
+            <button
+              onClick={prevSlide}
+              aria-label="Previous slide"
+              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/65 hover:bg-emerald-600 text-white flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
+            </button>
+
+            {/* Right Chevron Button */}
+            <button
+              onClick={nextSlide}
+              aria-label="Next slide"
+              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/65 hover:bg-emerald-600 text-white flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
+            </button>
+
+            {/* Slide Index Counter Badge (Top Right) */}
+            <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 text-white text-xs font-semibold tracking-wider">
+              {currentSlide + 1} / {HERO_SLIDES.length}
+            </div>
+
+            {/* Bottom Indicator Dots */}
+            <div className="absolute bottom-4 right-6 sm:bottom-6 sm:right-8 z-20 flex items-center gap-2">
+              {HERO_SLIDES.map((_, dotIndex) => (
+                <button
+                  key={dotIndex}
+                  onClick={() => setCurrentSlide(dotIndex)}
+                  aria-label={`Go to slide ${dotIndex + 1}`}
+                  className={`transition-all duration-300 rounded-full cursor-pointer focus:outline-none ${
+                    dotIndex === currentSlide
+                      ? 'w-7 sm:w-8 h-2 sm:h-2.5 bg-emerald-500 shadow-md shadow-emerald-500/50'
+                      : 'w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white/50 hover:bg-white/80'
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>
