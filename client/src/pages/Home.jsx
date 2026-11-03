@@ -6,7 +6,6 @@ import {
   Package,
   Layers,
   ArrowRight,
-  CheckCircle2,
   Building,
   Globe2,
   FileCheck,
@@ -48,8 +47,8 @@ export default function Home() {
       <section className="relative bg-gradient-to-br from-emerald-50/80 via-white to-slate-50 dark:bg-gradient-to-br dark:from-slate-950 dark:via-emerald-950 dark:to-slate-900 text-slate-900 dark:text-white overflow-hidden py-16 lg:py-24 px-4 sm:px-8 border-b border-slate-200 dark:border-emerald-900/40 transition-colors duration-200">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
         
-        <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-6">
+        <div className="relative max-w-7xl mx-auto">
+          <div className="max-w-3xl space-y-6">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-slate-950 dark:text-white">
               {t.hero.title}
             </h1>
@@ -71,48 +70,6 @@ export default function Home() {
                 className="inline-flex items-center gap-2 bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-semibold px-6 py-3.5 rounded-xl transition-all shadow-sm"
               >
                 <span>{t.hero.servicesBtn}</span>
-              </Link>
-            </div>
-          </div>
-
-          {/* Quick Institutional Focus Card */}
-          <div className="lg:col-span-5 bg-white dark:bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-white/15 shadow-xl space-y-5 transition-colors">
-            <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-4">
-              <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.hero.mandateTitle || "Institutional Mandate"}</h3>
-                <p className="text-xs text-emerald-700 dark:text-emerald-300 font-medium">{t.hero.mandateSub || "Unified Trade & Investment Gateway"}</p>
-              </div>
-              <span className="px-2.5 py-1 rounded bg-amber-100 dark:bg-amber-400/20 text-amber-800 dark:text-amber-300 text-xs font-bold border border-amber-300 dark:border-amber-400/30">
-                Oromia
-              </span>
-            </div>
-
-            <ul className="space-y-3.5 text-sm text-slate-700 dark:text-slate-200">
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                <span>{t.hero.m1 || "Single-window investor licensing and duty-free import exemptions"}</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                <span>{t.hero.m2 || "Pre-cleared land bank allocation in agro-processing and industrial parks"}</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                <span>{t.hero.m3 || "Direct market linkages for specialty coffee, oilseeds, and organic livestock"}</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                <span>{t.hero.m4 || "Strategic rail and road corridor access to Djibouti port and regional markets"}</span>
-              </li>
-            </ul>
-
-            <div className="pt-2">
-              <Link
-                to="/about"
-                className="text-xs text-emerald-700 dark:text-emerald-300 hover:underline font-semibold flex items-center gap-1 group"
-              >
-                <span>{t.hero.learnMore || "Learn more about the Bureau restructuring"}</span>
-                <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
