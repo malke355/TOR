@@ -183,16 +183,14 @@ export default function ServicesDirectory() {
                     {t.services?.dept || "Desk"}: <strong className="text-slate-700 dark:text-slate-300">{srv.responsibleOffice}</strong>
                   </span>
 
-                  {srv.isOnline && srv.portalUrl ? (
-                    <a
-                      href={srv.portalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  {srv.isOnline ? (
+                    <Link
+                      to={`/services/portal/${srv.id}`}
                       className="inline-flex items-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-4 py-2 rounded-xl shadow-sm transition-colors"
                     >
                       <span>Access Electronic Portal</span>
                       <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
+                    </Link>
                   ) : (
                     <Link
                       to="/documents"

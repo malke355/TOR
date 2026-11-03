@@ -21,6 +21,7 @@ import NewsPortal from './pages/NewsPortal';
 import NewsDetail from './pages/NewsDetail';
 import DocumentsPage from './pages/DocumentsPage';
 import ContactPage from './pages/ContactPage';
+import ServicePortal from './pages/ServicePortal';
 
 // Admin CMS Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -58,6 +59,7 @@ export default function App() {
                 <Route path="investment/:id" element={<InvestmentDetail />} />
                 <Route path="trade" element={<TradePortal />} />
                 <Route path="services" element={<ServicesDirectory />} />
+                <Route path="services/portal/:serviceId" element={<ServicePortal />} />
                 <Route path="news" element={<NewsPortal />} />
                 <Route path="news/:id" element={<NewsDetail />} />
                 <Route path="documents" element={<DocumentsPage />} />

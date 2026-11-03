@@ -11,6 +11,7 @@ import serviceRoutes from './routes/serviceRoutes.js';
 import documentRoutes from './routes/documentRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import statsRoutes from './routes/statsRoutes.js';
+import applicationRoutes from './routes/applicationRoutes.js';
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ app.use('/api/services', serviceRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/stats', statsRoutes);
+app.use('/api/applications', applicationRoutes);
 
 // Health check & Institutional Registry
 app.get('/api/health', (req, res) => {
@@ -106,6 +108,13 @@ app.get(['/api', '/api/docs'], (req, res) => {
       stats: {
         'GET /api/stats': 'Real-time KPIs, active projects count, and regional metrics',
         'GET /api/stats/backup': 'Export complete Bureau database snapshot (Protected)'
+      },
+      applications: {
+        'POST /api/applications': 'Submit service application (Investment Permit, Duty-Free, Trade License)',
+        'GET /api/applications': 'View all submitted applications (Protected - Staff CMS)',
+        'GET /api/applications/:id': 'View single application details (Protected)',
+        'PATCH /api/applications/:id/status': 'Update application review status (Protected)',
+        'DELETE /api/applications/:id': 'Remove application record (Protected)'
       }
     }
   });
