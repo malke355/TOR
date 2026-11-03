@@ -30,6 +30,7 @@ import ManageOpportunities from './pages/admin/ManageOpportunities';
 import ManageNews from './pages/admin/ManageNews';
 import ManageDocuments from './pages/admin/ManageDocuments';
 import MessagesInbox from './pages/admin/MessagesInbox';
+import ManageApplications from './pages/admin/ManageApplications';
 
 function PublicLayout() {
   return (
@@ -73,6 +74,7 @@ export default function App() {
               <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<Navigate to="/admin/dashboard" replace />} />
                 <Route path="dashboard" element={<AdminDashboard />} />
+                <Route path="applications" element={<ManageApplications />} />
                 <Route path="opportunities" element={<ManageOpportunities />} />
                 <Route path="news" element={<ManageNews />} />
                 <Route path="documents" element={<ManageDocuments />} />

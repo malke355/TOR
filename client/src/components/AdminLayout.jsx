@@ -10,7 +10,8 @@ import {
   LogOut,
   ExternalLink,
   Shield,
-  UserCheck
+  UserCheck,
+  ClipboardCheck
 } from 'lucide-react';
 
 export default function AdminLayout() {
@@ -30,6 +31,7 @@ export default function AdminLayout() {
 
   const menuItems = [
     { name: 'Dashboard Overview', path: '/admin/dashboard', icon: LayoutDashboard },
+    { name: 'Service Applications', path: '/admin/applications', icon: ClipboardCheck },
     { name: 'Investment Opportunities', path: '/admin/opportunities', icon: TrendingUp },
     { name: 'News & Announcements', path: '/admin/news', icon: Newspaper },
     { name: 'Documents & Downloads', path: '/admin/documents', icon: FileText },

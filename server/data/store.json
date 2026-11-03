@@ -451,5 +451,68 @@
       "status": "Read",
       "createdAt": "2026-11-02T09:58:53.138Z"
     }
+  ],
+  "applications": [
+    {
+      "id": "app-1793735636016",
+      "referenceNumber": "OTIB-SRV-03-20261103-0002",
+      "serviceId": "srv-03",
+      "serviceTitle": "Duty-Free Capital Goods Exemption",
+      "applicantName": "Chaltu Megersa",
+      "applicantEmail": "chaltu.megersa@gmail.com",
+      "applicantPhone": "+251922334455",
+      "companyName": "Bishoftu Food Processing PLC",
+      "formData": {
+        "passportType": "ethiopian",
+        "passportId": "FIN987654321098",
+        "tinNumber": "0098765432",
+        "address": "Bishoftu Light Manufacturing Zone",
+        "projectTitle": "Automated Grain Milling Machinery Import",
+        "estimatedCapital": "12000000",
+        "employmentProjection": "45",
+        "projectDescription": "Import of precision milling and sorting capital equipment for domestic fortified flour packaging.",
+        "additionalNotes": "Proforma invoice and HS code tariff schedule attached."
+      },
+      "uploadedDocuments": [
+        "Proforma Invoice.pdf",
+        "Bill of Lading Draft.pdf",
+        "Investment Permit Copy.pdf"
+      ],
+      "status": "Pending Review",
+      "submittedAt": "2026-11-03T19:53:56.016Z",
+      "reviewedAt": null,
+      "reviewNotes": ""
+    },
+    {
+      "id": "app-1793735619735",
+      "referenceNumber": "OTIB-SRV-01-20261103-0001",
+      "serviceId": "srv-01",
+      "serviceTitle": "New Investment Permit Application",
+      "applicantName": "Dawit Tolossa",
+      "applicantEmail": "dawit.tolossa@gmail.com",
+      "applicantPhone": "+251911223344",
+      "companyName": "Awash Agro Industrial Group",
+      "formData": {
+        "passportType": "ethiopian",
+        "passportId": "FIN123456789012",
+        "tinNumber": "0012345678",
+        "address": "Adama Industrial Park Sector B",
+        "projectTitle": "Horticulture and Avocado Oil Processing Complex",
+        "estimatedCapital": "25000000",
+        "employmentProjection": "150",
+        "landRequirement": "50000",
+        "projectDescription": "Integrated agro industrial processing plant sourcing fresh avocado from local smallholders for certified export grade oil packaging.",
+        "additionalNotes": "Requesting priority utility clearance for dedicated substation feeder line."
+      },
+      "uploadedDocuments": [
+        "Project Proposal.pdf",
+        "Feasibility Study.pdf",
+        "National ID Copy.pdf"
+      ],
+      "status": "Pending Review",
+      "submittedAt": "2026-11-03T19:53:39.735Z",
+      "reviewedAt": null,
+      "reviewNotes": ""
+    }
   ]
 }
