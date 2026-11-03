@@ -40,7 +40,6 @@ export default function DocumentsPage() {
   };
 
   const handleDownload = (doc) => {
-    // Generate an authentic dummy PDF/Text download for demo purposes
     const content = `OROMIA TRADE AND INVESTMENT BUREAU
 ===================================================
 Document: ${doc.title}
@@ -66,20 +65,20 @@ For verified inquiries contact: info@investoromia.gov.et`;
     <div className="max-w-7xl mx-auto px-4 sm:px-8 py-12 space-y-12">
       {/* Header */}
       <div className="max-w-3xl space-y-4">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
-          <FileText className="w-4 h-4 text-emerald-700" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
+          <FileText className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
           <span>Official Public Document Repository</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           Downloads, Directives & Application Forms
         </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+        <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
           Access and download approved investment policies, regional land lease directives, standard licensing application forms, and export procedure compendiums.
         </p>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 transition-colors">
         <div className="flex flex-wrap gap-2 w-full md:w-auto">
           {categories.map((cat) => (
             <button
@@ -88,7 +87,7 @@ For verified inquiries contact: info@investoromia.gov.et`;
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 selectedCategory === cat
                   ? 'bg-emerald-700 text-white shadow-sm'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
             >
               {cat}
@@ -103,7 +102,7 @@ For verified inquiries contact: info@investoromia.gov.et`;
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search title or ref number (e.g. DIR-144)..."
-            className="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl border border-slate-300 focus:outline-none focus:border-emerald-600"
+            className="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-emerald-600"
           />
         </form>
       </div>
@@ -112,14 +111,14 @@ For verified inquiries contact: info@investoromia.gov.et`;
       {loading ? (
         <div className="py-20 text-center text-slate-400">Loading document repository...</div>
       ) : documents.length === 0 ? (
-        <div className="py-16 text-center bg-white rounded-2xl border border-slate-200 p-8">
-          <p className="text-slate-500 text-sm">No documents found matching your filter.</p>
+        <div className="py-16 text-center bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8">
+          <p className="text-slate-500 dark:text-slate-400 text-sm">No documents found matching your filter.</p>
         </div>
       ) : (
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden transition-colors">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-semibold uppercase text-[11px] tracking-wider">
+              <thead className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-semibold uppercase text-[11px] tracking-wider">
                 <tr>
                   <th className="py-4 px-6">Document Title</th>
                   <th className="py-4 px-4">Category</th>
@@ -129,35 +128,35 @@ For verified inquiries contact: info@investoromia.gov.et`;
                   <th className="py-4 px-6 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {documents.map((doc) => (
-                  <tr key={doc.id} className="hover:bg-slate-50/80 transition-colors">
-                    <td className="py-4 px-6 font-semibold text-slate-900">
+                  <tr key={doc.id} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors">
+                    <td className="py-4 px-6 font-semibold text-slate-900 dark:text-white">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center font-bold text-xs shrink-0">
+                        <div className="w-8 h-8 rounded-lg bg-red-50 dark:bg-red-950/60 text-red-600 dark:text-red-400 flex items-center justify-center font-bold text-xs shrink-0 border border-red-200 dark:border-red-900/40">
                           PDF
                         </div>
                         <span className="line-clamp-2">{doc.title}</span>
                       </div>
                     </td>
                     <td className="py-4 px-4">
-                      <span className="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-xs font-medium">
+                      <span className="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">
                         {doc.category}
                       </span>
                     </td>
-                    <td className="py-4 px-4 hidden md:table-cell font-mono text-xs text-slate-500">
+                    <td className="py-4 px-4 hidden md:table-cell font-mono text-xs text-slate-500 dark:text-slate-400">
                       {doc.refNumber}
                     </td>
-                    <td className="py-4 px-4 hidden sm:table-cell text-xs text-slate-500">
+                    <td className="py-4 px-4 hidden sm:table-cell text-xs text-slate-500 dark:text-slate-400">
                       {doc.fileType} • {doc.fileSize}
                     </td>
-                    <td className="py-4 px-4 hidden lg:table-cell text-xs text-slate-500">
+                    <td className="py-4 px-4 hidden lg:table-cell text-xs text-slate-500 dark:text-slate-400">
                       {doc.publishedDate}
                     </td>
                     <td className="py-4 px-6 text-right">
                       <button
                         onClick={() => handleDownload(doc)}
-                        className="inline-flex items-center gap-1.5 bg-emerald-50 hover:bg-emerald-700 text-emerald-800 hover:text-white font-bold text-xs px-3.5 py-2 rounded-xl transition-colors shadow-sm"
+                        className="inline-flex items-center gap-1.5 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-700 hover:text-white text-emerald-800 dark:text-emerald-300 font-bold text-xs px-3.5 py-2 rounded-xl transition-colors shadow-sm"
                       >
                         <Download className="w-3.5 h-3.5" />
                         <span>Download</span>

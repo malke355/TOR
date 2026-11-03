@@ -42,7 +42,7 @@ export default function AdminLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col md:flex-row">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 flex flex-col md:flex-row transition-colors duration-200">
       {/* Sidebar */}
       <aside className="w-full md:w-64 bg-slate-900 text-slate-300 flex flex-col shrink-0 border-r border-slate-800">
         <div className="p-6 border-b border-slate-800">
@@ -116,13 +116,13 @@ export default function AdminLayout() {
 
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col min-w-0">
-        <header className="bg-white border-b border-slate-200 px-6 sm:px-8 py-4 flex items-center justify-between">
-          <div className="text-xs text-slate-500 font-medium">
+        <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 sm:px-8 py-4 flex items-center justify-between transition-colors">
+          <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
             Oromia Trade and Investment Bureau Administration
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-xs font-semibold text-slate-700">API Connected</span>
+            <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">API Connected</span>
           </div>
         </header>
 

@@ -69,60 +69,60 @@ export default function About() {
     <div className="space-y-16 py-12 px-4 sm:px-8 max-w-7xl mx-auto">
       {/* Header Banner */}
       <section className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
-          <ShieldCheck className="w-4 h-4 text-emerald-700" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
+          <ShieldCheck className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
           <span>Institutional Profile & Mandate</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           About Oromia Trade & Investment Bureau
         </h1>
-        <p className="text-base text-slate-600 leading-relaxed">
+        <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
           Established under the regional institutional restructuring in October 2026, consolidating the former Oromia Investment and Industry Bureau with the Oromia Trade Bureau into a single, high-efficiency public institution.
         </p>
       </section>
 
       {/* Vision, Mission, Core Values */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4 hover:border-emerald-600/40 transition-colors">
-          <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center">
+        <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 hover:border-emerald-600/40 transition-colors">
+          <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 flex items-center justify-center">
             <Compass className="w-6 h-6" />
           </div>
-          <h3 className="text-xl font-bold text-slate-900">Our Vision</h3>
-          <p className="text-sm text-slate-600 leading-relaxed">
+          <h3 className="text-xl font-bold text-slate-900 dark:text-white">Our Vision</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
             "To position Oromia as the foremost, globally competitive investment destination and agricultural-industrial export powerhouse in Sub-Saharan Africa by 2035."
           </p>
         </div>
 
-        <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4 hover:border-emerald-600/40 transition-colors">
-          <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center">
+        <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 hover:border-emerald-600/40 transition-colors">
+          <div className="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-950/80 text-amber-700 dark:text-amber-400 flex items-center justify-center">
             <Target className="w-6 h-6" />
           </div>
-          <h3 className="text-xl font-bold text-slate-900">Our Mission</h3>
-          <p className="text-sm text-slate-600 leading-relaxed">
+          <h3 className="text-xl font-bold text-slate-900 dark:text-white">Our Mission</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
             "To aggressively mobilize high-impact investments, streamline trade facilitation, protect commercial rights, and deliver world-class digital and physical public services to local and international business partners."
           </p>
         </div>
 
-        <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4 hover:border-emerald-600/40 transition-colors">
-          <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
+        <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 hover:border-emerald-600/40 transition-colors">
+          <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950/80 text-blue-700 dark:text-blue-400 flex items-center justify-center">
             <Award className="w-6 h-6" />
           </div>
-          <h3 className="text-xl font-bold text-slate-900">Core Values</h3>
-          <ul className="text-sm text-slate-600 space-y-2">
+          <h3 className="text-xl font-bold text-slate-900 dark:text-white">Core Values</h3>
+          <ul className="text-sm text-slate-600 dark:text-slate-300 space-y-2">
             <li className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+              <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
               <span>Institutional Integrity & Transparency</span>
             </li>
             <li className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+              <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
               <span>Investor-Centric Agility</span>
             </li>
             <li className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+              <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
               <span>Sustainable & Inclusive Industrialization</span>
             </li>
             <li className="flex items-center gap-2">
-              <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+              <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
               <span>Fair & Equitable Trade Practices</span>
             </li>
           </ul>
@@ -130,15 +130,15 @@ export default function About() {
       </section>
 
       {/* Institutional Background & Restructuring */}
-      <section className="bg-slate-100 rounded-2xl p-8 sm:p-10 border border-slate-200 space-y-6">
+      <section className="bg-slate-100 dark:bg-slate-900/60 rounded-2xl p-8 sm:p-10 border border-slate-200 dark:border-slate-800 space-y-6 transition-colors">
         <div className="max-w-3xl space-y-4">
-          <h2 className="text-2xl font-extrabold text-slate-900">
+          <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
             Background to the Institutional Restructuring
           </h2>
-          <p className="text-sm text-slate-700 leading-relaxed">
+          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
             Prior to October 2026, foreign and domestic commercial entities navigating business in Oromia engaged with two disparate bodies: the <em>Oromia Investment and Industry Bureau</em> for licensing, incentives, and land; and the <em>Oromia Trade Bureau</em> for commercial registration, market regulation, and commodity exports.
           </p>
-          <p className="text-sm text-slate-700 leading-relaxed">
+          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
             By unifying these two bodies into the <strong>Oromia Trade and Investment Bureau (OTIB)</strong>, the regional government has established a frictionless end-to-end corridor: from initial project proposal and land allocation, to production incentives, and finally through direct international export market linkage.
           </p>
         </div>
@@ -147,11 +147,11 @@ export default function About() {
       {/* Leadership Team (TOR Section 13) */}
       <section className="space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <div className="text-xs font-bold text-emerald-700 tracking-wider uppercase">Executive Governance</div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase">Executive Governance</div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
             Bureau Leadership
           </h2>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
             Experienced public sector professionals leading Oromia's economic and commercial transformation.
           </p>
         </div>
@@ -160,7 +160,7 @@ export default function About() {
           {leadership.map((leader, i) => (
             <div
               key={i}
-              className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col group"
+              className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col group transition-colors"
             >
               <div className="h-64 overflow-hidden relative">
                 <img
@@ -175,10 +175,10 @@ export default function About() {
                 </div>
               </div>
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                   {leader.bio}
                 </p>
-                <div className="pt-3 border-t border-slate-100 text-[11px] font-semibold text-emerald-800">
+                <div className="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-semibold text-emerald-800 dark:text-emerald-400">
                   {leader.department}
                 </div>
               </div>
@@ -189,21 +189,21 @@ export default function About() {
 
       {/* Organizational Structure / Directorates */}
       <section className="space-y-6">
-        <div className="border-b border-slate-200 pb-4">
-          <div className="text-xs font-bold text-emerald-700 tracking-wider uppercase">Organizational Architecture</div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+        <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
+          <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase">Organizational Architecture</div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
             Core Directorates & Operational Units
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {directorates.map((dir, i) => (
-            <div key={i} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-2">
-              <div className="flex items-center gap-2 text-emerald-700 font-bold text-sm">
+            <div key={i} className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-2 transition-colors">
+              <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
                 <Building className="w-4 h-4 shrink-0" />
                 <span>{dir.name}</span>
               </div>
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
                 {dir.role}
               </p>
             </div>

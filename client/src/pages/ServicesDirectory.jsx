@@ -16,7 +16,7 @@ export default function ServicesDirectory() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('All');
-  const [filterType, setFilterType] = useState('all'); // all, online, info
+  const [filterType, setFilterType] = useState('all');
 
   const categories = [
     'All',
@@ -50,20 +50,20 @@ export default function ServicesDirectory() {
     <div className="max-w-7xl mx-auto px-4 sm:px-8 py-12 space-y-12">
       {/* Header */}
       <div className="max-w-3xl space-y-4">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
-          <Layers className="w-4 h-4 text-emerald-700" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
+          <Layers className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
           <span>Institutional Public & Business Services</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           Citizen & Business Service Charters
         </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+        <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
           Transparent guidelines defining eligibility, required documentation, expected turnaround times, and responsible offices for all investment, licensing, and trade facilitation services.
         </p>
       </div>
 
       {/* Filter and Switcher Controls */}
-      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4 transition-colors">
         {/* Category Pills */}
         <div className="flex flex-wrap gap-2 w-full md:w-auto">
           {categories.map((cat) => (
@@ -73,7 +73,7 @@ export default function ServicesDirectory() {
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 activeCategory === cat
                   ? 'bg-emerald-700 text-white shadow-sm'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
             >
               {cat}
@@ -82,11 +82,11 @@ export default function ServicesDirectory() {
         </div>
 
         {/* Transactional vs Informational Toggle */}
-        <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs font-semibold w-full md:w-auto justify-center">
+        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl text-xs font-semibold w-full md:w-auto justify-center">
           <button
             onClick={() => setFilterType('all')}
             className={`px-3 py-1.5 rounded-lg transition-all ${
-              filterType === 'all' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+              filterType === 'all' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             All Services
@@ -94,7 +94,7 @@ export default function ServicesDirectory() {
           <button
             onClick={() => setFilterType('online')}
             className={`px-3 py-1.5 rounded-lg transition-all ${
-              filterType === 'online' ? 'bg-white text-emerald-800 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+              filterType === 'online' ? 'bg-white dark:bg-slate-700 text-emerald-800 dark:text-emerald-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             Online Portal Services
@@ -102,7 +102,7 @@ export default function ServicesDirectory() {
           <button
             onClick={() => setFilterType('info')}
             className={`px-3 py-1.5 rounded-lg transition-all ${
-              filterType === 'info' ? 'bg-white text-blue-800 shadow-sm' : 'text-slate-600 hover:text-slate-900'
+              filterType === 'info' ? 'bg-white dark:bg-slate-700 text-blue-800 dark:text-blue-400 shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             Desk Information
@@ -118,67 +118,67 @@ export default function ServicesDirectory() {
           {services.map((srv) => (
             <div
               key={srv.id}
-              className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:border-emerald-600/50 transition-all flex flex-col justify-between space-y-6"
+              className="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500/60 transition-all flex flex-col justify-between space-y-6"
             >
               <div className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="px-2.5 py-1 bg-emerald-50 text-emerald-800 rounded-md text-xs font-bold">
+                  <span className="px-2.5 py-1 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 rounded-md text-xs font-bold border border-emerald-200 dark:border-emerald-800/60">
                     {srv.category}
                   </span>
                   {srv.isOnline ? (
-                    <span className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-md text-[11px] font-bold flex items-center gap-1 border border-blue-200">
+                    <span className="px-2.5 py-1 bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 rounded-md text-[11px] font-bold flex items-center gap-1 border border-blue-200 dark:border-blue-800/60">
                       <Globe className="w-3 h-3" />
                       <span>Online Electronic Service</span>
                     </span>
                   ) : (
-                    <span className="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md text-[11px] font-medium flex items-center gap-1">
+                    <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-md text-[11px] font-medium flex items-center gap-1 border border-slate-200 dark:border-slate-700">
                       <Info className="w-3 h-3" />
                       <span>In-Person Bureau Desk</span>
                     </span>
                   )}
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 leading-snug">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white leading-snug">
                   {srv.title}
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   {srv.description}
                 </p>
 
-                <div className="space-y-2.5 pt-3 border-t border-slate-100 text-xs">
+                <div className="space-y-2.5 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs">
                   <div>
                     <span className="text-[11px] text-slate-400 block font-medium">Eligibility</span>
-                    <p className="text-slate-700 font-medium">{srv.eligibility}</p>
+                    <p className="text-slate-700 dark:text-slate-300 font-medium">{srv.eligibility}</p>
                   </div>
 
                   <div>
                     <span className="text-[11px] text-slate-400 block font-medium">Required Documents</span>
-                    <p className="text-slate-700">{srv.requirements}</p>
+                    <p className="text-slate-700 dark:text-slate-300">{srv.requirements}</p>
                   </div>
 
                   <div>
                     <span className="text-[11px] text-slate-400 block font-medium">Application Procedure</span>
-                    <p className="text-slate-700">{srv.procedure}</p>
+                    <p className="text-slate-700 dark:text-slate-300">{srv.procedure}</p>
                   </div>
                 </div>
               </div>
 
               {/* Service Meta Footer */}
-              <div className="pt-4 border-t border-slate-100 space-y-3">
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
                     <span className="text-[11px] text-slate-400 block">Service Delivery Time</span>
-                    <strong className="text-emerald-800 font-bold">{srv.processingTime}</strong>
+                    <strong className="text-emerald-800 dark:text-emerald-400 font-bold">{srv.processingTime}</strong>
                   </div>
                   <div>
                     <span className="text-[11px] text-slate-400 block">Administrative Fee</span>
-                    <strong className="text-slate-800 font-semibold">{srv.fees}</strong>
+                    <strong className="text-slate-800 dark:text-slate-200 font-semibold">{srv.fees}</strong>
                   </div>
                 </div>
 
                 <div className="pt-2 flex items-center justify-between flex-wrap gap-2">
-                  <span className="text-xs text-slate-500">
-                    Desk: <strong className="text-slate-700">{srv.responsibleOffice}</strong>
+                  <span className="text-xs text-slate-500 dark:text-slate-400">
+                    Desk: <strong className="text-slate-700 dark:text-slate-300">{srv.responsibleOffice}</strong>
                   </span>
 
                   {srv.isOnline && srv.portalUrl ? (
@@ -194,7 +194,7 @@ export default function ServicesDirectory() {
                   ) : (
                     <Link
                       to="/documents"
-                      className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 hover:underline"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
                     >
                       <span>Download Service Forms</span>
                       <FileText className="w-3.5 h-3.5" />
