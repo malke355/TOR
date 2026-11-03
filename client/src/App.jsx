@@ -1,39 +1,83 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { LanguageProvider } from './context/LanguageContext';
+import { AuthProvider } from './context/AuthContext';
 
-function App() {
-  const [serverStatus, setServerStatus] = useState('Checking...');
+// Components
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import AdminLayout from './components/AdminLayout';
 
-  useEffect(() => {
-    fetch('/api/health')
-      .then(res => res.json())
-      .then(data => setServerStatus(`${data.bureau} API (${data.status})`))
-      .catch(() => setServerStatus('API Server offline (start backend on :5000)'));
-  }, []);
+// Public Pages
+import Home from './pages/Home';
+import About from './pages/About';
+import InvestmentPortal from './pages/InvestmentPortal';
+import InvestmentDetail from './pages/InvestmentDetail';
+import TradePortal from './pages/TradePortal';
+import ServicesDirectory from './pages/ServicesDirectory';
+import NewsPortal from './pages/NewsPortal';
+import NewsDetail from './pages/NewsDetail';
+import DocumentsPage from './pages/DocumentsPage';
+import ContactPage from './pages/ContactPage';
 
+// Admin CMS Pages
+import AdminLogin from './pages/admin/AdminLogin';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import ManageOpportunities from './pages/admin/ManageOpportunities';
+import ManageNews from './pages/admin/ManageNews';
+import ManageDocuments from './pages/admin/ManageDocuments';
+import MessagesInbox from './pages/admin/MessagesInbox';
+
+function PublicLayout() {
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 text-center">
-      <div className="max-w-2xl bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
-        <div className="w-16 h-16 bg-emerald-700 text-white rounded-xl flex items-center justify-center mx-auto text-2xl font-bold shadow-md shadow-emerald-700/20 mb-4">
-          OTIB
-        </div>
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-          Oromia Trade and Investment Bureau
-        </h1>
-        <p className="text-slate-500 mt-1 text-sm font-medium">
-          Biiroo Daldalaa fi Invastimantii Oromiyaa • MVP Institutional Portal
-        </p>
-
-        <div className="mt-6 p-4 bg-slate-50 rounded-xl border border-slate-200 inline-block text-left text-xs font-mono">
-          <div><span className="text-slate-400">Frontend:</span> <span className="text-emerald-700 font-bold">Vite + React + Tailwind</span></div>
-          <div className="mt-1"><span className="text-slate-400">Backend API:</span> <span className="text-blue-700 font-bold">{serverStatus}</span></div>
-        </div>
-
-        <p className="text-slate-600 text-sm mt-6">
-          Scaffold completed. Ready to implement the public portal and CMS modules.
-        </p>
-      </div>
+    <div className="min-h-screen flex flex-col bg-slate-50 selection:bg-emerald-600 selection:text-white">
+      <Navbar />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <Footer />
     </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Public Portal Layout */}
+            <Route path="/" element={<PublicLayout />}>
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="investment" element={<InvestmentPortal />} />
+              <Route path="investment/:id" element={<InvestmentDetail />} />
+              <Route path="trade" element={<TradePortal />} />
+              <Route path="services" element={<ServicesDirectory />} />
+              <Route path="news" element={<NewsPortal />} />
+              <Route path="news/:id" element={<NewsDetail />} />
+              <Route path="documents" element={<DocumentsPage />} />
+              <Route path="contact" element={<ContactPage />} />
+            </Route>
+
+            {/* Staff CMS Authentication */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+
+            {/* Protected Staff CMS Area */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Navigate to="/admin/dashboard" replace />} />
+              <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="opportunities" element={<ManageOpportunities />} />
+              <Route path="news" element={<ManageNews />} />
+              <Route path="documents" element={<ManageDocuments />} />
+              <Route path="messages" element={<MessagesInbox />} />
+            </Route>
+
+            {/* Fallback */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
+    </LanguageProvider>
+  );
+}
