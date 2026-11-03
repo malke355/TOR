@@ -221,14 +221,22 @@ export default function ServicePortal() {
       }
 
       // Passport / National ID Number validation
-      // National ID: FIN + 12 digits (e.g. FIN123456789012)
-      // US Passport: A + 8 digits (e.g. A12345678)
+      // If starts with FIN: must be followed by exactly 12 digits
+      // If starts with A: must be followed by exactly 8 digits
       if (field.name === 'passportId' && val && typeof val === 'string' && val.trim()) {
         const cleaned = val.trim().toUpperCase();
-        const isFinNationalId = /^FIN\d{12}$/.test(cleaned);
-        const isUsPassport = /^A\d{8}$/.test(cleaned);
-        if (!isFinNationalId && !isUsPassport) {
-          stepErrors[field.name] = 'Must be National ID (FIN followed by 12 digits, e.g. FIN123456789012) or US Passport (A followed by 8 digits, e.g. A12345678).';
+        if (cleaned.startsWith('FIN')) {
+          const digits = cleaned.slice(3);
+          if (digits.length !== 12 || !/^\d{12}$/.test(digits)) {
+            stepErrors[field.name] = `National ID must have exactly 12 digits after FIN (${digits.length}/12 entered).`;
+          }
+        } else if (cleaned.startsWith('A')) {
+          const digits = cleaned.slice(1);
+          if (digits.length !== 8 || !/^\d{8}$/.test(digits)) {
+            stepErrors[field.name] = `US Passport must have exactly 8 digits after A (${digits.length}/8 entered).`;
+          }
+        } else {
+          stepErrors[field.name] = 'Must start with FIN (followed by 12 digits) or A (followed by 8 digits).';
         }
       }
 
@@ -291,9 +299,58 @@ export default function ServicePortal() {
     }
 
     if (name === 'passportId') {
-      const upper = (finalValue || '').trim().toUpperCase();
-      if (errors.passportId) {
-        if (/^FIN\d{12}$/.test(upper) || /^A\d{8}$/.test(upper) || !upper) {
+      const raw = (value || '').toUpperCase().trim();
+      let formatted = '';
+
+      if (raw.startsWith('FIN')) {
+        // Enforce: only digits after FIN, max 12 digits
+        const digits = raw.slice(3).replace(/\D/g, '').slice(0, 12);
+        formatted = 'FIN' + digits;
+      } else if (raw.startsWith('FI')) {
+        formatted = 'FI';
+      } else if (raw.startsWith('F')) {
+        formatted = 'F';
+      } else if (raw.startsWith('A')) {
+        // Enforce: only digits after A, max 8 digits
+        const digits = raw.slice(1).replace(/\D/g, '').slice(0, 8);
+        formatted = 'A' + digits;
+      } else if (!raw) {
+        formatted = '';
+      } else {
+        // Not starting with F or A -> reset and show guidance
+        setFormData(prev => ({ ...prev, passportId: '' }));
+        setErrors(prev => ({
+          ...prev,
+          passportId: 'Must start with FIN (for National ID) or A (for US Passport).'
+        }));
+        return;
+      }
+
+      setFormData(prev => ({ ...prev, [name]: formatted }));
+
+      // Live validation feedback
+      if (formatted.startsWith('FIN')) {
+        const digits = formatted.slice(3);
+        if (digits.length === 12) {
+          setErrors(prev => { const n = { ...prev }; delete n.passportId; return n; });
+        } else if (errors.passportId) {
+          setErrors(prev => ({
+            ...prev,
+            passportId: `National ID requires 12 digits after FIN (${digits.length}/12 entered).`
+          }));
+        }
+      } else if (formatted.startsWith('A')) {
+        const digits = formatted.slice(1);
+        if (digits.length === 8) {
+          setErrors(prev => { const n = { ...prev }; delete n.passportId; return n; });
+        } else if (errors.passportId) {
+          setErrors(prev => ({
+            ...prev,
+            passportId: `US Passport requires 8 digits after A (${digits.length}/8 entered).`
+          }));
+        }
+      } else {
+        if (errors.passportId && !formatted) {
           setErrors(prev => { const n = { ...prev }; delete n.passportId; return n; });
         }
       }
@@ -628,12 +685,28 @@ export default function ServicePortal() {
                         <input
                           type={field.type}
                           value={formData[field.name] || ''}
+                          maxLength={field.name === 'passportId' ? (formData.passportId?.startsWith('A') ? 9 : 15) : undefined}
                           onChange={(e) => handleChange(field.name, e.target.value)}
                           placeholder={field.placeholder}
                           className={`w-full ${field.icon ? 'pl-9' : 'pl-3'} pr-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 ${clr.ring} transition-all ${
                             errors[field.name] ? 'border-red-400 dark:border-red-600' : 'border-slate-200 dark:border-slate-700'
                           }`}
                         />
+                      </div>
+                    )}
+                    {field.name === 'passportId' && formData.passportId && (
+                      <div className="mt-1 flex items-center justify-between text-[11px] px-1">
+                        {formData.passportId.startsWith('FIN') ? (
+                          <span className={formData.passportId.length === 15 ? 'text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1' : 'text-slate-500 dark:text-slate-400'}>
+                            {formData.passportId.length === 15 && <CheckCircle2 className="w-3 h-3 text-emerald-600" />}
+                            National ID: {formData.passportId.slice(3).length} / 12 digits
+                          </span>
+                        ) : formData.passportId.startsWith('A') ? (
+                          <span className={formData.passportId.length === 9 ? 'text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1' : 'text-slate-500 dark:text-slate-400'}>
+                            {formData.passportId.length === 9 && <CheckCircle2 className="w-3 h-3 text-emerald-600" />}
+                            US Passport: {formData.passportId.slice(1).length} / 8 digits
+                          </span>
+                        ) : null}
                       </div>
                     )}
                   </div>

@@ -54,15 +54,27 @@ router.post('/', (req, res) => {
   }
 
   // Passport / National ID Number validation (if provided in formData)
-  // National ID: FIN + 12 digits (e.g. FIN123456789012)
-  // US Passport: A + 8 digits (e.g. A12345678)
+  // National ID: FIN + exactly 12 digits (e.g. FIN123456789012)
+  // US Passport: A + exactly 8 digits (e.g. A12345678)
   if (formData && formData.passportId) {
     const passportVal = formData.passportId.trim().toUpperCase();
-    const isFinNationalId = /^FIN\d{12}$/.test(passportVal);
-    const isUsPassport = /^A\d{8}$/.test(passportVal);
-    if (!isFinNationalId && !isUsPassport) {
+    if (passportVal.startsWith('FIN')) {
+      const digits = passportVal.slice(3);
+      if (digits.length !== 12 || !/^\d{12}$/.test(digits)) {
+        return res.status(400).json({
+          error: `National ID must start with FIN followed by exactly 12 digits (${digits.length}/12 provided).`
+        });
+      }
+    } else if (passportVal.startsWith('A')) {
+      const digits = passportVal.slice(1);
+      if (digits.length !== 8 || !/^\d{8}$/.test(digits)) {
+        return res.status(400).json({
+          error: `US Passport must start with A followed by exactly 8 digits (${digits.length}/8 provided).`
+        });
+      }
+    } else {
       return res.status(400).json({
-        error: 'Passport / National ID Number must be National ID format (FIN followed by 12 digits, e.g., FIN123456789012) or US Passport format (A followed by 8 digits, e.g., A12345678).'
+        error: 'Passport / National ID Number must start with FIN (followed by 12 digits) or A (followed by 8 digits).'
       });
     }
   }
