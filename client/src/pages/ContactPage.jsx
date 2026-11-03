@@ -210,7 +210,7 @@ export default function ContactPage() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="e.g., Abebe Chala (text only)"
+                  placeholder="e.g., Abebe Chala"
                   className={`w-full px-3.5 py-2.5 rounded-xl border ${fieldErrors.name ? 'border-red-500 ring-1 ring-red-500' : 'border-slate-300 dark:border-slate-700 focus:border-emerald-600'} bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none text-sm transition-all shadow-sm`}
                 />
                 {fieldErrors.name && (
@@ -278,7 +278,7 @@ export default function ContactPage() {
                   name="organization"
                   value={formData.organization}
                   onChange={handleChange}
-                  placeholder="e.g., Oromia Coffee Export (text only)"
+                  placeholder="e.g., Oromia Coffee Export"
                   className={`w-full px-3.5 py-2.5 rounded-xl border ${fieldErrors.organization ? 'border-red-500 ring-1 ring-red-500' : 'border-slate-300 dark:border-slate-700 focus:border-emerald-600'} bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none text-sm transition-all shadow-sm`}
                 />
                 {fieldErrors.organization && (
@@ -298,7 +298,7 @@ export default function ContactPage() {
                 required
                 value={formData.subject}
                 onChange={handleChange}
-                placeholder="Inquiry topic (text only, no numbers)..."
+                placeholder="Inquiry topic..."
                 className={`w-full px-3.5 py-2.5 rounded-xl border ${fieldErrors.subject ? 'border-red-500 ring-1 ring-red-500' : 'border-slate-300 dark:border-slate-700 focus:border-emerald-600'} bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none text-sm transition-all shadow-sm`}
               />
               {fieldErrors.subject && (
@@ -317,7 +317,7 @@ export default function ContactPage() {
                 required
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Describe your project, land requirements, or trade facilitation needs (text only, no numbers)..."
+                placeholder="Describe your project, land requirements, or trade facilitation needs..."
                 className={`w-full px-3.5 py-2.5 rounded-xl border ${fieldErrors.message ? 'border-red-500 ring-1 ring-red-500' : 'border-slate-300 dark:border-slate-700 focus:border-emerald-600'} bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none text-sm transition-all shadow-sm`}
               ></textarea>
               {fieldErrors.message && (
