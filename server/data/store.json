@@ -38,7 +38,7 @@
       ],
       "contactPerson": "Directorate of Agribusiness Investment, Phone: +251 11 551 2233",
       "featured": true,
-      "createdAt": "2026-11-03T13:00:25.074Z"
+      "createdAt": "2026-11-03T13:58:53.138Z"
     },
     {
       "id": "opp-02",
@@ -59,7 +59,7 @@
       ],
       "contactPerson": "Directorate of Industrial Promotion, Phone: +251 11 552 4455",
       "featured": true,
-      "createdAt": "2026-11-03T13:00:25.075Z"
+      "createdAt": "2026-11-03T13:58:53.138Z"
     },
     {
       "id": "opp-03",
@@ -80,7 +80,7 @@
       ],
       "contactPerson": "Oromia Coffee & Spices Export Desk, Phone: +251 11 553 7788",
       "featured": true,
-      "createdAt": "2026-11-03T13:00:25.075Z"
+      "createdAt": "2026-11-03T13:58:53.138Z"
     },
     {
       "id": "opp-04",
@@ -101,7 +101,7 @@
       ],
       "contactPerson": "Energy & Infrastructure Directorate, Phone: +251 11 554 9900",
       "featured": false,
-      "createdAt": "2026-11-03T13:00:25.075Z"
+      "createdAt": "2026-11-03T13:58:53.138Z"
     },
     {
       "id": "opp-05",
@@ -122,59 +122,121 @@
       ],
       "contactPerson": "Livestock Development Directorate, Phone: +251 11 556 1122",
       "featured": false,
-      "createdAt": "2026-11-03T13:00:25.075Z"
+      "createdAt": "2026-11-03T13:58:53.138Z"
+    },
+    {
+      "id": "opp-06",
+      "title": "Bale Mountain Organic Honey & Forest Beeswax Processing Cluster",
+      "sector": "Agriculture & Agro-Processing",
+      "location": "Robe & Dinsho, Bale Zone",
+      "investmentType": "Joint Venture / Cooperative Partnership",
+      "requiredCapital": "850 Million ETB",
+      "landAvailable": "18 Hectares with pristine mountain spring water",
+      "status": "Published",
+      "imageUrl": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=1200&q=80",
+      "summary": "Organic processing, honey refining, pharmaceutical-grade beeswax extraction, and export packaging cluster sourcing from Bale forest beekeepers.",
+      "description": "The Bale eco-region produces world-famous white and amber forest honey. This project establishes state-of-the-art filtration, centrifugal extraction, and direct certified organic export packaging for the European and Middle Eastern markets.",
+      "incentives": [
+        "Certified organic eco-tax exemption for 5 years",
+        "Preferential mountain forestry land concession",
+        "Direct linkage with 45 primary beekeeping cooperatives"
+      ],
+      "contactPerson": "Oromia Honey & Agro-Forestry Promotion Desk, Phone: +251 11 551 2233",
+      "featured": true,
+      "createdAt": "2026-11-03T13:58:53.138Z"
+    },
+    {
+      "id": "opp-07",
+      "title": "Arsi Highland Malting Barley & Industrial Grain Milling Complex",
+      "sector": "Agro-Processing",
+      "location": "Asella & Kulumsa, Arsi Zone",
+      "investmentType": "Joint Venture / Public-Private Partnership",
+      "requiredCapital": "2.10 Billion ETB",
+      "landAvailable": "35 Hectares connected to national highway grid",
+      "status": "Published",
+      "imageUrl": "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=1200&q=80",
+      "summary": "High-capacity commercial malt production and durum wheat milling plant supplying domestic beverage brewers and regional bakeries.",
+      "description": "Arsi is the undisputed grain basket of Ethiopia. This facility bridges the national malt import deficit by contracting over 12,000 smallholder barley farmers and deploying modern European malting drum technology.",
+      "incentives": [
+        "Full duty-free capital equipment import",
+        "Priority grain silo storage land allocation",
+        "7-year regional industrial income tax waiver"
+      ],
+      "contactPerson": "Directorate of Agribusiness Investment, Phone: +251 11 552 4455",
+      "featured": false,
+      "createdAt": "2026-11-03T13:58:53.138Z"
     }
   ],
   "tradeProducts": [
     {
       "id": "prod-01",
-      "name": "Single-Origin Specialty Arabica Coffee",
+      "name": "Oromia Specialty Single-Origin Arabica Coffee",
       "category": "Agriculture & Beverage",
-      "originZones": "Jimma, Yirgacheffe/Gedeo border, Guji, Hararghe, Limmu",
-      "exportSpecs": "Grade 1 & Grade 2 Washed/Natural, Specialty Cup Score 85+, 60kg Jute bags with GrainPro liners.",
-      "description": "Oromia accounts for over 65% of Ethiopia's total coffee production. Renowned globally for complex flavor profiles ranging from fruity jasmine floral notes to deep chocolate wine undertones.",
+      "originZones": "Jimma, Guji, Limmu, Yirgacheffe border, West Hararghe",
+      "exportSpecs": "Grade 1 & Grade 2 Washed/Natural, Specialty Cup Score 86-90+, 60kg GrainPro lined jute bags.",
+      "description": "Oromia accounts for over 65% of Ethiopia's total coffee production. Renowned globally for complex flavor profiles ranging from floral jasmine and peach notes (Guji/Limmu) to bold chocolate spice tones (Harar).",
       "seasonality": "Harvest: October - January | Peak Shipping: February - August",
       "imageUrl": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80"
     },
     {
       "id": "prod-02",
-      "name": "Sesame Seeds & Niger Seed (Nug)",
+      "name": "Wollega & Harar Premium White Sesame Seeds",
       "category": "Oilseeds & Pulses",
-      "originZones": "East Wollega, West Wollega, Ilu Aba Bor",
-      "exportSpecs": "Purity 99% min, Admixture 1% max, Moisture 6% max, Oil content 50% min.",
-      "description": "High oil content and sweet aroma make Oromia sesame seeds the preferred choice for tahini, confectionery, and gourmet oil extraction worldwide.",
+      "originZones": "East Wollega, West Wollega, Qellam Wollega, Hararghe",
+      "exportSpecs": "Purity 99.5% min, Admixture 0.5% max, Moisture 5.5% max, Oil content 52% min.",
+      "description": "High oil content and sweet nutty aroma make Oromia sesame seeds the world benchmark for gourmet tahini, halva, and cold-pressed export oil in Asian and Middle Eastern markets.",
       "seasonality": "Harvest: November - January | Peak Shipping: Year-round",
       "imageUrl": "https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=800&q=80"
     },
     {
       "id": "prod-03",
-      "name": "Organic Red Kidney Beans & Chickpeas",
-      "category": "Pulses & Legumes",
-      "originZones": "East Shewa, Arsi, West Shewa",
-      "exportSpecs": "Machine-cleaned, Moisture 12% max, Damaged/Split 2% max, 25kg/50kg PP bags.",
-      "description": "High protein pulses grown organically in volcanic soils of the Rift Valley, heavily demanded in Indian, European, and Middle Eastern markets.",
-      "seasonality": "Harvest: September - December",
-      "imageUrl": "https://images.unsplash.com/photo-1551462147-37885acc36f1?auto=format&fit=crop&w=800&q=80"
+      "name": "Bale Cloud-Forest Organic White & Amber Honey",
+      "category": "Agriculture & Beverage",
+      "originZones": "Bale, Guji, Ilu Aba Bor highlands",
+      "exportSpecs": "100% Pure Raw Organic, Moisture < 18%, HMF < 15 mg/kg, Residue-free, 25kg stainless drums.",
+      "description": "Harvested from wild multi-floral forest canopies in the Bale Mountains National Park buffer zone. Acclaimed internationally for creamy white crystallization and smooth medicinal notes.",
+      "seasonality": "Peak Harvest: May - June & November - December",
+      "imageUrl": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80"
     },
     {
       "id": "prod-04",
-      "name": "Cut Flowers (Roses, Hypericum, Gypsophila)",
+      "name": "Ziway & Bishoftu Export Highland Cut Flowers",
       "category": "Floriculture & Horticulture",
-      "originZones": "Bishoftu, Batu, Holota, Sebeta",
-      "exportSpecs": "Stem length 40cm-80cm, Temperature-controlled air cargo from Bole International Airport.",
-      "description": "Oromia's temperate highlands and abundant lake water provide an ideal year-round climate for premium long-stem cut roses exported daily to Amsterdam and worldwide.",
-      "seasonality": "Year-Round continuous harvest",
+      "originZones": "Bishoftu, Batu (Ziway), Sebeta, Holota",
+      "exportSpecs": "Stem length 50cm-90cm, bud size 5-7cm, temperature-controlled cold chain to Bole Cargo.",
+      "description": "Oromia's volcanic highland soils and abundant freshwater lakes provide the premier microclimate for long-stem T-hybrid roses, hypericum, and gypsophila shipped daily to European flower auctions.",
+      "seasonality": "Continuous 365-day year-round greenhouse harvest",
       "imageUrl": "https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=800&q=80"
     },
     {
       "id": "prod-05",
-      "name": "Halal Chilled Mutton and Beef",
+      "name": "Borana Organic Pastoral Chilled Beef & Mutton",
       "category": "Livestock & Meat",
-      "originZones": "Borena, Guji, Bale, East Hararghe",
-      "exportSpecs": "Halal certified, chilled carcasses (8-14kg sheep/goat), strictly vaccinated herd traceability.",
-      "description": "Pastoral, grass-fed organic livestock processed in modern international-standard abattoirs with daily air cargo routes to Riyadh, Dubai, and Doha.",
-      "seasonality": "Year-round with peak Eid demand",
+      "originZones": "Borana, Guji, Bale lowlands, East Hararghe",
+      "exportSpecs": "Halal certified, ISO 22000 abattoir chilled carcasses (10-16kg shoat, 180-240kg beef), zero antibiotic residue.",
+      "description": "Free-range, acacia savannah-grazed organic Boran cattle and Blackhead Somali sheep processed in export abattoirs with direct 4-hour air freight to Dubai, Riyadh, and Kuwait.",
+      "seasonality": "Continuous year-round supply with peak seasonal Eid volumes",
       "imageUrl": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "id": "prod-06",
+      "name": "Rift Valley Organic Chickpeas & Red Speckled Beans",
+      "category": "Oilseeds & Pulses",
+      "originZones": "East Shewa, Arsi, West Shewa",
+      "exportSpecs": "Machine cleaned & polished, Size 8mm-10mm (Chickpeas), Moisture 11% max, 50kg PP bags.",
+      "description": "Naturally grown in mineral-rich volcanic ash plains of the Central Rift Valley. High protein legumes exported in bulk to Middle Eastern, Indian, and Mediterranean food canners.",
+      "seasonality": "Harvest: October - January | Shipping: Year-round",
+      "imageUrl": "https://images.unsplash.com/photo-1551462147-37885acc36f1?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "id": "prod-07",
+      "name": "Oromia Strategic Minerals: Cut Granite, Marble & Tantalite",
+      "category": "Mining & Industrial",
+      "originZones": "Kenticha (Guji), Nejo (West Wollega), Shakiso",
+      "exportSpecs": "Polished dimension stone slabs (2cm/3cm), Tantalite concentrate (Ta2O5 min 45%).",
+      "description": "High-grade industrial stones and tantalite concentrates sourced from registered regional concessions, pre-cleared for export to global aerospace, tech, and architectural markets.",
+      "seasonality": "Year-round scheduled quarry and processing dispatch",
+      "imageUrl": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
     }
   ],
   "services": [
@@ -343,7 +405,7 @@
       "subject": "Inquiry on Batu Agro-Processing Hub Lease Terms",
       "message": "Greetings Bureau team. We represent a consortium of organic juice packagers looking to secure 5 hectares of land in the Batu cluster with cold storage access. We would like to request an official consultation with the investment desk.",
       "status": "New",
-      "createdAt": "2026-11-03T09:00:25.075Z"
+      "createdAt": "2026-11-03T09:58:53.138Z"
     },
     {
       "id": "msg-02",
@@ -354,7 +416,7 @@
       "subject": "Application for B2B European Trade Fair Participation",
       "message": "We would like to register our union delegates for the upcoming European Specialty Coffee Association trade mission sponsored by the Bureau.",
       "status": "Read",
-      "createdAt": "2026-11-02T09:00:25.075Z"
+      "createdAt": "2026-11-02T09:58:53.138Z"
     }
   ]
 }

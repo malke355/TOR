@@ -35,7 +35,9 @@ export default function InvestmentPortal() {
     'Finfine',
     'Jimma',
     'Adama',
-    'Borena'
+    'Borena',
+    'Bale',
+    'Arsi'
   ];
 
   useEffect(() => {

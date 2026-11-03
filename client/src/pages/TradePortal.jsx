@@ -24,9 +24,9 @@ export default function TradePortal() {
     'All',
     'Agriculture & Beverage',
     'Oilseeds & Pulses',
-    'Pulses & Legumes',
     'Floriculture & Horticulture',
-    'Livestock & Meat'
+    'Livestock & Meat',
+    'Mining & Industrial'
   ];
 
   useEffect(() => {
