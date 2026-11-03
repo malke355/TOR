@@ -87,34 +87,24 @@ export default function Home() {
   return (
     <div className="space-y-16 pb-16">
       {/* Hero Section - True Light & Dark Switch */}
-      <section className="relative bg-gradient-to-br from-emerald-50/80 via-white to-slate-50 dark:bg-gradient-to-br dark:from-slate-950 dark:via-emerald-950 dark:to-slate-900 text-slate-900 dark:text-white overflow-hidden py-16 lg:py-24 px-4 sm:px-8 border-b border-slate-200 dark:border-emerald-900/40 transition-colors duration-200">
+      <section className="relative bg-gradient-to-br from-emerald-50/80 via-white to-slate-50 dark:bg-gradient-to-br dark:from-slate-950 dark:via-emerald-950 dark:to-slate-900 text-slate-900 dark:text-white overflow-hidden py-8 lg:py-12 px-4 sm:px-8 border-b border-slate-200 dark:border-emerald-900/40 transition-colors duration-200">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
         
-        <div className="relative max-w-7xl mx-auto space-y-10">
-          <div className="max-w-3xl space-y-6">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-slate-950 dark:text-white">
-              {t.hero.title}
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed max-w-2xl">
-              {t.hero.subtitle}
-            </p>
-
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Link
-                to="/investment"
-                className="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-700/20 transition-all hover:translate-y-[-1px]"
-              >
-                <span>{t.hero.exploreBtn}</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-semibold px-6 py-3.5 rounded-xl transition-all shadow-sm"
-              >
-                <span>{t.hero.servicesBtn}</span>
-              </Link>
-            </div>
+        <div className="relative max-w-7xl mx-auto space-y-6">
+          <div className="flex flex-wrap gap-4">
+            <Link
+              to="/investment"
+              className="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-700/20 transition-all hover:translate-y-[-1px]"
+            >
+              <span>{t.hero.exploreBtn}</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-semibold px-6 py-3.5 rounded-xl transition-all shadow-sm"
+            >
+              <span>{t.hero.servicesBtn}</span>
+            </Link>
           </div>
 
           {/* Hero Image Showcase Carousel */}
@@ -177,11 +167,6 @@ export default function Home() {
             >
               <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
             </button>
-
-            {/* Slide Index Counter Badge (Top Right) */}
-            <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 text-white text-xs font-semibold tracking-wider">
-              {currentSlide + 1} / {HERO_SLIDES.length}
-            </div>
 
             {/* Bottom Indicator Dots */}
             <div className="absolute bottom-4 right-6 sm:bottom-6 sm:right-8 z-20 flex items-center gap-2">
