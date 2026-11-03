@@ -35,9 +35,9 @@ const SERVICE_FORMS = {
       [
         { name: 'fullName', label: 'Full Legal Name', type: 'text', placeholder: 'e.g., Abebe Chala', required: true, icon: User },
         { name: 'nationality', label: 'Nationality', type: 'select', options: ['Ethiopian', 'Foreign National', 'Dual Citizenship'], required: true },
-        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., investor@company.com', required: true, icon: Mail },
+        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., abebe.chala@gmail.com', required: true, icon: Mail },
         { name: 'phone', label: 'Phone Number', type: 'tel', placeholder: '12345678', required: true, icon: Phone, prefix: '+2519' },
-        { name: 'passportId', label: 'Passport / National ID Number', type: 'text', placeholder: 'e.g., EP1234567', required: true, icon: Shield },
+        { name: 'passportId', label: 'Passport / National ID Number', type: 'text', placeholder: 'e.g., FIN123456789012 or A12345678', required: true, icon: Shield },
         { name: 'address', label: 'Current Residential Address', type: 'text', placeholder: 'e.g., Addis Ababa, Bole Sub City', required: true }
       ],
       // Step 1 — Business Details
@@ -78,7 +78,7 @@ const SERVICE_FORMS = {
       [
         { name: 'fullName', label: 'Full Legal Name / Authorized Representative', type: 'text', placeholder: 'e.g., Abebe Chala', required: true, icon: User },
         { name: 'companyName', label: 'Company / Organization Name', type: 'text', placeholder: 'e.g., Oromia Manufacturing PLC', required: true, icon: Building2 },
-        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., procurement@company.com', required: true, icon: Mail },
+        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., representative@gmail.com', required: true, icon: Mail },
         { name: 'phone', label: 'Phone Number', type: 'tel', placeholder: '12345678', required: true, icon: Phone, prefix: '+2519' },
         { name: 'investmentPermitNo', label: 'Valid Investment Permit Number', type: 'text', placeholder: 'e.g., INV/2024/00123', required: true, icon: Shield },
         { name: 'businessSector', label: 'Business Sector', type: 'select', options: ['Manufacturing', 'Agriculture & Agro-Processing', 'Mining & Extraction', 'Priority Commercial Services', 'Other'], required: true }
@@ -113,7 +113,7 @@ const SERVICE_FORMS = {
       // Step 0 — Applicant Information
       [
         { name: 'fullName', label: 'Full Legal Name', type: 'text', placeholder: 'e.g., Abebe Chala', required: true, icon: User },
-        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., trade@company.com', required: true, icon: Mail },
+        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., exporter@gmail.com', required: true, icon: Mail },
         { name: 'phone', label: 'Phone Number', type: 'tel', placeholder: '12345678', required: true, icon: Phone, prefix: '+2519' },
         { name: 'businessType', label: 'Business Type', type: 'select', options: ['Sole Proprietor', 'Private Limited Company (PLC)', 'Share Company', 'Agricultural Cooperative Union', 'Other'], required: true },
         { name: 'companyName', label: 'Company / Organization Name', type: 'text', placeholder: 'e.g., Oromia Coffee Export PLC', required: true, icon: Building2 }
@@ -206,17 +206,43 @@ export default function ServicePortal() {
         }
       }
 
-      // Phone validation
+      // Full Legal Name validation (text only, no numbers allowed)
+      if (field.name === 'fullName' && val && typeof val === 'string' && val.trim()) {
+        if (/\d/.test(val)) {
+          stepErrors[field.name] = 'Full Legal Name must contain text only, no numbers are allowed.';
+        }
+      }
+
+      // Current Residential Address validation (text only, no numbers allowed)
+      if (field.name === 'address' && val && typeof val === 'string' && val.trim()) {
+        if (/\d/.test(val)) {
+          stepErrors[field.name] = 'Current Residential Address must contain text only, no numbers are allowed.';
+        }
+      }
+
+      // Passport / National ID Number validation
+      // National ID: FIN + 12 digits (e.g. FIN123456789012)
+      // US Passport: A + 8 digits (e.g. A12345678)
+      if (field.name === 'passportId' && val && typeof val === 'string' && val.trim()) {
+        const cleaned = val.trim().toUpperCase();
+        const isFinNationalId = /^FIN\d{12}$/.test(cleaned);
+        const isUsPassport = /^A\d{8}$/.test(cleaned);
+        if (!isFinNationalId && !isUsPassport) {
+          stepErrors[field.name] = 'Must be National ID (FIN followed by 12 digits, e.g. FIN123456789012) or US Passport (A followed by 8 digits, e.g. A12345678).';
+        }
+      }
+
+      // Phone validation: +2519 followed by 8 digits
       if (field.type === 'tel' && val && val.trim()) {
         if (!/^\d{8}$/.test(val.trim())) {
           stepErrors[field.name] = 'Enter exactly 8 digits after +2519.';
         }
       }
 
-      // Email validation
+      // Email validation: MUST end with @gmail.com
       if (field.type === 'email' && val && val.trim()) {
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim())) {
-          stepErrors[field.name] = 'Please enter a valid email address.';
+        if (!/^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(val.trim())) {
+          stepErrors[field.name] = 'Email address must end with @gmail.com';
         }
       }
     }
@@ -238,7 +264,49 @@ export default function ServicePortal() {
   };
 
   const handleChange = (name, value) => {
-    setFormData(prev => ({ ...prev, [name]: value }));
+    let finalValue = value;
+    if (name === 'passportId' && typeof value === 'string') {
+      finalValue = value.toUpperCase();
+    }
+
+    setFormData(prev => ({ ...prev, [name]: finalValue }));
+
+    // Instant feedback for text-only fields
+    if (name === 'fullName') {
+      if (/\d/.test(finalValue)) {
+        setErrors(prev => ({ ...prev, fullName: 'Numbers are not allowed. Please enter text only.' }));
+      } else {
+        setErrors(prev => { const n = { ...prev }; delete n.fullName; return n; });
+      }
+      return;
+    }
+
+    if (name === 'address') {
+      if (/\d/.test(finalValue)) {
+        setErrors(prev => ({ ...prev, address: 'Numbers are not allowed. Please enter text only.' }));
+      } else {
+        setErrors(prev => { const n = { ...prev }; delete n.address; return n; });
+      }
+      return;
+    }
+
+    if (name === 'passportId') {
+      const upper = (finalValue || '').trim().toUpperCase();
+      if (errors.passportId) {
+        if (/^FIN\d{12}$/.test(upper) || /^A\d{8}$/.test(upper) || !upper) {
+          setErrors(prev => { const n = { ...prev }; delete n.passportId; return n; });
+        }
+      }
+      return;
+    }
+
+    if (name === 'email') {
+      if (errors.email && /^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test((finalValue || '').trim())) {
+        setErrors(prev => { const n = { ...prev }; delete n.email; return n; });
+      }
+      return;
+    }
+
     if (errors[name]) {
       setErrors(prev => { const n = { ...prev }; delete n[name]; return n; });
     }

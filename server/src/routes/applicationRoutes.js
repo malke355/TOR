@@ -24,17 +24,47 @@ router.post('/', (req, res) => {
     });
   }
 
-  // Email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(applicantEmail)) {
-    return res.status(400).json({ error: 'Please provide a valid email address.' });
+  // Full Legal Name validation (text only, no numbers allowed)
+  if (/\d/.test(applicantName)) {
+    return res.status(400).json({
+      error: 'Full Legal Name must contain text only, no numbers are allowed.'
+    });
   }
 
-  // Phone validation (if provided)
+  // Email validation: MUST end with @gmail.com
+  const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i;
+  if (!gmailRegex.test(applicantEmail.trim())) {
+    return res.status(400).json({
+      error: 'Email address must be a valid @gmail.com address.'
+    });
+  }
+
+  // Phone validation (if provided): +2519 followed by 8 digits
   if (applicantPhone && !/^\+2519\d{8}$/.test(applicantPhone.trim())) {
     return res.status(400).json({
       error: 'Phone number must start with +2519 followed by exactly 8 digits.'
     });
+  }
+
+  // Current Residential Address validation: text only, no numbers allowed (if provided in formData)
+  if (formData && formData.address && /\d/.test(formData.address)) {
+    return res.status(400).json({
+      error: 'Current Residential Address must contain text only, no numbers are allowed.'
+    });
+  }
+
+  // Passport / National ID Number validation (if provided in formData)
+  // National ID: FIN + 12 digits (e.g. FIN123456789012)
+  // US Passport: A + 8 digits (e.g. A12345678)
+  if (formData && formData.passportId) {
+    const passportVal = formData.passportId.trim().toUpperCase();
+    const isFinNationalId = /^FIN\d{12}$/.test(passportVal);
+    const isUsPassport = /^A\d{8}$/.test(passportVal);
+    if (!isFinNationalId && !isUsPassport) {
+      return res.status(400).json({
+        error: 'Passport / National ID Number must be National ID format (FIN followed by 12 digits, e.g., FIN123456789012) or US Passport format (A followed by 8 digits, e.g., A12345678).'
+      });
+    }
   }
 
   const store = getStore();
