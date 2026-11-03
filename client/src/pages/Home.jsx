@@ -246,10 +246,10 @@ export default function Home() {
                   </div>
                   <Link
                     to={`/investment/${opp.id}`}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 px-3 py-1.5 rounded-lg transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:via-amber-400 hover:to-amber-500 px-4 py-2 rounded-xl shadow-md shadow-amber-500/30 hover:shadow-lg hover:shadow-amber-500/40 border border-amber-300/60 transition-all duration-200 hover:scale-105 active:scale-95 group/btn"
                   >
-                    <span>{t.investment?.viewDetails || "View Details"}</span>
-                    <ArrowRight className="w-3 h-3" />
+                    <span>{t.investment?.viewDetails || "View Full Details"}</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
                   </Link>
                 </div>
               </div>

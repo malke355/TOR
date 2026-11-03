@@ -226,10 +226,10 @@ export default function InvestmentPortal() {
 
                   <Link
                     to={`/investment/${opp.id}`}
-                    className="w-full inline-flex items-center justify-center gap-2 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-600 dark:hover:bg-emerald-700 text-emerald-800 dark:text-emerald-300 hover:text-white font-bold text-xs py-2.5 rounded-xl transition-all"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-300 hover:via-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs sm:text-sm py-2.5 px-4 rounded-xl shadow-md shadow-amber-500/25 hover:shadow-lg hover:shadow-amber-500/40 border border-amber-300/60 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] group/btn"
                   >
-                    <span>{t.investment?.viewDetails || "View Full Investment Profile"}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <span>{t.investment?.viewDetails || "View Full Details"}</span>
+                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
                   </Link>
                 </div>
               </div>
