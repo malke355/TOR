@@ -12,6 +12,28 @@ router.post('/', (req, res) => {
     return res.status(400).json({ error: 'Name, email, and message are required.' });
   }
 
+  // Text-only validation: numbers not allowed
+  if (/\d/.test(name)) {
+    return res.status(400).json({ error: 'Full name must contain text only, no numbers are allowed.' });
+  }
+
+  if (organization && /\d/.test(organization)) {
+    return res.status(400).json({ error: 'Company / Organization must contain text only, no numbers are allowed.' });
+  }
+
+  if (subject && /\d/.test(subject)) {
+    return res.status(400).json({ error: 'Subject / Purpose of inquiry must contain text only, no numbers are allowed.' });
+  }
+
+  if (/\d/.test(message)) {
+    return res.status(400).json({ error: 'Detailed message must contain text only, no numbers are allowed.' });
+  }
+
+  // Phone validation: must start with +2519 followed by exactly 8 digits
+  if (phone && !/^\+2519\d{8}$/.test(phone.trim())) {
+    return res.status(400).json({ error: 'Phone number must start with +2519 followed by exactly 8 digits.' });
+  }
+
   // Basic email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
