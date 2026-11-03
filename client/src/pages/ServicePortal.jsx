@@ -221,7 +221,7 @@ export default function ServicePortal() {
       }
 
       // Strict text-only validation (no numbers, emojis, icons, or symbols)
-      const textOnlyFields = ['fullName', 'address', 'companyName', 'projectTitle', 'projectDescription'];
+      const textOnlyFields = ['fullName', 'address', 'companyName', 'projectTitle', 'projectDescription', 'additionalNotes'];
       if (textOnlyFields.includes(field.name) && val && typeof val === 'string' && val.trim()) {
         if (!isStrictTextOnly(val)) {
           stepErrors[field.name] = `${field.label} must contain only text (no numbers, symbols, or icons).`;
@@ -320,7 +320,7 @@ export default function ServicePortal() {
     setFormData(prev => ({ ...prev, [name]: finalValue }));
 
     // Strict text-only fields: no numbers, symbols, icons, emojis
-    const textOnlyFields = ['fullName', 'address', 'companyName', 'projectTitle', 'projectDescription'];
+    const textOnlyFields = ['fullName', 'address', 'companyName', 'projectTitle', 'projectDescription', 'additionalNotes'];
     if (textOnlyFields.includes(name)) {
       if (!isStrictTextOnly(finalValue)) {
         setErrors(prev => ({ ...prev, [name]: 'Only text is allowed (no numbers, symbols, or icons).' }));

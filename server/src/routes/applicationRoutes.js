@@ -121,6 +121,13 @@ router.post('/', (req, res) => {
     });
   }
 
+  // Additional Notes or Special Requests validation: text only, no numbers/icons/symbols
+  if (formData && formData.additionalNotes && !isStrictTextOnly(formData.additionalNotes)) {
+    return res.status(400).json({
+      error: 'Additional Notes or Special Requests must contain text only, no numbers, symbols, or icons are allowed.'
+    });
+  }
+
   // Land Requirement validation: numbers only if provided
   if (formData && formData.landRequirement && String(formData.landRequirement).trim()) {
     if (!/^\d+$/.test(String(formData.landRequirement).trim())) {
