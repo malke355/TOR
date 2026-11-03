@@ -116,8 +116,8 @@ export default function Home() {
                   {/* Subtle Top & Bottom Gradient Overlays for Readability and Depth */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-black/30" />
 
-                  {/* Slide Content Caption */}
-                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10 text-white z-10">
+                  {/* Slide Content Caption with generous safe-zone padding */}
+                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10 px-12 sm:px-16 md:px-20 text-white z-10">
                     <div className="max-w-3xl space-y-3">
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-emerald-600/90 text-white shadow-sm backdrop-blur-sm border border-emerald-400/30">
                         {tag}
@@ -151,22 +151,22 @@ export default function Home() {
               );
             })}
 
-            {/* Left Chevron Button */}
+            {/* Left Chevron Button - Low opacity, thin border, positioned at outer edge */}
             <button
               onClick={prevSlide}
               aria-label="Previous slide"
-              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/65 hover:bg-emerald-600 text-white flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              className="absolute left-1.5 sm:left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/25 hover:bg-black/60 text-white/70 hover:text-white flex items-center justify-center backdrop-blur-sm border border-white/15 hover:border-white/40 shadow-sm opacity-35 hover:opacity-100 transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none focus:ring-1 focus:ring-white/40"
             >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2]" />
             </button>
 
-            {/* Right Chevron Button */}
+            {/* Right Chevron Button - Low opacity, thin border, positioned at outer edge */}
             <button
               onClick={nextSlide}
               aria-label="Next slide"
-              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/65 hover:bg-emerald-600 text-white flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              className="absolute right-1.5 sm:right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/25 hover:bg-black/60 text-white/70 hover:text-white flex items-center justify-center backdrop-blur-sm border border-white/15 hover:border-white/40 shadow-sm opacity-35 hover:opacity-100 transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none focus:ring-1 focus:ring-white/40"
             >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2]" />
             </button>
 
             {/* Bottom Indicator Dots */}
