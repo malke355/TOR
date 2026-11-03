@@ -90,25 +90,9 @@ export default function Home() {
       <section className="relative bg-gradient-to-br from-emerald-50/80 via-white to-slate-50 dark:bg-gradient-to-br dark:from-slate-950 dark:via-emerald-950 dark:to-slate-900 text-slate-900 dark:text-white overflow-hidden py-8 lg:py-12 px-4 sm:px-8 border-b border-slate-200 dark:border-emerald-900/40 transition-colors duration-200">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
         
-        <div className="relative max-w-7xl mx-auto space-y-6">
-          <div className="flex flex-wrap gap-4">
-            <Link
-              to="/investment"
-              className="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-6 py-3.5 rounded-xl shadow-lg shadow-emerald-700/20 transition-all hover:translate-y-[-1px]"
-            >
-              <span>{t.hero.exploreBtn}</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-100 font-semibold px-6 py-3.5 rounded-xl transition-all shadow-sm"
-            >
-              <span>{t.hero.servicesBtn}</span>
-            </Link>
-          </div>
-
+        <div className="relative max-w-7xl mx-auto">
           {/* Hero Image Showcase Carousel */}
-          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-emerald-900/50 bg-slate-950 aspect-[16/9] sm:aspect-[21/9] max-h-[500px] w-full select-none">
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-emerald-900/50 bg-slate-950 aspect-[16/9] sm:aspect-[21/9] min-h-[420px] sm:min-h-[480px] lg:min-h-[520px] max-h-[580px] w-full select-none">
             {/* Slides */}
             {HERO_SLIDES.map((slide, index) => {
               const slideText = t.hero?.slides?.[index];
@@ -130,20 +114,37 @@ export default function Home() {
                     className="w-full h-full object-cover object-center"
                   />
                   {/* Subtle Top & Bottom Gradient Overlays for Readability and Depth */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-black/30" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-black/30" />
 
                   {/* Slide Content Caption */}
                   <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10 text-white z-10">
-                    <div className="max-w-3xl space-y-2">
+                    <div className="max-w-3xl space-y-3">
                       <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-emerald-600/90 text-white shadow-sm backdrop-blur-sm border border-emerald-400/30">
                         {tag}
                       </span>
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight drop-shadow-md">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-tight drop-shadow-md">
                         {title}
                       </h3>
                       <p className="hidden sm:block text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed line-clamp-2 max-w-2xl drop-shadow">
                         {desc}
                       </p>
+
+                      {/* Both Buttons Overlayed on the Pictures */}
+                      <div className="flex flex-wrap items-center gap-3 pt-2">
+                        <Link
+                          to="/investment"
+                          className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl shadow-lg shadow-black/40 backdrop-blur-sm transition-all hover:translate-y-[-1px]"
+                        >
+                          <span>{t.hero.exploreBtn}</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
+                        <Link
+                          to="/services"
+                          className="inline-flex items-center gap-2 bg-slate-900/80 hover:bg-slate-900 border border-white/25 text-white font-semibold text-xs sm:text-sm px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl backdrop-blur-md transition-all shadow-lg hover:border-white/40"
+                        >
+                          <span>{t.hero.servicesBtn}</span>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
