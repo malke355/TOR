@@ -133,7 +133,7 @@ export const initialOpportunities = [
     requiredCapital: "850 Million ETB",
     landAvailable: "18 Hectares with pristine mountain spring water",
     status: "Published",
-    imageUrl: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/images/bale-honey.png",
     summary: "Organic processing, honey refining, pharmaceutical-grade beeswax extraction, and export packaging cluster sourcing from Bale forest beekeepers.",
     description: "The Bale eco-region produces world-famous white and amber forest honey. This project establishes state-of-the-art filtration, centrifugal extraction, and direct certified organic export packaging for the European and Middle Eastern markets.",
     incentives: [
@@ -197,7 +197,7 @@ export const initialTradeProducts = [
     exportSpecs: "100% Pure Raw Organic, Moisture < 18%, HMF < 15 mg/kg, Residue-free, 25kg stainless drums.",
     description: "Harvested from wild multi-floral forest canopies in the Bale Mountains National Park buffer zone. Acclaimed internationally for creamy white crystallization and smooth medicinal notes.",
     seasonality: "Peak Harvest: May - June & November - December",
-    imageUrl: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80"
+    imageUrl: "/images/bale-honey.png"
   },
   {
     id: "prod-04",
