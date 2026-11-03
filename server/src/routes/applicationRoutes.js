@@ -4,6 +4,17 @@ import { requireAuth } from '../middleware/auth.js';
 
 const router = express.Router();
 
+// Strict text-only validator: only allows letters, spaces, and standard punctuation (. , - ' " : ; / ? !)
+// Numbers (0-9), emojis, icons, and math/tech symbols are strictly disallowed
+const isStrictTextOnly = (val) => {
+  if (!val || typeof val !== 'string') return true;
+  if (/\d/.test(val)) return false;
+  const emojiRegex = /[\p{Extended_Pictographic}\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u;
+  if (emojiRegex.test(val)) return false;
+  if (/[#$%\^&*+=<>~`|\\{}\[\]_@]/g.test(val)) return false;
+  return true;
+};
+
 // POST /api/applications (Public - Submit service application)
 router.post('/', (req, res) => {
   const {
@@ -24,10 +35,10 @@ router.post('/', (req, res) => {
     });
   }
 
-  // Full Legal Name validation (text only, no numbers allowed)
-  if (/\d/.test(applicantName)) {
+  // Full Legal Name validation (text only, no numbers/icons/symbols)
+  if (!isStrictTextOnly(applicantName)) {
     return res.status(400).json({
-      error: 'Full Legal Name must contain text only, no numbers are allowed.'
+      error: 'Full Legal Name must contain text only, no numbers, symbols, or icons are allowed.'
     });
   }
 
@@ -46,22 +57,22 @@ router.post('/', (req, res) => {
     });
   }
 
-  // Current Residential Address validation: text only, no numbers allowed (if provided in formData)
-  if (formData && formData.address && /\d/.test(formData.address)) {
+  // Current Residential Address validation: text only (no numbers/icons/symbols)
+  if (formData && formData.address && !isStrictTextOnly(formData.address)) {
     return res.status(400).json({
-      error: 'Current Residential Address must contain text only, no numbers are allowed.'
+      error: 'Current Residential Address must contain text only, no numbers, symbols, or icons are allowed.'
     });
   }
 
-  // Company / Organization Name validation: text only, no numbers allowed
-  if (companyName && /\d/.test(companyName)) {
+  // Company / Organization Name validation: text only (no numbers/icons/symbols)
+  if (companyName && !isStrictTextOnly(companyName)) {
     return res.status(400).json({
-      error: 'Company / Organization Name must contain text only, no numbers are allowed.'
+      error: 'Company / Organization Name must contain text only, no numbers, symbols, or icons are allowed.'
     });
   }
-  if (formData && formData.companyName && /\d/.test(formData.companyName)) {
+  if (formData && formData.companyName && !isStrictTextOnly(formData.companyName)) {
     return res.status(400).json({
-      error: 'Company / Organization Name must contain text only, no numbers are allowed.'
+      error: 'Company / Organization Name must contain text only, no numbers, symbols, or icons are allowed.'
     });
   }
 
@@ -74,10 +85,10 @@ router.post('/', (req, res) => {
     }
   }
 
-  // Project Title validation (text only, no numbers allowed)
-  if (formData && formData.projectTitle && /\d/.test(formData.projectTitle)) {
+  // Project Title validation (text only, no numbers/icons/symbols)
+  if (formData && formData.projectTitle && !isStrictTextOnly(formData.projectTitle)) {
     return res.status(400).json({
-      error: 'Project Title must contain text only, no numbers are allowed.'
+      error: 'Project Title must contain text only, no numbers, symbols, or icons are allowed.'
     });
   }
 
@@ -103,10 +114,10 @@ router.post('/', (req, res) => {
     }
   }
 
-  // Detailed Project Description validation: text only, no numbers allowed
-  if (formData && formData.projectDescription && /\d/.test(formData.projectDescription)) {
+  // Detailed Project Description validation: text only, no numbers/icons/symbols
+  if (formData && formData.projectDescription && !isStrictTextOnly(formData.projectDescription)) {
     return res.status(400).json({
-      error: 'Detailed Project Description must contain text only, no numbers are allowed.'
+      error: 'Detailed Project Description must contain text only, no numbers, symbols, or icons are allowed.'
     });
   }
 

@@ -33,16 +33,16 @@ const SERVICE_FORMS = {
     fields: [
       // Step 0 — Personal Information
       [
-        { name: 'fullName', label: 'Full Legal Name', type: 'text', placeholder: 'e.g., Abebe Chala', required: true, icon: User },
+        { name: 'fullName', label: 'Full Legal Name', type: 'text', placeholder: 'e.g., Abebe Chala', required: true },
         { name: 'nationality', label: 'Nationality', type: 'select', options: ['Ethiopian', 'Foreign National', 'Dual Citizenship'], required: true },
-        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., abebe.chala@gmail.com', required: true, icon: Mail },
-        { name: 'phone', label: 'Phone Number', type: 'tel', placeholder: '12345678', required: true, icon: Phone, prefix: '+2519' },
-        { name: 'passportId', label: 'Passport / National ID Number', type: 'text', placeholder: 'e.g., FIN123456789012 or A12345678', required: true, icon: Shield },
+        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., abebe.chala@gmail.com', required: true },
+        { name: 'phone', label: 'Phone Number', type: 'tel', placeholder: '12345678', required: true, prefix: '+2519' },
+        { name: 'passportId', label: 'Passport / National ID Number', type: 'text', placeholder: 'e.g., FIN123456789012 or A12345678', required: true },
         { name: 'address', label: 'Current Residential Address', type: 'text', placeholder: 'e.g., Addis Ababa, Bole Sub City', required: true }
       ],
       // Step 1 — Business Details
       [
-        { name: 'companyName', label: 'Company / Organization Name', type: 'text', placeholder: 'e.g., Oromia Agro Industries PLC', required: true, icon: Building2 },
+        { name: 'companyName', label: 'Company / Organization Name', type: 'text', placeholder: 'e.g., Oromia Agro Industries PLC', required: true },
         { name: 'investorType', label: 'Investor Type', type: 'select', options: ['Domestic Private', 'Foreign Direct Investment (FDI)', 'Joint Venture', 'Diaspora Investor'], required: true },
         { name: 'businessSector', label: 'Business Sector', type: 'select', options: ['Manufacturing', 'Agriculture & Agro-Processing', 'Mining & Extraction', 'Tourism & Hospitality', 'Technology & ICT', 'Health & Pharmaceuticals', 'Construction & Real Estate', 'Energy & Renewable', 'Other'], required: true },
         { name: 'tinNumber', label: 'Tax Identification Number (TIN)', type: 'text', placeholder: 'e.g., 0012345678', required: false },
@@ -50,7 +50,7 @@ const SERVICE_FORMS = {
       ],
       // Step 2 — Investment Plan
       [
-        { name: 'projectTitle', label: 'Project Title', type: 'text', placeholder: 'e.g., Integrated Dairy Processing Plant', required: true, icon: ClipboardList },
+        { name: 'projectTitle', label: 'Project Title', type: 'text', placeholder: 'e.g., Integrated Dairy Processing Plant', required: true },
         { name: 'investmentZone', label: 'Preferred Investment Zone / Location', type: 'select', options: ['Finfinnee Surrounding Special Zone', 'East Shewa Zone', 'West Shewa Zone', 'Jimma Zone', 'East Wollega Zone', 'Arsi Zone', 'Bale Zone', 'Borena Zone', 'Guji Zone', 'Hararghe Zone', 'Ilu Ababor Zone', 'Other — Please specify in description'], required: true },
         { name: 'estimatedCapital', label: 'Estimated Investment Capital (ETB)', type: 'text', placeholder: 'e.g., 50,000,000', required: true },
         { name: 'employmentProjection', label: 'Projected Employment (Number of Jobs)', type: 'text', placeholder: 'e.g., 150', required: true },
@@ -76,11 +76,11 @@ const SERVICE_FORMS = {
     fields: [
       // Step 0 — Applicant Information
       [
-        { name: 'fullName', label: 'Full Legal Name / Authorized Representative', type: 'text', placeholder: 'e.g., Abebe Chala', required: true, icon: User },
-        { name: 'companyName', label: 'Company / Organization Name', type: 'text', placeholder: 'e.g., Oromia Manufacturing PLC', required: true, icon: Building2 },
-        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., representative@gmail.com', required: true, icon: Mail },
-        { name: 'phone', label: 'Phone Number', type: 'tel', placeholder: '12345678', required: true, icon: Phone, prefix: '+2519' },
-        { name: 'investmentPermitNo', label: 'Valid Investment Permit Number', type: 'text', placeholder: 'e.g., INV/2024/00123', required: true, icon: Shield },
+        { name: 'fullName', label: 'Full Legal Name / Authorized Representative', type: 'text', placeholder: 'e.g., Abebe Chala', required: true },
+        { name: 'companyName', label: 'Company / Organization Name', type: 'text', placeholder: 'e.g., Oromia Manufacturing PLC', required: true },
+        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., representative@gmail.com', required: true },
+        { name: 'phone', label: 'Phone Number', type: 'tel', placeholder: '12345678', required: true, prefix: '+2519' },
+        { name: 'investmentPermitNo', label: 'Valid Investment Permit Number', type: 'text', placeholder: 'e.g., INV/2024/00123', required: true },
         { name: 'businessSector', label: 'Business Sector', type: 'select', options: ['Manufacturing', 'Agriculture & Agro-Processing', 'Mining & Extraction', 'Priority Commercial Services', 'Other'], required: true }
       ],
       // Step 1 — Import Details
@@ -112,11 +112,11 @@ const SERVICE_FORMS = {
     fields: [
       // Step 0 — Applicant Information
       [
-        { name: 'fullName', label: 'Full Legal Name', type: 'text', placeholder: 'e.g., Abebe Chala', required: true, icon: User },
-        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., exporter@gmail.com', required: true, icon: Mail },
-        { name: 'phone', label: 'Phone Number', type: 'tel', placeholder: '12345678', required: true, icon: Phone, prefix: '+2519' },
+        { name: 'fullName', label: 'Full Legal Name', type: 'text', placeholder: 'e.g., Abebe Chala', required: true },
+        { name: 'email', label: 'Email Address', type: 'email', placeholder: 'e.g., exporter@gmail.com', required: true },
+        { name: 'phone', label: 'Phone Number', type: 'tel', placeholder: '12345678', required: true, prefix: '+2519' },
         { name: 'businessType', label: 'Business Type', type: 'select', options: ['Sole Proprietor', 'Private Limited Company (PLC)', 'Share Company', 'Agricultural Cooperative Union', 'Other'], required: true },
-        { name: 'companyName', label: 'Company / Organization Name', type: 'text', placeholder: 'e.g., Oromia Coffee Export PLC', required: true, icon: Building2 }
+        { name: 'companyName', label: 'Company / Organization Name', type: 'text', placeholder: 'e.g., Oromia Coffee Export PLC', required: true }
       ],
       // Step 1 — Business & Trade Details
       [
@@ -137,6 +137,20 @@ const SERVICE_FORMS = {
       ]
     ]
   }
+};
+
+// Strict text-only validator: only allows letters, spaces, and standard punctuation (. , - ' " : ; / ? !)
+// Numbers (0-9), emojis, icons, and math/tech symbols are strictly disallowed
+const isStrictTextOnly = (val) => {
+  if (!val || typeof val !== 'string') return true;
+  // Disallow any digits 0-9
+  if (/\d/.test(val)) return false;
+  // Disallow emojis, symbols, and pictographic icons
+  const emojiRegex = /[\p{Extended_Pictographic}\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u;
+  if (emojiRegex.test(val)) return false;
+  // Disallow math/tech symbols like $, %, ^, *, +, =, <, >, ~, `, |, \, {, }, [, ], _, #, @
+  if (/[#$%\^&*+=<>~`|\\{}\[\]_@]/g.test(val)) return false;
+  return true;
 };
 
 export default function ServicePortal() {
@@ -206,24 +220,11 @@ export default function ServicePortal() {
         }
       }
 
-      // Full Legal Name validation (text only, no numbers allowed)
-      if (field.name === 'fullName' && val && typeof val === 'string' && val.trim()) {
-        if (/\d/.test(val)) {
-          stepErrors[field.name] = 'Full Legal Name must contain text only, no numbers are allowed.';
-        }
-      }
-
-      // Current Residential Address validation (text only, no numbers allowed)
-      if (field.name === 'address' && val && typeof val === 'string' && val.trim()) {
-        if (/\d/.test(val)) {
-          stepErrors[field.name] = 'Current Residential Address must contain text only, no numbers are allowed.';
-        }
-      }
-
-      // Company / Organization Name validation (text only, no numbers allowed)
-      if (field.name === 'companyName' && val && typeof val === 'string' && val.trim()) {
-        if (/\d/.test(val)) {
-          stepErrors[field.name] = 'Company / Organization Name must contain text only, no numbers are allowed.';
+      // Strict text-only validation (no numbers, emojis, icons, or symbols)
+      const textOnlyFields = ['fullName', 'address', 'companyName', 'projectTitle', 'projectDescription'];
+      if (textOnlyFields.includes(field.name) && val && typeof val === 'string' && val.trim()) {
+        if (!isStrictTextOnly(val)) {
+          stepErrors[field.name] = `${field.label} must contain only text (no numbers, symbols, or icons).`;
         }
       }
 
@@ -231,13 +232,6 @@ export default function ServicePortal() {
       if (field.name === 'tinNumber' && val && typeof val === 'string' && val.trim()) {
         if (!/^\d{10}$/.test(val.trim())) {
           stepErrors[field.name] = 'Tax Identification Number (TIN) must be exactly 10 digits.';
-        }
-      }
-
-      // Project Title validation (text only, no numbers allowed)
-      if (field.name === 'projectTitle' && val && typeof val === 'string' && val.trim()) {
-        if (/\d/.test(val)) {
-          stepErrors[field.name] = 'Project Title must contain text only, no numbers are allowed.';
         }
       }
 
@@ -256,13 +250,6 @@ export default function ServicePortal() {
         const num = Number(rawDigits);
         if (!rawDigits || isNaN(num) || num <= 0) {
           stepErrors[field.name] = 'Projected Employment must be a valid number.';
-        }
-      }
-
-      // Detailed Project Description validation (text only, no numbers allowed)
-      if (field.name === 'projectDescription' && val && typeof val === 'string' && val.trim()) {
-        if (/\d/.test(val)) {
-          stepErrors[field.name] = 'Detailed Project Description must contain text only, no numbers are allowed.';
         }
       }
 
@@ -332,30 +319,13 @@ export default function ServicePortal() {
 
     setFormData(prev => ({ ...prev, [name]: finalValue }));
 
-    // Instant feedback for text-only fields
-    if (name === 'fullName') {
-      if (/\d/.test(finalValue)) {
-        setErrors(prev => ({ ...prev, fullName: 'Numbers are not allowed. Please enter text only.' }));
+    // Strict text-only fields: no numbers, symbols, icons, emojis
+    const textOnlyFields = ['fullName', 'address', 'companyName', 'projectTitle', 'projectDescription'];
+    if (textOnlyFields.includes(name)) {
+      if (!isStrictTextOnly(finalValue)) {
+        setErrors(prev => ({ ...prev, [name]: 'Only text is allowed (no numbers, symbols, or icons).' }));
       } else {
-        setErrors(prev => { const n = { ...prev }; delete n.fullName; return n; });
-      }
-      return;
-    }
-
-    if (name === 'address') {
-      if (/\d/.test(finalValue)) {
-        setErrors(prev => ({ ...prev, address: 'Numbers are not allowed. Please enter text only.' }));
-      } else {
-        setErrors(prev => { const n = { ...prev }; delete n.address; return n; });
-      }
-      return;
-    }
-
-    if (name === 'companyName') {
-      if (/\d/.test(finalValue)) {
-        setErrors(prev => ({ ...prev, companyName: 'Numbers are not allowed. Please enter text only.' }));
-      } else {
-        setErrors(prev => { const n = { ...prev }; delete n.companyName; return n; });
+        setErrors(prev => { const n = { ...prev }; delete n[name]; return n; });
       }
       return;
     }
@@ -380,15 +350,6 @@ export default function ServicePortal() {
       return;
     }
 
-    if (name === 'projectTitle') {
-      if (/\d/.test(finalValue)) {
-        setErrors(prev => ({ ...prev, projectTitle: 'Numbers are not allowed. Please enter text only.' }));
-      } else {
-        setErrors(prev => { const n = { ...prev }; delete n.projectTitle; return n; });
-      }
-      return;
-    }
-
     if (name === 'estimatedCapital') {
       // Only numbers allowed
       const digitsOnly = (value || '').replace(/\D/g, '');
@@ -409,15 +370,6 @@ export default function ServicePortal() {
       const digitsOnly = (value || '').replace(/\D/g, '');
       setFormData(prev => ({ ...prev, employmentProjection: digitsOnly }));
       setErrors(prev => { const n = { ...prev }; delete n.employmentProjection; return n; });
-      return;
-    }
-
-    if (name === 'projectDescription') {
-      if (/\d/.test(finalValue)) {
-        setErrors(prev => ({ ...prev, projectDescription: 'Numbers are not allowed. Please enter text only.' }));
-      } else {
-        setErrors(prev => { const n = { ...prev }; delete n.projectDescription; return n; });
-      }
       return;
     }
 
@@ -809,29 +761,24 @@ export default function ServicePortal() {
                         />
                       </div>
                     ) : (
-                      <div className="relative">
-                        {field.icon && (
-                          <field.icon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                        )}
-                        <input
-                          type={field.type}
-                          value={formData[field.name] || ''}
-                          maxLength={
-                            field.name === 'passportId'
-                              ? formData.passportId?.startsWith('A')
-                                ? 9
-                                : 15
-                              : field.name === 'tinNumber'
-                              ? 10
-                              : undefined
-                          }
-                          onChange={(e) => handleChange(field.name, e.target.value)}
-                          placeholder={field.placeholder}
-                          className={`w-full ${field.icon ? 'pl-9' : 'pl-3'} pr-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 ${clr.ring} transition-all ${
-                            errors[field.name] ? 'border-red-400 dark:border-red-600' : 'border-slate-200 dark:border-slate-700'
-                          }`}
-                        />
-                      </div>
+                      <input
+                        type={field.type}
+                        value={formData[field.name] || ''}
+                        maxLength={
+                          field.name === 'passportId'
+                            ? formData.passportId?.startsWith('A')
+                              ? 9
+                              : 15
+                            : field.name === 'tinNumber'
+                            ? 10
+                            : undefined
+                        }
+                        onChange={(e) => handleChange(field.name, e.target.value)}
+                        placeholder={field.placeholder}
+                        className={`w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 ${clr.ring} transition-all ${
+                          errors[field.name] ? 'border-red-400 dark:border-red-600' : 'border-slate-200 dark:border-slate-700'
+                        }`}
+                      />
                     )}
                     {field.name === 'passportId' && formData.passportId && (
                       <div className="mt-1 flex items-center justify-between text-[11px] px-1">
