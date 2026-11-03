@@ -220,6 +220,20 @@ export default function ServicePortal() {
         }
       }
 
+      // Company / Organization Name validation (text only, no numbers allowed)
+      if (field.name === 'companyName' && val && typeof val === 'string' && val.trim()) {
+        if (/\d/.test(val)) {
+          stepErrors[field.name] = 'Company / Organization Name must contain text only, no numbers are allowed.';
+        }
+      }
+
+      // Tax Identification Number (TIN) validation: exactly 10 digits
+      if (field.name === 'tinNumber' && val && typeof val === 'string' && val.trim()) {
+        if (!/^\d{10}$/.test(val.trim())) {
+          stepErrors[field.name] = 'Tax Identification Number (TIN) must be exactly 10 digits.';
+        }
+      }
+
       // Passport / National ID Number validation
       // If starts with FIN: must be followed by exactly 12 digits
       // If starts with A: must be followed by exactly 8 digits
@@ -294,6 +308,35 @@ export default function ServicePortal() {
         setErrors(prev => ({ ...prev, address: 'Numbers are not allowed. Please enter text only.' }));
       } else {
         setErrors(prev => { const n = { ...prev }; delete n.address; return n; });
+      }
+      return;
+    }
+
+    if (name === 'companyName') {
+      if (/\d/.test(finalValue)) {
+        setErrors(prev => ({ ...prev, companyName: 'Numbers are not allowed. Please enter text only.' }));
+      } else {
+        setErrors(prev => { const n = { ...prev }; delete n.companyName; return n; });
+      }
+      return;
+    }
+
+    if (name === 'tinNumber') {
+      // Only digits allowed, max 10 digits
+      const digitsOnly = (value || '').replace(/\D/g, '').slice(0, 10);
+      setFormData(prev => ({ ...prev, tinNumber: digitsOnly }));
+
+      if (digitsOnly.length === 10) {
+        setErrors(prev => { const n = { ...prev }; delete n.tinNumber; return n; });
+      } else if (digitsOnly.length > 0) {
+        if (errors.tinNumber) {
+          setErrors(prev => ({
+            ...prev,
+            tinNumber: `TIN Number must be exactly 10 digits (${digitsOnly.length}/10 entered).`
+          }));
+        }
+      } else {
+        setErrors(prev => { const n = { ...prev }; delete n.tinNumber; return n; });
       }
       return;
     }
@@ -685,7 +728,15 @@ export default function ServicePortal() {
                         <input
                           type={field.type}
                           value={formData[field.name] || ''}
-                          maxLength={field.name === 'passportId' ? (formData.passportId?.startsWith('A') ? 9 : 15) : undefined}
+                          maxLength={
+                            field.name === 'passportId'
+                              ? formData.passportId?.startsWith('A')
+                                ? 9
+                                : 15
+                              : field.name === 'tinNumber'
+                              ? 10
+                              : undefined
+                          }
                           onChange={(e) => handleChange(field.name, e.target.value)}
                           placeholder={field.placeholder}
                           className={`w-full ${field.icon ? 'pl-9' : 'pl-3'} pr-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border text-sm text-slate-800 dark:text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 ${clr.ring} transition-all ${
@@ -707,6 +758,14 @@ export default function ServicePortal() {
                             US Passport: {formData.passportId.slice(1).length} / 8 digits
                           </span>
                         ) : null}
+                      </div>
+                    )}
+                    {field.name === 'tinNumber' && formData.tinNumber && (
+                      <div className="mt-1 flex items-center justify-between text-[11px] px-1">
+                        <span className={formData.tinNumber.length === 10 ? 'text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1' : 'text-slate-500 dark:text-slate-400'}>
+                          {formData.tinNumber.length === 10 && <CheckCircle2 className="w-3 h-3 text-emerald-600" />}
+                          TIN: {formData.tinNumber.length} / 10 digits
+                        </span>
                       </div>
                     )}
                   </div>

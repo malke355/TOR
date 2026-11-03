@@ -53,6 +53,27 @@ router.post('/', (req, res) => {
     });
   }
 
+  // Company / Organization Name validation: text only, no numbers allowed
+  if (companyName && /\d/.test(companyName)) {
+    return res.status(400).json({
+      error: 'Company / Organization Name must contain text only, no numbers are allowed.'
+    });
+  }
+  if (formData && formData.companyName && /\d/.test(formData.companyName)) {
+    return res.status(400).json({
+      error: 'Company / Organization Name must contain text only, no numbers are allowed.'
+    });
+  }
+
+  // Tax Identification Number (TIN) validation: exactly 10 digits if provided
+  if (formData && formData.tinNumber && formData.tinNumber.trim()) {
+    if (!/^\d{10}$/.test(formData.tinNumber.trim())) {
+      return res.status(400).json({
+        error: `Tax Identification Number (TIN) must be exactly 10 digits (${formData.tinNumber.trim().length}/10 provided).`
+      });
+    }
+  }
+
   // Passport / National ID Number validation (if provided in formData)
   // National ID: FIN + exactly 12 digits (e.g. FIN123456789012)
   // US Passport: A + exactly 8 digits (e.g. A12345678)
