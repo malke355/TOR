@@ -1,0 +1,13 @@
+{
+  "name": "oromia-trade-investment-bureau",
+  "version": "1.0.0",
+  "description": "Institutional Website and CMS for Oromia Trade and Investment Bureau",
+  "scripts": {
+    "install:all": "cd server && npm.cmd install && cd ../client && npm.cmd install",
+    "dev:server": "cd server && npm.cmd run dev",
+    "dev:client": "cd client && npm.cmd run dev"
+  },
+  "keywords": ["oromia", "trade", "investment", "government-portal", "cms"],
+  "author": "Malke",
+  "license": "MIT"
+}
