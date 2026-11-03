@@ -41,21 +41,21 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
+    <header className="sticky top-0 z-50 w-full max-w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-200">
       {/* Regional Flag Tricolor Header Accent (Red, Black, White + Gold) */}
       <div className="h-1 w-full bg-gradient-to-r from-red-600 via-stone-900 to-amber-500"></div>
 
-      {/* Top Utility Meta Bar */}
-      <div className="bg-slate-900 text-slate-300 text-xs py-1.5 px-4 sm:px-8 border-b border-slate-800">
+      {/* Top Utility Meta Bar - Light & Dark Adaptive */}
+      <div className="bg-slate-100 dark:bg-slate-950 text-slate-600 dark:text-slate-300 text-xs py-1.5 px-4 sm:px-8 border-b border-slate-200 dark:border-slate-800/80 transition-colors">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           {/* Contact Direct Line */}
-          <div className="flex items-center gap-5">
-            <span className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
-              <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-              <span className="font-medium tracking-tight">+251 11 551 2233</span>
+          <div className="flex items-center gap-4 sm:gap-6">
+            <span className="flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-300">
+              <Phone className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+              <span>+251 11 551 2233</span>
             </span>
-            <span className="hidden md:flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors">
-              <Mail className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <span className="hidden md:flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+              <Mail className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
               <span>info@investoromia.gov.et</span>
             </span>
           </div>
@@ -63,64 +63,64 @@ export default function Navbar() {
           {/* Right Tools: Segmented Theme Switcher, Language & Staff Portal */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Clear Dual Segmented Theme Switcher */}
-            <div className="inline-flex items-center p-0.5 rounded-lg bg-slate-800 border border-slate-700">
+            <div className="inline-flex items-center p-0.5 rounded-lg bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700">
               <button
                 type="button"
                 onClick={setLightMode}
                 title="Switch to Pure White Light Mode"
-                className={`flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold transition-all ${
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold transition-all ${
                   !isDark
-                    ? 'bg-amber-400 text-slate-950 shadow-sm'
+                    ? 'bg-white text-emerald-800 shadow-sm border border-slate-200'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
-                <Sun className="w-3 h-3" />
+                <Sun className="w-3 h-3 text-amber-500" />
                 <span>Light</span>
               </button>
               <button
                 type="button"
                 onClick={setDarkMode}
                 title="Switch to Dark Mode"
-                className={`flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold transition-all ${
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold transition-all ${
                   isDark
                     ? 'bg-emerald-600 text-white shadow-sm'
-                    : 'text-slate-400 hover:text-white'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
                 }`}
               >
-                <Moon className="w-3 h-3" />
+                <Moon className="w-3 h-3 text-slate-300" />
                 <span>Dark</span>
               </button>
             </div>
 
             {/* Multilingual Selector */}
-            <div className="relative inline-flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700/80 text-white px-2.5 py-1 rounded-lg border border-slate-700 transition-colors">
-              <Globe className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+            <div className="relative inline-flex items-center gap-1.5 bg-white dark:bg-slate-800 text-slate-700 dark:text-white px-2.5 py-1 rounded-lg border border-slate-300 dark:border-slate-700 shadow-sm transition-colors">
+              <Globe className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
               <select
                 value={lang}
                 onChange={(e) => setLang(e.target.value)}
-                className="bg-transparent text-white focus:outline-none cursor-pointer font-medium text-xs pr-4 appearance-none"
+                className="bg-transparent focus:outline-none cursor-pointer font-semibold text-xs pr-4 appearance-none"
               >
-                <option value="en" className="bg-slate-900 text-white">English</option>
-                <option value="om" className="bg-slate-900 text-white">Afaan Oromoo</option>
-                <option value="am" className="bg-slate-900 text-white">አማርኛ</option>
+                <option value="en" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">English</option>
+                <option value="om" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">Afaan Oromoo</option>
+                <option value="am" className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">አማርኛ</option>
               </select>
               <ChevronDown className="w-3 h-3 text-slate-400 pointer-events-none absolute right-2" />
             </div>
 
             {/* Staff CMS Access */}
             {isAuthenticated ? (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <Link
                   to="/admin/dashboard"
-                  className="flex items-center gap-1.5 text-emerald-300 hover:text-white font-semibold bg-emerald-950/80 border border-emerald-700 px-3 py-1 rounded-lg transition-all text-xs"
+                  className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-300 font-bold bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-700 px-2.5 py-1 rounded-lg transition-all text-xs"
                 >
-                  <Shield className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>CMS Console</span>
+                  <Shield className="w-3.5 h-3.5" />
+                  <span>CMS</span>
                 </Link>
                 <button
                   onClick={logout}
                   title="Sign Out"
-                  className="text-slate-400 hover:text-red-400 p-1 transition-colors"
+                  className="text-slate-400 hover:text-red-500 p-1"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                 </button>
@@ -128,9 +128,9 @@ export default function Navbar() {
             ) : (
               <Link
                 to="/admin/login"
-                className="flex items-center gap-1.5 text-slate-300 hover:text-white font-medium text-xs py-1 px-2.5 rounded-lg hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-1 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-semibold text-xs py-1 px-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
               >
-                <Shield className="w-3.5 h-3.5 text-amber-400" />
+                <Shield className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                 <span>{t.nav.admin}</span>
               </Link>
             )}
@@ -139,44 +139,44 @@ export default function Navbar() {
       </div>
 
       {/* Main Brand & Navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3 flex items-center justify-between gap-4">
         {/* Institutional Crest & Emblem */}
-        <Link to="/" className="flex items-center gap-3.5 group shrink-0">
-          <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-900 via-emerald-800 to-slate-950 text-white flex flex-col items-center justify-center shadow-md shadow-emerald-950/20 border border-emerald-500/50 group-hover:scale-105 transition-transform">
-            <span className="text-[13px] font-black text-amber-400 tracking-wider leading-none">OTIB</span>
-            <span className="text-[8px] font-extrabold text-emerald-200 tracking-widest uppercase">OROMIA</span>
+        <Link to="/" className="flex items-center gap-3 group shrink-0">
+          <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-emerald-800 to-slate-900 text-white flex flex-col items-center justify-center shadow-md border border-emerald-600 group-hover:scale-105 transition-transform shrink-0">
+            <span className="text-[12px] sm:text-[13px] font-black text-amber-400 tracking-wider leading-none">OTIB</span>
+            <span className="text-[7px] sm:text-[8px] font-extrabold text-emerald-200 tracking-widest uppercase">OROMIA</span>
           </div>
 
-          <div className="space-y-0.5">
-            <span className="text-[9px] font-extrabold tracking-widest text-amber-700 dark:text-amber-400 uppercase block">
+          <div className="space-y-0.5 min-w-0">
+            <span className="text-[8px] sm:text-[9px] font-extrabold tracking-widest text-amber-700 dark:text-amber-400 uppercase block truncate">
               {t.bureau.region}
             </span>
-            <div className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight leading-none group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">
+            <div className="text-sm sm:text-base lg:text-lg font-extrabold text-slate-900 dark:text-white tracking-tight leading-none group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors truncate">
               {t.bureau.title}
             </div>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden md:block">
+            <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden md:block truncate">
               Biiroo Daldalaa fi Invastimantii Oromiyaa
             </p>
           </div>
         </Link>
 
-        {/* Desktop Single-Line Navigation */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+        {/* Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1.5 shrink min-w-0">
           {navLinks.map((link) => {
             const active = isActive(link.path);
             return (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative px-3 py-2 text-[13px] font-semibold whitespace-nowrap transition-colors rounded-lg ${
+                className={`relative px-2.5 xl:px-3 py-2 text-[12px] xl:text-[13px] font-semibold whitespace-nowrap transition-colors rounded-lg ${
                   active
-                    ? 'text-emerald-800 dark:text-emerald-400 font-bold bg-emerald-50 dark:bg-emerald-950/50'
+                    ? 'text-emerald-800 dark:text-emerald-400 font-bold bg-emerald-50 dark:bg-emerald-950/60'
                     : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
                 {link.name}
                 {active && (
-                  <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full"></span>
+                  <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full"></span>
                 )}
               </Link>
             );
@@ -187,7 +187,7 @@ export default function Navbar() {
         <div className="hidden xl:flex items-center shrink-0">
           <Link
             to="/investment"
-            className="inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-700 to-emerald-800 hover:from-emerald-800 hover:to-emerald-900 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-sm hover:shadow transition-all group"
+            className="inline-flex items-center gap-1.5 bg-gradient-to-r from-emerald-700 to-emerald-800 hover:from-emerald-800 hover:to-emerald-900 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl shadow-sm transition-all group"
           >
             <span>{t.nav.investCTA || 'Invest in Oromia'}</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />

@@ -4,29 +4,50 @@ const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('otib_theme') || 'light';
+    try {
+      return localStorage.getItem('otib_theme') || 'light';
+    } catch (e) {
+      return 'light';
+    }
   });
 
-  useEffect(() => {
+  const applyTheme = (targetTheme) => {
     const root = document.documentElement;
-    if (theme === 'dark') {
+    if (targetTheme === 'dark') {
       root.classList.add('dark');
       root.style.colorScheme = 'dark';
     } else {
       root.classList.remove('dark');
       root.style.colorScheme = 'light';
     }
-    localStorage.setItem('otib_theme', theme);
+    try {
+      localStorage.setItem('otib_theme', targetTheme);
+    } catch (e) {}
+  };
+
+  useEffect(() => {
+    applyTheme(theme);
   }, [theme]);
 
-  const setLightMode = () => setTheme('light');
-  const setDarkMode = () => setTheme('dark');
-  const toggleTheme = () => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  const setLightMode = () => {
+    applyTheme('light');
+    setTheme('light');
+  };
+
+  const setDarkMode = () => {
+    applyTheme('dark');
+    setTheme('dark');
+  };
+
+  const toggleTheme = () => {
+    const next = theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    setTheme(next);
+  };
 
   return (
     <ThemeContext.Provider value={{
       theme,
-      setTheme,
       setLightMode,
       setDarkMode,
       toggleTheme,
@@ -38,9 +59,5 @@ export function ThemeProvider({ children }) {
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-  return context;
+  return useContext(ThemeContext);
 }
