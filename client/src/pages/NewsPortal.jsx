@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import { Newspaper, Calendar, Search, ArrowRight, Tag } from 'lucide-react';
 
 export default function NewsPortal() {
+  const { t } = useLanguage();
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -38,13 +40,13 @@ export default function NewsPortal() {
       <div className="max-w-3xl space-y-4">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
           <Newspaper className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-          <span>Bureau Communications & Media Center</span>
+          <span>{t.news?.badge || "Bureau Communications & Media Center"}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          News, Policy Updates & Announcements
+          {t.news?.title || "News, Policy Updates & Announcements"}
         </h1>
         <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-          Stay informed on official regional investment pacts, export reports, legal circulars, and institutional milestones from the Oromia Trade and Investment Bureau.
+          {t.news?.desc || "Stay informed on official regional investment pacts, export reports, legal circulars, and institutional milestones from the Oromia Trade and Investment Bureau."}
         </p>
       </div>
 
@@ -122,7 +124,7 @@ export default function NewsPortal() {
                     to={`/news/${item.id}`}
                     className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-400 group-hover:underline"
                   >
-                    <span>Read Full Article</span>
+                    <span>{t.news?.readArticle || "Read Full Article"}</span>
                     <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>

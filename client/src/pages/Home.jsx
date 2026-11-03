@@ -79,30 +79,30 @@ export default function Home() {
           <div className="lg:col-span-5 bg-white dark:bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-white/15 shadow-xl space-y-5 transition-colors">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/10 pb-4">
               <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Institutional Mandate</h3>
-                <p className="text-xs text-emerald-700 dark:text-emerald-300 font-medium">Unified Trade & Investment Gateway</p>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t.hero.mandateTitle || "Institutional Mandate"}</h3>
+                <p className="text-xs text-emerald-700 dark:text-emerald-300 font-medium">{t.hero.mandateSub || "Unified Trade & Investment Gateway"}</p>
               </div>
               <span className="px-2.5 py-1 rounded bg-amber-100 dark:bg-amber-400/20 text-amber-800 dark:text-amber-300 text-xs font-bold border border-amber-300 dark:border-amber-400/30">
-                Oromia Region
+                Oromia
               </span>
             </div>
 
             <ul className="space-y-3.5 text-sm text-slate-700 dark:text-slate-200">
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                <span>Single-window investor licensing and duty-free import exemptions</span>
+                <span>{t.hero.m1 || "Single-window investor licensing and duty-free import exemptions"}</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                <span>Pre-cleared land bank allocation in agro-processing and industrial parks</span>
+                <span>{t.hero.m2 || "Pre-cleared land bank allocation in agro-processing and industrial parks"}</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                <span>Direct market linkages for specialty coffee, oilseeds, and organic livestock</span>
+                <span>{t.hero.m3 || "Direct market linkages for specialty coffee, oilseeds, and organic livestock"}</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                <span>Strategic rail and road corridor access to Djibouti port and regional markets</span>
+                <span>{t.hero.m4 || "Strategic rail and road corridor access to Djibouti port and regional markets"}</span>
               </li>
             </ul>
 
@@ -111,7 +111,7 @@ export default function Home() {
                 to="/about"
                 className="text-xs text-emerald-700 dark:text-emerald-300 hover:underline font-semibold flex items-center gap-1 group"
               >
-                <span>Learn more about the Bureau restructuring</span>
+                <span>{t.hero.learnMore || "Learn more about the Bureau restructuring"}</span>
                 <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
@@ -155,17 +155,17 @@ export default function Home() {
           <div>
             <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase">Strategic Growth</div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-              Featured Investment Opportunities
+              {t.home?.featuredTitle || "Featured Investment Opportunities"}
             </h2>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              Pre-profiled commercial projects with allocated land, utility infrastructure, and fiscal incentives.
+              {t.home?.featuredSubtitle || "Pre-packaged industrial, agro-processing, and renewable energy projects with pre-allocated land banks and utility access."}
             </p>
           </div>
           <Link
             to="/investment"
             className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
           >
-            <span>{t.common.viewAll} ({featuredOpps.length})</span>
+            <span>{t.home?.viewAllOpps || t.common.viewAll} ({featuredOpps.length})</span>
             <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
@@ -202,14 +202,14 @@ export default function Home() {
 
                 <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                   <div>
-                    <span className="text-[11px] text-slate-400 block font-medium">Est. Capital</span>
+                    <span className="text-[11px] text-slate-400 block font-medium">{t.investment?.capital || "Req. Capital"}</span>
                     <span className="text-xs font-bold text-slate-800 dark:text-slate-200">{opp.requiredCapital}</span>
                   </div>
                   <Link
                     to={`/investment/${opp.id}`}
                     className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 px-3 py-1.5 rounded-lg transition-colors"
                   >
-                    <span>View Profile</span>
+                    <span>{t.investment?.viewDetails || "View Details"}</span>
                     <ArrowRight className="w-3 h-3" />
                   </Link>
                 </div>
@@ -226,17 +226,17 @@ export default function Home() {
             <div>
               <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase">Trade Promotion</div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-                Priority Regional Export Products
+                {t.home?.tradeTitle || "Priority Regional Export Products"}
               </h2>
               <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                World-renowned single-origin agricultural commodities, organic livestock, and manufactured goods.
+                {t.home?.tradeSubtitle || "World-renowned single-origin agricultural commodities, organic livestock, and manufactured goods."}
               </p>
             </div>
             <Link
               to="/trade"
               className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
             >
-              <span>Explore Trade Portal</span>
+              <span>{t.home?.viewTradeCatalog || "Explore Trade Portal"}</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
@@ -282,17 +282,17 @@ export default function Home() {
           <div>
             <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase">Public Facilitation</div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-              Investor & Trader Services
+              {t.home?.servicesTitle || "Investor & Trader Services"}
             </h2>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              Transparent service charters detailing requirements, processing timelines, and responsible desks.
+              {t.home?.servicesSubtitle || "Transparent service charters detailing requirements, processing timelines, and responsible desks."}
             </p>
           </div>
           <Link
             to="/services"
             className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
           >
-            <span>All Services</span>
+            <span>{t.home?.viewAllServices || "All Services"}</span>
             <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
@@ -309,7 +309,7 @@ export default function Home() {
                     {srv.category}
                   </span>
                   <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                    Time: <strong className="text-slate-700 dark:text-slate-300">{srv.processingTime}</strong>
+                    {t.services?.time || "Time"}: <strong className="text-slate-700 dark:text-slate-300">{srv.processingTime}</strong>
                   </span>
                 </div>
                 <h3 className="font-bold text-slate-900 dark:text-white text-base">{srv.title}</h3>
@@ -318,13 +318,13 @@ export default function Home() {
 
               <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
                 <span className="text-slate-500 dark:text-slate-400">
-                  Office: <span className="text-slate-700 dark:text-slate-200 font-medium">{srv.responsibleOffice}</span>
+                  {t.services?.dept || "Office"}: <span className="text-slate-700 dark:text-slate-200 font-medium">{srv.responsibleOffice}</span>
                 </span>
                 <Link
                   to="/services"
                   className="font-bold text-emerald-700 dark:text-emerald-400 hover:underline inline-flex items-center gap-1"
                 >
-                  <span>Details</span>
+                  <span>{t.common.readMore || "Details"}</span>
                   <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
@@ -339,17 +339,17 @@ export default function Home() {
           <div>
             <div className="text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase">Media Center</div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-              Latest News & Announcements
+              {t.home?.newsTitle || "Latest News & Announcements"}
             </h2>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              Official press releases, policy updates, and regional trade announcements.
+              {t.home?.newsSubtitle || "Official press releases, policy updates, and regional trade announcements."}
             </p>
           </div>
           <Link
             to="/news"
             className="inline-flex items-center gap-1 text-sm font-bold text-emerald-700 dark:text-emerald-400 hover:underline"
           >
-            <span>All News</span>
+            <span>{t.home?.viewAllNews || "All News"}</span>
             <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
@@ -386,7 +386,7 @@ export default function Home() {
                   to={`/news/${item.id}`}
                   className="pt-2 text-xs font-bold text-emerald-700 dark:text-emerald-400 inline-flex items-center gap-1 group-hover:underline"
                 >
-                  <span>Read Article</span>
+                  <span>{t.news?.readArticle || "Read Article"}</span>
                   <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>

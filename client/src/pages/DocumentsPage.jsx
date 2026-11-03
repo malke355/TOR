@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { FileText, Download, Search, FileCheck, Calendar, ShieldCheck } from 'lucide-react';
 
 export default function DocumentsPage() {
+  const { t } = useLanguage();
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -67,13 +69,13 @@ For verified inquiries contact: info@investoromia.gov.et`;
       <div className="max-w-3xl space-y-4">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
           <FileText className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-          <span>Official Public Document Repository</span>
+          <span>{t.documents?.badge || "Official Public Document Repository"}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Downloads, Directives & Application Forms
+          {t.documents?.title || "Downloads, Directives & Application Forms"}
         </h1>
         <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-          Access and download approved investment policies, regional land lease directives, standard licensing application forms, and export procedure compendiums.
+          {t.documents?.desc || "Access and download approved investment policies, regional land lease directives, standard licensing application forms, and export procedure compendiums."}
         </p>
       </div>
 
@@ -159,7 +161,7 @@ For verified inquiries contact: info@investoromia.gov.et`;
                         className="inline-flex items-center gap-1.5 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-700 hover:text-white text-emerald-800 dark:text-emerald-300 font-bold text-xs px-3.5 py-2 rounded-xl transition-colors shadow-sm"
                       >
                         <Download className="w-3.5 h-3.5" />
-                        <span>Download</span>
+                        <span>{t.documents?.download || "Download"}</span>
                       </button>
                     </td>
                   </tr>

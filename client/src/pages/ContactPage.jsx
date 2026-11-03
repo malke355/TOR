@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import {
   MapPin,
   Phone,
@@ -14,6 +15,7 @@ import {
 
 export default function ContactPage() {
   const [searchParams] = useSearchParams();
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -77,13 +79,13 @@ export default function ContactPage() {
       <div className="max-w-3xl space-y-4">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
           <Phone className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-          <span>Bureau Public Communication & Inquiries</span>
+          <span>{t.contact?.badge || "Bureau Public Communication & Inquiries"}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Contact the Oromia Trade & Investment Bureau
+          {t.contact?.title || "Contact the Oromia Trade & Investment Bureau"}
         </h1>
         <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-          Submit project facilitation requests, trade sourcing inquiries, or citizen feedback directly to authorized bureau desks.
+          {t.contact?.desc || "Submit project facilitation requests, trade sourcing inquiries, or citizen feedback directly to authorized bureau desks."}
         </p>
       </div>
 
@@ -91,7 +93,7 @@ export default function ContactPage() {
         {/* Left Column: Contact Form */}
         <div className="lg:col-span-7 bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6 transition-colors">
           <div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Official Inquiry Form</h3>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white">{t.contact?.formHeading || "Official Inquiry Form"}</h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
               All messages are routed directly to the Executive Bureau Inquiries Desk.
             </p>
@@ -120,7 +122,7 @@ export default function ContactPage() {
           <form onSubmit={handleSubmit} className="space-y-4 text-xs sm:text-sm">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="font-semibold text-slate-700 dark:text-slate-300">Full Name *</label>
+                <label className="font-semibold text-slate-700 dark:text-slate-300">{t.contact?.name || "Full Name"} *</label>
                 <input
                   type="text"
                   name="name"
@@ -133,7 +135,7 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="font-semibold text-slate-700 dark:text-slate-300">Email Address *</label>
+                <label className="font-semibold text-slate-700 dark:text-slate-300">{t.contact?.email || "Email Address"} *</label>
                 <input
                   type="email"
                   name="email"
@@ -148,7 +150,7 @@ export default function ContactPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="font-semibold text-slate-700 dark:text-slate-300">Phone Number</label>
+                <label className="font-semibold text-slate-700 dark:text-slate-300">{t.contact?.phone || "Phone Number"}</label>
                 <input
                   type="tel"
                   name="phone"
@@ -173,7 +175,7 @@ export default function ContactPage() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="font-semibold text-slate-700 dark:text-slate-300">Subject *</label>
+              <label className="font-semibold text-slate-700 dark:text-slate-300">{t.contact?.subject || "Subject"} *</label>
               <input
                 type="text"
                 name="subject"
@@ -186,7 +188,7 @@ export default function ContactPage() {
             </div>
 
             <div className="space-y-1.5">
-              <label className="font-semibold text-slate-700 dark:text-slate-300">Message / Request Details *</label>
+              <label className="font-semibold text-slate-700 dark:text-slate-300">{t.contact?.message || "Message / Request Details"} *</label>
               <textarea
                 name="message"
                 rows="5"
@@ -204,7 +206,7 @@ export default function ContactPage() {
               className="w-full inline-flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3.5 px-6 rounded-xl shadow-md shadow-emerald-700/20 transition-all disabled:opacity-50"
             >
               <Send className="w-4 h-4" />
-              <span>{submitting ? 'Transmitting to Bureau...' : 'Submit Inquiry'}</span>
+              <span>{submitting ? (t.contact?.submitting || 'Transmitting...') : (t.contact?.submit || 'Submit Inquiry')}</span>
             </button>
           </form>
         </div>

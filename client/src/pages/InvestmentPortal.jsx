@@ -78,13 +78,13 @@ export default function InvestmentPortal() {
       <div className="space-y-3">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
           <TrendingUp className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-          <span>Strategic Investment Opportunities Portal</span>
+          <span>{t.investment?.badge || "Strategic Investment Opportunities Portal"}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Invest in Oromia: High-Impact Priority Projects
+          {t.investment?.title || "Invest in Oromia: High-Impact Priority Projects"}
         </h1>
         <p className="text-slate-600 dark:text-slate-300 max-w-3xl text-sm sm:text-base leading-relaxed">
-          Explore structured commercial and joint-venture opportunities prepared by the Bureau with verified land allocations, utility infrastructure readiness, and full regional tax incentives.
+          {t.investment?.desc || "Explore structured commercial and joint-venture opportunities prepared by the Bureau with verified land allocations, utility infrastructure readiness, and full regional tax incentives."}
         </p>
       </div>
 
@@ -98,7 +98,7 @@ export default function InvestmentPortal() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search projects (e.g., agro-processing, coffee, solar)..."
+              placeholder={t.investment?.search || "Search projects (e.g., agro-processing, coffee, solar)..."}
               className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-emerald-600 text-sm"
             />
           </div>
@@ -111,7 +111,7 @@ export default function InvestmentPortal() {
               className="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-emerald-600 text-sm cursor-pointer"
             >
               {sectors.map((s) => (
-                <option key={s} value={s}>{s === 'All' ? 'All Sectors' : s}</option>
+                <option key={s} value={s}>{s === 'All' ? (t.investment?.allSectors || 'All Sectors') : s}</option>
               ))}
             </select>
           </div>
@@ -124,7 +124,7 @@ export default function InvestmentPortal() {
               className="w-full px-3 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-emerald-600 text-sm cursor-pointer"
             >
               {locations.map((loc) => (
-                <option key={loc} value={loc}>{loc === 'All' ? 'All Locations' : loc}</option>
+                <option key={loc} value={loc}>{loc === 'All' ? (t.investment?.allLocations || 'All Locations') : loc}</option>
               ))}
             </select>
           </div>
@@ -135,7 +135,7 @@ export default function InvestmentPortal() {
               type="submit"
               className="flex-1 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-2.5 px-4 rounded-xl text-sm transition-colors text-center shadow-sm"
             >
-              Search
+              {t.common?.search || "Search"}
             </button>
             <button
               type="button"
@@ -213,11 +213,11 @@ export default function InvestmentPortal() {
                 <div className="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div>
-                      <span className="text-[11px] text-slate-400 block font-medium">Required Capital</span>
+                      <span className="text-[11px] text-slate-400 block font-medium">{t.investment?.capital || "Required Capital"}</span>
                       <strong className="text-slate-900 dark:text-white font-bold">{opp.requiredCapital}</strong>
                     </div>
                     <div>
-                      <span className="text-[11px] text-slate-400 block font-medium">Land Allocation</span>
+                      <span className="text-[11px] text-slate-400 block font-medium">{t.investment?.land || "Land Allocation"}</span>
                       <strong className="text-slate-900 dark:text-white font-bold">{opp.landAvailable?.split(' ')[0] || 'Ready'} Hectares</strong>
                     </div>
                   </div>
@@ -226,7 +226,7 @@ export default function InvestmentPortal() {
                     to={`/investment/${opp.id}`}
                     className="w-full inline-flex items-center justify-center gap-2 bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-600 dark:hover:bg-emerald-700 text-emerald-800 dark:text-emerald-300 hover:text-white font-bold text-xs py-2.5 rounded-xl transition-all"
                   >
-                    <span>View Full Investment Profile</span>
+                    <span>{t.investment?.viewDetails || "View Full Investment Profile"}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>

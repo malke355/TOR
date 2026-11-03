@@ -41,7 +41,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full max-w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-200">
+    <header className="sticky top-0 z-50 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-md transition-colors duration-200">
       {/* Regional Flag Tricolor Header Accent (Red, Black, White + Gold) */}
       <div className="h-1 w-full bg-gradient-to-r from-red-600 via-stone-900 to-amber-500"></div>
 

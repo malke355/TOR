@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import {
   Layers,
   Clock,
@@ -13,6 +14,7 @@ import {
 } from 'lucide-react';
 
 export default function ServicesDirectory() {
+  const { t } = useLanguage();
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('All');
@@ -52,13 +54,13 @@ export default function ServicesDirectory() {
       <div className="max-w-3xl space-y-4">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
           <Layers className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-          <span>Institutional Public & Business Services</span>
+          <span>{t.services?.badge || "Institutional Public & Business Services"}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Citizen & Business Service Charters
+          {t.services?.title || "Citizen & Business Service Charters"}
         </h1>
         <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-          Transparent guidelines defining eligibility, required documentation, expected turnaround times, and responsible offices for all investment, licensing, and trade facilitation services.
+          {t.services?.desc || "Transparent guidelines defining eligibility, required documentation, expected turnaround times, and responsible offices for all investment, licensing, and trade facilitation services."}
         </p>
       </div>
 
@@ -76,7 +78,7 @@ export default function ServicesDirectory() {
                   : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
               }`}
             >
-              {cat}
+              {cat === 'All' ? (t.services?.allServices || 'All Services') : cat}
             </button>
           ))}
         </div>
@@ -89,7 +91,7 @@ export default function ServicesDirectory() {
               filterType === 'all' ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
-            All Services
+            {t.services?.allServices || "All Services"}
           </button>
           <button
             onClick={() => setFilterType('online')}
@@ -152,7 +154,7 @@ export default function ServicesDirectory() {
                   </div>
 
                   <div>
-                    <span className="text-[11px] text-slate-400 block font-medium">Required Documents</span>
+                    <span className="text-[11px] text-slate-400 block font-medium">{t.services?.reqs || "Required Documents"}</span>
                     <p className="text-slate-700 dark:text-slate-300">{srv.requirements}</p>
                   </div>
 
@@ -167,18 +169,18 @@ export default function ServicesDirectory() {
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-3">
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div>
-                    <span className="text-[11px] text-slate-400 block">Service Delivery Time</span>
+                    <span className="text-[11px] text-slate-400 block">{t.services?.time || "Service Delivery Time"}</span>
                     <strong className="text-emerald-800 dark:text-emerald-400 font-bold">{srv.processingTime}</strong>
                   </div>
                   <div>
-                    <span className="text-[11px] text-slate-400 block">Administrative Fee</span>
+                    <span className="text-[11px] text-slate-400 block">{t.services?.fee || "Administrative Fee"}</span>
                     <strong className="text-slate-800 dark:text-slate-200 font-semibold">{srv.fees}</strong>
                   </div>
                 </div>
 
                 <div className="pt-2 flex items-center justify-between flex-wrap gap-2">
                   <span className="text-xs text-slate-500 dark:text-slate-400">
-                    Desk: <strong className="text-slate-700 dark:text-slate-300">{srv.responsibleOffice}</strong>
+                    {t.services?.dept || "Desk"}: <strong className="text-slate-700 dark:text-slate-300">{srv.responsibleOffice}</strong>
                   </span>
 
                   {srv.isOnline && srv.portalUrl ? (

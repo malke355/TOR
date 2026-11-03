@@ -24,52 +24,52 @@ export default function Footer() {
                   {t.bureau.title}
                 </h3>
                 <p className="text-xs text-amber-400 font-medium">
-                  National Regional State of Oromia
+                  {t.bureau.region}
                 </p>
               </div>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Formed through the strategic restructuring of the former Oromia Investment and Industry Bureau and Trade Bureau, providing a unified platform for investment facilitation and trade expansion.
+              {t.footer?.identityDesc || "Formed through the strategic restructuring of the former Oromia Investment and Industry Bureau and Trade Bureau, providing a unified platform for investment facilitation and trade expansion."}
             </p>
             <div className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-950/40 p-2.5 rounded-lg border border-emerald-800/60">
               <ShieldCheck className="w-4 h-4 shrink-0" />
-              <span>Official Institutional Government Gateway</span>
+              <span>{t.footer?.officialGateway || "Official Institutional Government Gateway"}</span>
             </div>
           </div>
 
           {/* Col 2: Strategic Portals */}
           <div className="space-y-3">
             <h4 className="text-white font-semibold text-sm tracking-wide uppercase border-b border-slate-800 pb-2">
-              Strategic Portals
+              {t.footer?.strategicPortals || "Strategic Portals"}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/investment" className="hover:text-emerald-400 transition-colors flex items-center justify-between">
-                  <span>Investment Opportunities</span>
+                  <span>{t.nav.investment}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
                 </Link>
               </li>
               <li>
                 <Link to="/trade" className="hover:text-emerald-400 transition-colors flex items-center justify-between">
-                  <span>Export Products Catalog</span>
+                  <span>{t.nav.trade}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="hover:text-emerald-400 transition-colors flex items-center justify-between">
-                  <span>Public & Business Services</span>
+                  <span>{t.nav.services}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
                 </Link>
               </li>
               <li>
                 <Link to="/documents" className="hover:text-emerald-400 transition-colors flex items-center justify-between">
-                  <span>Regulations & Guides</span>
+                  <span>{t.nav.documents}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
                 </Link>
               </li>
               <li>
                 <Link to="/news" className="hover:text-emerald-400 transition-colors flex items-center justify-between">
-                  <span>News & Media Center</span>
+                  <span>{t.nav.news}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-slate-500" />
                 </Link>
               </li>
@@ -79,7 +79,7 @@ export default function Footer() {
           {/* Col 3: Key Economic Corridors */}
           <div className="space-y-3">
             <h4 className="text-white font-semibold text-sm tracking-wide uppercase border-b border-slate-800 pb-2">
-              Regional Focus Zones
+              {t.footer?.regionalFocus || "Regional Focus Zones"}
             </h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li className="flex items-center gap-2">
@@ -108,7 +108,7 @@ export default function Footer() {
           {/* Col 4: Institutional Contact */}
           <div className="space-y-3">
             <h4 className="text-white font-semibold text-sm tracking-wide uppercase border-b border-slate-800 pb-2">
-              Bureau Headquarters
+              {t.footer?.headquarters || "Bureau Headquarters"}
             </h4>
             <ul className="space-y-2.5 text-sm text-slate-400">
               <li className="flex items-start gap-2.5">
@@ -133,11 +133,11 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} Oromia Trade and Investment Bureau. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {t.footer?.rights || "Oromia Trade and Investment Bureau. All rights reserved."}</p>
           <div className="flex items-center gap-4">
             <span className="text-slate-400">Institutional Website MVP Release v1.0</span>
             <Link to="/admin/login" className="text-slate-400 hover:text-white underline">
-              Staff Portal
+              {t.footer?.staffPortal || "Staff Portal"}
             </Link>
           </div>
         </div>

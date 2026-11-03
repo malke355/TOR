@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import {
   ArrowLeft,
   MapPin,
@@ -16,6 +17,7 @@ import {
 export default function InvestmentDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [opportunity, setOpportunity] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -59,7 +61,7 @@ export default function InvestmentDetail() {
           className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to Opportunities Catalog</span>
+          <span>{t.investment?.detailBack || "Back to Opportunities Catalog"}</span>
         </button>
       </div>
 
@@ -102,7 +104,7 @@ export default function InvestmentDetail() {
           {/* Executive Description */}
           <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-4 transition-colors">
             <h3 className="text-xl font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
-              Project Overview & Rationale
+              {t.investment?.detailOverview || "Project Overview & Strategic Advantage"}
             </h3>
             <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line">
               {opportunity.description}
@@ -114,7 +116,7 @@ export default function InvestmentDetail() {
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
               <h3 className="text-lg font-bold text-emerald-950 dark:text-emerald-200">
-                Official Bureau Incentives Package
+                {t.investment?.detailIncentives || "Guaranteed Investment Incentives"}
               </h3>
             </div>
             <p className="text-xs text-emerald-900 dark:text-emerald-300">
@@ -140,22 +142,22 @@ export default function InvestmentDetail() {
 
             <div className="space-y-4 text-xs">
               <div>
-                <span className="text-slate-400 dark:text-slate-400 block font-medium">Estimated Capital Requirement</span>
+                <span className="text-slate-400 dark:text-slate-400 block font-medium">{t.investment?.capital || "Estimated Capital Requirement"}</span>
                 <strong className="text-slate-900 dark:text-white text-base font-extrabold">{opportunity.requiredCapital}</strong>
               </div>
 
               <div>
-                <span className="text-slate-400 dark:text-slate-400 block font-medium">Land & Utility Readiness</span>
+                <span className="text-slate-400 dark:text-slate-400 block font-medium">{t.investment?.landAvail || "Land & Utility Readiness"}</span>
                 <p className="text-slate-800 dark:text-slate-200 font-medium mt-0.5">{opportunity.landAvailable}</p>
               </div>
 
               <div>
-                <span className="text-slate-400 dark:text-slate-400 block font-medium">Engagement Structure</span>
+                <span className="text-slate-400 dark:text-slate-400 block font-medium">{t.investment?.invType || "Engagement Structure"}</span>
                 <p className="text-slate-800 dark:text-slate-200 font-medium mt-0.5">{opportunity.investmentType}</p>
               </div>
 
               <div>
-                <span className="text-slate-400 dark:text-slate-400 block font-medium">Facilitation Directorate</span>
+                <span className="text-slate-400 dark:text-slate-400 block font-medium">{t.investment?.detailOfficer || "Facilitation Directorate"}</span>
                 <p className="text-emerald-800 dark:text-emerald-400 font-semibold mt-0.5">{opportunity.contactPerson}</p>
               </div>
             </div>
@@ -166,7 +168,7 @@ export default function InvestmentDetail() {
                 className="w-full inline-flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm py-3 rounded-xl shadow-md shadow-emerald-700/20 transition-all"
               >
                 <Send className="w-4 h-4" />
-                <span>Submit Inquiry to Bureau</span>
+                <span>{t.investment?.detailInquire || "Submit Inquiry to Bureau"}</span>
               </Link>
             </div>
           </div>

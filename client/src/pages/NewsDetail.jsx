@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 import { ArrowLeft, Calendar, Tag, Share2, Building2 } from 'lucide-react';
 
 export default function NewsDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -47,7 +49,7 @@ export default function NewsDetail() {
           className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-400 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to News & Media Center</span>
+          <span>{t.news?.back || "Back to News Center"}</span>
         </button>
       </div>
 

@@ -72,13 +72,13 @@ export default function TradePortal() {
       <div className="space-y-4 max-w-3xl">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
           <Package className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-          <span>Regional Trade & Export Promotion</span>
+          <span>{t.trade?.badge || "Regional Trade & Export Promotion"}</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Oromia Export Gateway & Market Directory
+          {t.trade?.title || "Oromia Export Gateway & Market Directory"}
         </h1>
         <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-          Oromia accounts for more than half of Ethiopia's agricultural export volume. We connect international buyers and procurement agencies directly to certified regional producers, cooperatives, and processing clusters.
+          {t.trade?.desc || "Oromia accounts for more than half of Ethiopia's agricultural export volume. We connect international buyers and procurement agencies directly to certified regional producers, cooperatives, and processing clusters."}
         </p>
       </div>
 
@@ -86,7 +86,7 @@ export default function TradePortal() {
       <div className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
           <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
-            Priority Export Products Directory
+            {t.home?.tradeTitle || "Priority Export Products Directory"}
           </h2>
 
           <div className="flex flex-wrap gap-1.5">
@@ -100,7 +100,7 @@ export default function TradePortal() {
                     : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
                 }`}
               >
-                {cat}
+                {cat === 'All' ? (t.trade?.allCategories || 'All Categories') : cat}
               </button>
             ))}
           </div>
