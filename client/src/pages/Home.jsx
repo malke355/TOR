@@ -437,7 +437,7 @@ export default function Home() {
       {/* Leadership Spotlight Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="bg-gradient-to-r from-emerald-800 via-emerald-900 to-slate-900 text-white rounded-2xl p-8 sm:p-10 border border-emerald-700/80 shadow-md flex flex-col md:flex-row items-center gap-8">
-          <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-2 border-emerald-400/40 shrink-0 shadow-lg bg-slate-800">
+          <div className="w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 rounded-2xl overflow-hidden border-2 border-emerald-400/40 shrink-0 shadow-lg bg-slate-800">
             <img
               src="/images/ahmed-idris.png"
               alt="Ahmed Idris - Head of Bureau"
