@@ -188,36 +188,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* KPI Stats Bar */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8">
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center transition-colors">
-          <div className="space-y-1">
-            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-800 dark:text-emerald-400">
-              {stats?.institutionalMetrics?.licensedInvestorsYTD || '240+'}
-            </div>
-            <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">{t.hero.stats.projects}</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-              {stats?.institutionalMetrics?.activeInvestmentZones || '12'}
-            </div>
-            <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">{t.hero.stats.zones}</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-2xl sm:text-3xl font-extrabold text-amber-600 dark:text-amber-400">
-              {stats?.institutionalMetrics?.regionalExportVolumeETB || stats?.institutionalMetrics?.regionalExportVolumeUSD || '295B+ ETB'}
-            </div>
-            <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">{t.hero.stats.exportValue}</div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-700 dark:text-emerald-400">
-              {stats?.institutionalMetrics?.priorityExportSectors || '6'}
-            </div>
-            <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">{t.hero.stats.prioritySectors}</div>
-          </div>
-        </div>
-      </section>
-
       {/* Section 1: Featured Investment Opportunities */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
