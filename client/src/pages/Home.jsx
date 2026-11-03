@@ -437,25 +437,33 @@ export default function Home() {
       {/* Leadership Spotlight Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8">
         <div className="bg-gradient-to-r from-emerald-800 via-emerald-900 to-slate-900 text-white rounded-2xl p-8 sm:p-10 border border-emerald-700/80 shadow-md flex flex-col md:flex-row items-center gap-8">
-          <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-2 border-emerald-400/40 shrink-0 shadow-lg">
+          <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border-2 border-emerald-400/40 shrink-0 shadow-lg bg-slate-800">
             <img
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"
-              alt="Bureau Head"
-              className="w-full h-full object-cover"
+              src="/images/ahmed-idris.png"
+              alt="Ahmed Idris - Head of Bureau"
+              className="w-full h-full object-cover object-top"
             />
           </div>
           <div className="space-y-3 flex-1 text-center md:text-left">
             <span className="text-xs font-bold uppercase tracking-wider text-amber-300">
-              Bureau Leadership Message
+              Message from Head of Oromia Investment and Industry Bureau
             </span>
             <h3 className="text-xl sm:text-2xl font-extrabold text-white">
-              "Building a Resilient, Investor-Centric Economy in Oromia"
+              Welcome to the Oromia Investment and Industry Bureau
             </h3>
-            <p className="text-sm text-slate-200 leading-relaxed italic">
-              "Through the unification of our trade and investment portfolios, we are unlocking unprecedented value for investors while ensuring our agricultural and industrial producers have frictionless access to international trade corridors."
-            </p>
+            <div className="space-y-2 text-sm text-slate-200 leading-relaxed">
+              <p>
+                Welcome to the official website of the Oromia Investment and Industry Bureau. Oromia is a region of opportunity — rich in resources, talent, and potential.
+              </p>
+              <p>
+                Our Bureau is committed to promoting investment, supporting industries, and building a strong, sustainable economy. Through this platform, we provide information, guidance, and services to help investors and partners succeed.
+              </p>
+              <p className="italic text-emerald-200/90 text-xs sm:text-sm">
+                "We invite you to explore the investment opportunities that make Oromia a leading destination for growth and innovation."
+              </p>
+            </div>
             <div className="pt-2 text-xs text-emerald-300 font-semibold">
-              Commissioner & Head of Bureau • Oromia Trade and Investment Bureau
+              Ahmed Idris • Head of Bureau, Oromia Investment and Industry Bureau
             </div>
           </div>
         </div>

@@ -16,11 +16,11 @@ export default function About() {
 
   const leadership = [
     {
-      name: "Ato Gemechu Bekele",
+      name: "Ato Ahmed Idris",
       title: "Bureau Head & Commissioner",
       department: "Executive Bureau Leadership",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
-      bio: "Oversees strategic regional investment policy, high-level diplomatic investor engagements, and the execution of the unified trade-investment transformation plan."
+      image: "/images/ahmed-idris.png",
+      bio: "Oversees strategic regional investment policy, industrial promotion, high-level diplomatic investor engagements, and the execution of the economic transformation plan."
     },
     {
       name: "Dr. Aster Tolera",
