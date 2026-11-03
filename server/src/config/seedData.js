@@ -187,7 +187,7 @@ export const initialTradeProducts = [
     exportSpecs: "Purity 99.5% min, Admixture 0.5% max, Moisture 5.5% max, Oil content 52% min.",
     description: "High oil content and sweet nutty aroma make Oromia sesame seeds the world benchmark for gourmet tahini, halva, and cold-pressed export oil in Asian and Middle Eastern markets.",
     seasonality: "Harvest: November - January | Peak Shipping: Year-round",
-    imageUrl: "https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=800&q=80"
+    imageUrl: "/images/sesame-seeds.png"
   },
   {
     id: "prod-03",

@@ -186,7 +186,7 @@
       "exportSpecs": "Purity 99.5% min, Admixture 0.5% max, Moisture 5.5% max, Oil content 52% min.",
       "description": "High oil content and sweet nutty aroma make Oromia sesame seeds the world benchmark for gourmet tahini, halva, and cold-pressed export oil in Asian and Middle Eastern markets.",
       "seasonality": "Harvest: November - January | Peak Shipping: Year-round",
-      "imageUrl": "https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=800&q=80"
+      "imageUrl": "/images/sesame-seeds.png"
     },
     {
       "id": "prod-03",
@@ -396,6 +396,39 @@
     }
   ],
   "messages": [
+    {
+      "id": "msg-1793724665607",
+      "name": "Abebe Chala",
+      "email": "test@example.com",
+      "phone": "+251912345678",
+      "organization": "Oromia Coffee Cooperative",
+      "subject": "Coffee Trade Inquiry",
+      "message": "We are interested in sourcing premium coffee",
+      "status": "New",
+      "createdAt": "2026-11-03T16:51:05.607Z"
+    },
+    {
+      "id": "msg-1793723869739",
+      "name": "298428347",
+      "email": "melkamut789@gmail.com",
+      "phone": "287492894827984",
+      "organization": "2987498294",
+      "subject": "Inquiry on Jimma Specialty Coffee Value-Addition & Roasting Cluster",
+      "message": "kjahdkja",
+      "status": "New",
+      "createdAt": "2026-11-03T16:37:49.739Z"
+    },
+    {
+      "id": "msg-1793723645577",
+      "name": "Melkamu Teshome",
+      "email": "melkamut789@gmail.com",
+      "phone": "2938429834298347928349",
+      "organization": "2983492834982",
+      "subject": "Inquiry on Dukem Eco-Industrial Garment & Technical Textile Park",
+      "message": "akja",
+      "status": "New",
+      "createdAt": "2026-11-03T16:34:05.577Z"
+    },
     {
       "id": "msg-01",
       "name": "Dr. Marcus Vance",
