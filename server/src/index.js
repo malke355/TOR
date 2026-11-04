@@ -1,4 +1,7 @@
 import 'dotenv/config';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import cors from 'cors';
 import { connectDB } from './config/db.js';
@@ -14,6 +17,12 @@ import documentRoutes from './routes/documentRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import statsRoutes from './routes/statsRoutes.js';
 import applicationRoutes from './routes/applicationRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
+import { isCloudinaryConfigured } from './config/cloudinary.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const CLIENT_DIST = path.join(__dirname, '../../client/dist');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -21,7 +30,11 @@ const PORT = process.env.PORT || 5000;
 ensureUploadDirs();
 
 // Middleware
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || true }));
+const clientOrigin = process.env.CLIENT_ORIGIN;
+app.use(cors({
+  origin: !clientOrigin || clientOrigin === '*' ? true : clientOrigin,
+  credentials: true
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
@@ -41,6 +54,7 @@ app.use('/api/documents', documentRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/stats', statsRoutes);
 app.use('/api/applications', applicationRoutes);
+app.use('/api/uploads', uploadRoutes);
 
 // Health check & Institutional Registry
 app.get('/api/health', (req, res) => {
@@ -51,6 +65,7 @@ app.get('/api/health', (req, res) => {
     version: '1.0.0-mvp',
     currency: 'ETB',
     database: 'mongodb',
+    cloudinary: isCloudinaryConfigured(),
     timestamp: new Date().toISOString()
   });
 });
@@ -127,6 +142,14 @@ app.use('/api', (req, res) => {
   res.status(404).json({ error: 'Endpoint not found' });
 });
 
+// Serve built React app (single-port preview for cloud port forwarding)
+if (fs.existsSync(CLIENT_DIST)) {
+  app.use(express.static(CLIENT_DIST));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(CLIENT_DIST, 'index.html'));
+  });
+}
+
 // Global error handler
 app.use((err, req, res, next) => {
   console.error('Server Unhandled Error:', err);
@@ -138,11 +161,13 @@ async function start() {
     await connectDB();
     await seedIfEmpty();
 
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`===================================================`);
       console.log(`🏛️ Oromia Trade & Investment Bureau API Server`);
-      console.log(`   Running on http://localhost:${PORT}`);
+      console.log(`   Running on http://0.0.0.0:${PORT}`);
+      console.log(`   Website:  http://127.0.0.1:${PORT}/`);
       console.log(`   Database: MongoDB Atlas`);
+      console.log(`   Cloudinary: ${isCloudinaryConfigured() ? 'enabled' : 'off'}`);
       console.log(`   Environment: ${process.env.NODE_ENV || 'development'}`);
       console.log(`===================================================`);
     });

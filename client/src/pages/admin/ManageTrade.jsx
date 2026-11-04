@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Plus, Edit2, Trash2, X, Package } from 'lucide-react';
+import CloudinaryImageField from '../../components/CloudinaryImageField';
 
 const emptyForm = {
   name: '',
@@ -239,15 +240,13 @@ export default function ManageTrade() {
                     className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                   />
                 </div>
-                <div className="space-y-1">
-                  <label className="font-semibold text-slate-700 dark:text-slate-300">Image URL</label>
-                  <input
-                    value={formData.imageUrl}
-                    onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
-                  />
-                </div>
               </div>
+              <CloudinaryImageField
+                label="Product Image"
+                value={formData.imageUrl}
+                folder="otib/trade"
+                onChange={(imageUrl) => setFormData({ ...formData, imageUrl })}
+              />
               <div className="flex justify-end gap-2 pt-3 border-t border-slate-100 dark:border-slate-800">
                 <button type="button" onClick={() => setModalOpen(false)} className="px-3.5 py-1.5 rounded-lg font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
                   Cancel
