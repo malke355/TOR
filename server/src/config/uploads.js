@@ -7,7 +7,10 @@ import crypto from 'crypto';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export const UPLOADS_ROOT = path.join(__dirname, '../../uploads');
+// Vercel functions can only write to /tmp. Local and Render keep files in server/uploads.
+export const UPLOADS_ROOT = process.env.VERCEL
+  ? path.join('/tmp', 'otib-uploads')
+  : path.join(__dirname, '../../uploads');
 export const DOCUMENTS_DIR = path.join(UPLOADS_ROOT, 'documents');
 export const APPLICATIONS_DIR = path.join(UPLOADS_ROOT, 'applications');
 

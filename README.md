@@ -26,7 +26,32 @@ Demo: `admin@investoromia.gov.et` / `admin123`
 
 Health: `GET /api/health`
 
-## Deploy checklist
+## Deploy frontend on Vercel (you can do this yourself)
+
+1. Open [vercel.com/new](https://vercel.com/new) → **Import** `malke355/TOR`.
+2. Leave **Root Directory** empty (repo root). Do **not** set it to `client`.
+3. Confirm these settings (already in `vercel.json`):
+   - **Install Command:** `npm install --include=dev --prefix client`
+   - **Build Command:** `npm run build --prefix client`
+   - **Output Directory:** `client/dist`
+4. Click **Deploy**.
+
+Optional — if your API is already live on another URL, add Environment Variable:
+- `VITE_API_BASE` = your backend origin, e.g. `https://your-api.onrender.com`  
+  (no trailing slash). Rebuild after adding it.
+
+Vercel hosts the UI only. Login/data need the backend (see full-stack below).
+
+## Deploy full stack (website + API together) on Render
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/malke355/TOR)
+
+Direct link: https://render.com/deploy?repo=https://github.com/malke355/TOR
+
+When prompted, paste from `server/.env`: `MONGODB_URI`, `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`.  
+In MongoDB Atlas → Network Access → allow `0.0.0.0/0`.
+
+## Deploy checklist (backend env vars)
 Set these env vars on your host (Render, Railway, VPS, etc.):
 
 | Variable | Purpose |
@@ -40,11 +65,11 @@ Set these env vars on your host (Render, Railway, VPS, etc.):
 | `CLOUDINARY_API_KEY` | Image uploads |
 | `CLOUDINARY_API_SECRET` | Image uploads |
 
-Build command: `npm run install:all && npm run build`  
+Build command: `npm run build`  
 Start command: `npm start`
 
 ## Dev (optional two-process)
 ```bash
 npm run dev:server   # API :5000
-npm run dev:client   # Vite :5180 with /api proxy
+npm run dev:client   # Vite :5173 with /api proxy
 ```

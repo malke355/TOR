@@ -44,6 +44,28 @@ app.use((req, res, next) => {
   next();
 });
 
+let bootPromise;
+function bootServer() {
+  if (!bootPromise) {
+    bootPromise = (async () => {
+      await connectDB();
+      await seedIfEmpty();
+    })();
+  }
+  return bootPromise;
+}
+
+app.use(async (req, res, next) => {
+  if (!req.path.startsWith('/api')) return next();
+  try {
+    await bootServer();
+    next();
+  } catch (err) {
+    console.error('[Server] Startup error:', err.message);
+    res.status(500).json({ error: 'Service unavailable. Database connection failed.' });
+  }
+});
+
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/opportunities', opportunityRoutes);
@@ -156,25 +178,25 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal institutional server error' });
 });
 
-async function start() {
-  try {
-    await connectDB();
-    await seedIfEmpty();
+export default app;
+export { bootServer };
 
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(`===================================================`);
-      console.log(`🏛️ Oromia Trade & Investment Bureau API Server`);
-      console.log(`   Running on http://0.0.0.0:${PORT}`);
-      console.log(`   Website:  http://127.0.0.1:${PORT}/`);
-      console.log(`   Database: MongoDB Atlas`);
-      console.log(`   Cloudinary: ${isCloudinaryConfigured() ? 'enabled' : 'off'}`);
-      console.log(`   Environment: ${process.env.NODE_ENV || 'development'}`);
-      console.log(`===================================================`);
+if (!process.env.VERCEL) {
+  bootServer()
+    .then(() => {
+      app.listen(PORT, '0.0.0.0', () => {
+        console.log(`===================================================`);
+        console.log(`🏛️ Oromia Trade & Investment Bureau API Server`);
+        console.log(`   Running on http://0.0.0.0:${PORT}`);
+        console.log(`   Website:  http://127.0.0.1:${PORT}/`);
+        console.log(`   Database: MongoDB Atlas`);
+        console.log(`   Cloudinary: ${isCloudinaryConfigured() ? 'enabled' : 'off'}`);
+        console.log(`   Environment: ${process.env.NODE_ENV || 'development'}`);
+        console.log(`===================================================`);
+      });
+    })
+    .catch((err) => {
+      console.error('[Server] Failed to start:', err.message);
+      process.exit(1);
     });
-  } catch (err) {
-    console.error('[Server] Failed to start:', err.message);
-    process.exit(1);
-  }
 }
-
-start();
