@@ -71,5 +71,5 @@ Start command: `npm start`
 ## Dev (optional two-process)
 ```bash
 npm run dev:server   # API :5000
-npm run dev:client   # Vite :5180 with /api proxy
+npm run dev:client   # Vite :5173 with /api proxy
 ```
