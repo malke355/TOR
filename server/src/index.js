@@ -138,10 +138,10 @@ async function start() {
     await connectDB();
     await seedIfEmpty();
 
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`===================================================`);
       console.log(`🏛️ Oromia Trade & Investment Bureau API Server`);
-      console.log(`   Running on http://localhost:${PORT}`);
+      console.log(`   Running on http://0.0.0.0:${PORT}`);
       console.log(`   Database: MongoDB Atlas`);
       console.log(`   Environment: ${process.env.NODE_ENV || 'development'}`);
       console.log(`===================================================`);
