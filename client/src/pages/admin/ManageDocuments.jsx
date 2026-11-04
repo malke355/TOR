@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { Plus, Trash2, X, FileText, Download } from 'lucide-react';
+import { Plus, Trash2, X, Download, FileUp } from 'lucide-react';
 
 export default function ManageDocuments() {
   const { token } = useAuth();
   const [documents, setDocuments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [file, setFile] = useState(null);
 
   const [formData, setFormData] = useState({
     title: '',
     category: 'Investment Guide',
-    fileType: 'PDF',
-    fileSize: '2.5 MB',
-    refNumber: '',
-    downloadUrl: '#'
+    refNumber: ''
   });
 
   const categories = [
@@ -31,9 +30,9 @@ export default function ManageDocuments() {
   const fetchDocuments = () => {
     setLoading(true);
     fetch('/api/documents')
-      .then(res => res.json())
-      .then(data => setDocuments(data.data || []))
-      .catch(err => console.error(err))
+      .then((res) => res.json())
+      .then((data) => setDocuments(data.data || []))
+      .catch(console.error)
       .finally(() => setLoading(false));
   };
 
@@ -53,28 +52,31 @@ export default function ManageDocuments() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSaving(true);
     try {
+      const body = new FormData();
+      body.append('title', formData.title);
+      body.append('category', formData.category);
+      body.append('refNumber', formData.refNumber);
+      if (file) body.append('file', file);
+
       const res = await fetch('/api/documents', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(formData)
+        headers: { Authorization: `Bearer ${token}` },
+        body
       });
-      if (!res.ok) throw new Error('Failed to add document');
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || 'Failed to add document');
+      }
       setModalOpen(false);
-      setFormData({
-        title: '',
-        category: 'Investment Guide',
-        fileType: 'PDF',
-        fileSize: '2.5 MB',
-        refNumber: '',
-        downloadUrl: '#'
-      });
+      setFile(null);
+      setFormData({ title: '', category: 'Investment Guide', refNumber: '' });
       fetchDocuments();
     } catch (err) {
       alert(err.message);
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -86,7 +88,7 @@ export default function ManageDocuments() {
             Documents & Downloads Repository
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Upload institutional directives, statutory guidelines, and application forms.
+            Upload real files (PDF/DOC/images). Public visitors download the stored file.
           </p>
         </div>
 
@@ -95,7 +97,7 @@ export default function ManageDocuments() {
           className="inline-flex items-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-sm transition-colors cursor-pointer"
         >
           <Plus className="w-4 h-4" />
-          <span>Add Official Document</span>
+          <span>Upload Official Document</span>
         </button>
       </div>
 
@@ -112,9 +114,9 @@ export default function ManageDocuments() {
                   <th className="py-3.5 px-6">Document Title</th>
                   <th className="py-3.5 px-4">Category</th>
                   <th className="py-3.5 px-4">Reference</th>
-                  <th className="py-3.5 px-4">Size</th>
-                  <th className="py-3.5 px-4">Published Date</th>
-                  <th className="py-3.5 px-6 text-right">Action</th>
+                  <th className="py-3.5 px-4">File</th>
+                  <th className="py-3.5 px-4">Published</th>
+                  <th className="py-3.5 px-6 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -122,7 +124,9 @@ export default function ManageDocuments() {
                   <tr key={doc.id} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors">
                     <td className="py-3.5 px-6 font-bold text-slate-900 dark:text-white max-w-sm">
                       <div className="truncate">{doc.title}</div>
-                      <div className="text-[10px] text-slate-400 dark:text-slate-500 font-normal">{doc.id}</div>
+                      <div className="text-[10px] text-slate-400 dark:text-slate-500 font-normal truncate">
+                        {doc.originalFileName || doc.storedFileName || doc.id}
+                      </div>
                     </td>
                     <td className="py-3.5 px-4">
                       <span className="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium text-[11px] border border-slate-200 dark:border-slate-700">
@@ -130,9 +134,18 @@ export default function ManageDocuments() {
                       </span>
                     </td>
                     <td className="py-3.5 px-4 font-mono text-slate-600 dark:text-slate-400">{doc.refNumber}</td>
-                    <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400">{doc.fileSize}</td>
+                    <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400">
+                      {doc.fileType} • {doc.fileSize}
+                    </td>
                     <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400">{doc.publishedDate}</td>
-                    <td className="py-3.5 px-6 text-right">
+                    <td className="py-3.5 px-6 text-right space-x-1">
+                      <a
+                        href={doc.downloadUrl || `/api/documents/${doc.id}/download`}
+                        className="inline-flex p-1.5 text-slate-400 hover:text-emerald-600 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-950/40"
+                        title="Download file"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                      </a>
                       <button
                         onClick={() => handleDelete(doc.id)}
                         className="p-1.5 text-slate-400 dark:text-slate-500 hover:text-red-600 dark:hover:text-red-400 rounded-lg hover:bg-red-50 dark:hover:bg-red-950/50 cursor-pointer"
@@ -152,7 +165,7 @@ export default function ManageDocuments() {
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white dark:bg-slate-900 rounded-2xl max-w-md w-full p-6 sm:p-8 space-y-5 shadow-2xl border border-slate-200 dark:border-slate-800 transition-colors">
             <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
-              <h3 className="text-base font-bold text-slate-900 dark:text-white">Add New Document Record</h3>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">Upload Document File</h3>
               <button onClick={() => setModalOpen(false)} className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 cursor-pointer">
                 <X className="w-5 h-5" />
               </button>
@@ -167,7 +180,7 @@ export default function ManageDocuments() {
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g., Regional Directive on Land Lease Rates"
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-emerald-600"
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-emerald-600"
                 />
               </div>
 
@@ -178,32 +191,37 @@ export default function ManageDocuments() {
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                   className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-emerald-600"
                 >
-                  {categories.map(c => <option key={c} value={c}>{c}</option>)}
+                  {categories.map((c) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
                 </select>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1">
-                  <label className="font-semibold text-slate-700 dark:text-slate-300">Reference Number</label>
-                  <input
-                    type="text"
-                    value={formData.refNumber}
-                    onChange={(e) => setFormData({ ...formData, refNumber: e.target.value })}
-                    placeholder="OTIB/DIR/2026/05"
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-emerald-600"
-                  />
-                </div>
+              <div className="space-y-1">
+                <label className="font-semibold text-slate-700 dark:text-slate-300">Reference Number</label>
+                <input
+                  type="text"
+                  value={formData.refNumber}
+                  onChange={(e) => setFormData({ ...formData, refNumber: e.target.value })}
+                  placeholder="OTIB/DIR/2026/05"
+                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:border-emerald-600"
+                />
+              </div>
 
-                <div className="space-y-1">
-                  <label className="font-semibold text-slate-700 dark:text-slate-300">Estimated File Size</label>
+              <div className="space-y-1">
+                <label className="font-semibold text-slate-700 dark:text-slate-300">File (PDF, DOC, image)</label>
+                <label className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-xl p-4 cursor-pointer hover:border-emerald-500 transition-colors">
+                  <FileUp className="w-5 h-5 text-emerald-600" />
+                  <span className="text-slate-600 dark:text-slate-300 font-medium">
+                    {file ? file.name : 'Click to choose a file (optional — PDF placeholder created if empty)'}
+                  </span>
                   <input
-                    type="text"
-                    value={formData.fileSize}
-                    onChange={(e) => setFormData({ ...formData, fileSize: e.target.value })}
-                    placeholder="e.g. 2.4 MB"
-                    className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-emerald-600"
+                    type="file"
+                    accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt"
+                    className="hidden"
+                    onChange={(e) => setFile(e.target.files?.[0] || null)}
                   />
-                </div>
+                </label>
               </div>
 
               <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100 dark:border-slate-800">
@@ -216,9 +234,10 @@ export default function ManageDocuments() {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-lg shadow-sm cursor-pointer"
+                  disabled={saving}
+                  className="px-4 py-1.5 bg-emerald-700 hover:bg-emerald-800 disabled:opacity-60 text-white font-bold rounded-lg shadow-sm cursor-pointer"
                 >
-                  Save to Repository
+                  {saving ? 'Uploading...' : 'Save to Repository'}
                 </button>
               </div>
             </form>

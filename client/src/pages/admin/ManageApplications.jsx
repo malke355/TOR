@@ -525,25 +525,62 @@ export default function ManageApplications() {
                   Attached Verification Documents ({selectedApp.uploadedDocuments.length})
                 </h3>
                 <div className="space-y-1.5">
-                  {selectedApp.uploadedDocuments.map((doc, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 text-xs"
-                    >
-                      <div className="flex items-center gap-2">
-                        <FileText className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                        <div>
-                          <span className="font-semibold text-slate-800 dark:text-slate-200 block">{typeof doc === 'string' ? doc : doc.label}</span>
-                          {typeof doc !== 'string' && doc.fileName && (
-                            <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">{doc.fileName}</span>
-                          )}
+                  {selectedApp.uploadedDocuments.map((doc, idx) => {
+                    const label = typeof doc === 'string' ? doc : (doc.label || doc.fieldName || 'Attachment');
+                    const fileName = typeof doc === 'string' ? '' : (doc.fileName || '');
+                    const canDownload = typeof doc !== 'string' && doc.downloadUrl && doc.storedFileName;
+
+                    const handleFileDownload = async () => {
+                      if (!canDownload) return;
+                      try {
+                        const res = await fetch(doc.downloadUrl, {
+                          headers: { Authorization: `Bearer ${token}` }
+                        });
+                        if (!res.ok) throw new Error('Download failed');
+                        const blob = await res.blob();
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = fileName || doc.storedFileName;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                      } catch (err) {
+                        alert(err.message || 'Unable to download file');
+                      }
+                    };
+
+                    return (
+                      <div
+                        key={idx}
+                        className="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 text-xs"
+                      >
+                        <div className="flex items-center gap-2 min-w-0">
+                          <FileText className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                          <div className="min-w-0">
+                            <span className="font-semibold text-slate-800 dark:text-slate-200 block truncate">{label}</span>
+                            {fileName && (
+                              <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono truncate block">{fileName}{doc.fileSize ? ` • ${doc.fileSize}` : ''}</span>
+                            )}
+                          </div>
                         </div>
+                        {canDownload ? (
+                          <button
+                            type="button"
+                            onClick={handleFileDownload}
+                            className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-200 dark:hover:bg-emerald-900 cursor-pointer shrink-0"
+                          >
+                            Download
+                          </button>
+                        ) : (
+                          <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 shrink-0">
+                            No file
+                          </span>
+                        )}
                       </div>
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300">
-                        Uploaded
-                      </span>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             )}

@@ -42,25 +42,15 @@ export default function DocumentsPage() {
   };
 
   const handleDownload = (doc) => {
-    const content = `OROMIA TRADE AND INVESTMENT BUREAU
-===================================================
-Document: ${doc.title}
-Reference: ${doc.refNumber}
-Category: ${doc.category}
-Date of Publication: ${doc.publishedDate}
-===================================================
-This is an official document issued by the Oromia Trade and Investment Bureau.
-For verified inquiries contact: info@investoromia.gov.et`;
-
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
+    const url = doc.downloadUrl && doc.downloadUrl !== '#'
+      ? doc.downloadUrl
+      : `/api/documents/${doc.id}/download`;
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${doc.title.replace(/[^a-zA-Z0-9]/g, '_')}.txt`;
+    a.rel = 'noopener';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
   };
 
   return (
