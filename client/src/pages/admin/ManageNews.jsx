@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Plus, Edit2, Trash2, X, Newspaper, Calendar } from 'lucide-react';
+import CloudinaryImageField from '../../components/CloudinaryImageField';
 
 export default function ManageNews() {
   const { token } = useAuth();
@@ -229,15 +230,12 @@ export default function ManageNews() {
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <label className="font-semibold text-slate-700 dark:text-slate-300">Featured Image URL</label>
-                <input
-                  type="url"
-                  value={formData.imageUrl}
-                  onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-emerald-600 text-xs sm:text-sm"
-                />
-              </div>
+              <CloudinaryImageField
+                label="Featured Image"
+                value={formData.imageUrl}
+                folder="otib/news"
+                onChange={(imageUrl) => setFormData({ ...formData, imageUrl })}
+              />
 
               <div className="space-y-1">
                 <label className="font-semibold text-slate-700 dark:text-slate-300">Summary / Lead Paragraph *</label>

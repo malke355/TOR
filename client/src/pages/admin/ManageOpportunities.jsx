@@ -11,6 +11,7 @@ import {
   AlertCircle,
   ExternalLink
 } from 'lucide-react';
+import CloudinaryImageField from '../../components/CloudinaryImageField';
 
 export default function ManageOpportunities() {
   const { token } = useAuth();
@@ -334,16 +335,12 @@ export default function ManageOpportunities() {
                 />
               </div>
 
-              <div className="space-y-1">
-                <label className="font-semibold text-slate-700 dark:text-slate-300">Featured Image URL</label>
-                <input
-                  type="url"
-                  value={formData.imageUrl}
-                  onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                  placeholder="https://images.unsplash.com/..."
-                  className="w-full px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-emerald-600 text-xs sm:text-sm"
-                />
-              </div>
+              <CloudinaryImageField
+                label="Featured Image"
+                value={formData.imageUrl}
+                folder="otib/opportunities"
+                onChange={(imageUrl) => setFormData({ ...formData, imageUrl })}
+              />
 
               <div className="space-y-1">
                 <label className="font-semibold text-slate-700 dark:text-slate-300">Brief Summary *</label>

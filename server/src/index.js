@@ -14,6 +14,8 @@ import documentRoutes from './routes/documentRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import statsRoutes from './routes/statsRoutes.js';
 import applicationRoutes from './routes/applicationRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
+import { isCloudinaryConfigured } from './config/cloudinary.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -41,6 +43,7 @@ app.use('/api/documents', documentRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/stats', statsRoutes);
 app.use('/api/applications', applicationRoutes);
+app.use('/api/uploads', uploadRoutes);
 
 // Health check & Institutional Registry
 app.get('/api/health', (req, res) => {
@@ -51,6 +54,7 @@ app.get('/api/health', (req, res) => {
     version: '1.0.0-mvp',
     currency: 'ETB',
     database: 'mongodb',
+    cloudinary: isCloudinaryConfigured(),
     timestamp: new Date().toISOString()
   });
 });
