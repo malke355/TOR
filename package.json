@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Institutional Website and CMS for Oromia Trade and Investment Bureau",
   "scripts": {
-    "install:all": "cd server && npm.cmd install && cd ../client && npm.cmd install",
-    "dev:server": "cd server && npm.cmd run dev",
-    "dev:client": "cd client && npm.cmd run dev"
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "build": "npm run build --prefix client",
+    "start": "npm run start --prefix server",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "dev": "npm run dev --prefix server"
   },
   "keywords": ["oromia", "trade", "investment", "government-portal", "cms"],
   "author": "Malke",
