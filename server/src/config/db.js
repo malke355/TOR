@@ -9,6 +9,12 @@ export async function connectDB() {
 
   mongoose.set('strictQuery', true);
 
+  if (mongoose.connection.readyState === 1) return;
+  if (mongoose.connection.readyState === 2) {
+    await mongoose.connection.asPromise();
+    return;
+  }
+
   await mongoose.connect(uri);
   console.log(`[DB] Connected to MongoDB (${mongoose.connection.name})`);
 }
