@@ -26,6 +26,17 @@ Demo: `admin@investoromia.gov.et` / `admin123`
 
 Health: `GET /api/health`
 
+## One-click deploy (Render)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/malke355/TOR)
+
+Direct link: https://render.com/deploy?repo=https://github.com/malke355/TOR
+
+When Render asks, paste these from your local `server/.env`:
+`MONGODB_URI`, `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`.
+
+Also in MongoDB Atlas → Network Access → allow `0.0.0.0/0` so Render can reach the database.
+
 ## Deploy checklist
 Set these env vars on your host (Render, Railway, VPS, etc.):
 
