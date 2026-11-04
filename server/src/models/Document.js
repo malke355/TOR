@@ -10,7 +10,10 @@ const documentSchema = new mongoose.Schema(
     fileSize: { type: String, default: '1.5 MB' },
     refNumber: { type: String, default: '' },
     publishedDate: { type: String, default: () => new Date().toISOString().split('T')[0] },
-    downloadUrl: { type: String, default: '#' }
+    downloadUrl: { type: String, default: '#' },
+    originalFileName: { type: String, default: '' },
+    storedFileName: { type: String, default: '' },
+    mimeType: { type: String, default: 'application/pdf' }
   },
   schemaOptions
 );

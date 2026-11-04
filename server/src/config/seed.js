@@ -1,4 +1,6 @@
 import 'dotenv/config';
+import path from 'path';
+import fs from 'fs';
 import { connectDB } from './db.js';
 import {
   User,
@@ -18,12 +20,20 @@ import {
   initialDocuments,
   initialMessages
 } from './seedData.js';
+import {
+  ensureUploadDirs,
+  DOCUMENTS_DIR,
+  writeSimplePdf,
+  formatFileSize
+} from './uploads.js';
 
 /**
  * Seeds MongoDB only when a collection is empty.
  * Safe to run repeatedly without wiping live CMS data.
  */
 export async function seedIfEmpty() {
+  ensureUploadDirs();
+
   const jobs = [
     { Model: User, data: initialUsers, label: 'users' },
     { Model: Opportunity, data: initialOpportunities, label: 'opportunities' },
@@ -42,6 +52,42 @@ export async function seedIfEmpty() {
     } else {
       console.log(`[Seed] Skipped ${label} (${count} existing)`);
     }
+  }
+
+  await ensureDocumentFiles();
+}
+
+/** Create real PDF files for documents that still lack stored files. */
+export async function ensureDocumentFiles() {
+  ensureUploadDirs();
+  const docs = await Document.find();
+  let fixed = 0;
+
+  for (const doc of docs) {
+    const needsFile =
+      !doc.storedFileName ||
+      !doc.downloadUrl ||
+      doc.downloadUrl === '#' ||
+      !fs.existsSync(path.join(DOCUMENTS_DIR, doc.storedFileName || ''));
+
+    if (!needsFile) continue;
+
+    const storedFileName = `${doc.id}.pdf`;
+    const filePath = path.join(DOCUMENTS_DIR, storedFileName);
+    const bytes = writeSimplePdf(filePath, doc.title || 'OTIB Document');
+
+    doc.storedFileName = storedFileName;
+    doc.originalFileName = `${String(doc.title || 'document').replace(/[^\w.-]+/g, '_')}.pdf`;
+    doc.mimeType = 'application/pdf';
+    doc.fileType = 'PDF';
+    doc.fileSize = formatFileSize(bytes);
+    doc.downloadUrl = `/api/documents/${doc.id}/download`;
+    await doc.save();
+    fixed += 1;
+  }
+
+  if (fixed > 0) {
+    console.log(`[Seed] Attached real PDF files to ${fixed} documents`);
   }
 }
 

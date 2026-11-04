@@ -10,11 +10,11 @@ import {
   Mail,
   LogOut,
   ExternalLink,
-  Shield,
-  UserCheck,
   ClipboardCheck,
   Sun,
-  Moon
+  Moon,
+  Package,
+  Briefcase
 } from 'lucide-react';
 
 export default function AdminLayout() {
@@ -37,6 +37,8 @@ export default function AdminLayout() {
     { name: 'Dashboard Overview', path: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Service Applications', path: '/admin/applications', icon: ClipboardCheck },
     { name: 'Investment Opportunities', path: '/admin/opportunities', icon: TrendingUp },
+    { name: 'Trade Products', path: '/admin/trade', icon: Package },
+    { name: 'Public Services', path: '/admin/services', icon: Briefcase },
     { name: 'News & Announcements', path: '/admin/news', icon: Newspaper },
     { name: 'Documents & Downloads', path: '/admin/documents', icon: FileText },
     { name: 'Inquiries Inbox', path: '/admin/messages', icon: Mail },

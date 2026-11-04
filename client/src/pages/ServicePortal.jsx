@@ -457,41 +457,37 @@ export default function ServicePortal() {
 
     setSubmitting(true);
 
-    // Build submission payload (excluding files for JSON submission)
-    const payload = {
-      serviceId,
-      serviceTitle: formConfig.title,
-      applicantName: formData.fullName || '',
-      applicantEmail: formData.email || '',
-      applicantPhone: formData.phone ? `+2519${formData.phone}` : '',
-      companyName: formData.companyName || '',
-      formData: {},
-      submittedAt: new Date().toISOString()
-    };
-
-    // Include all non-file fields
+    const textFormData = {};
     for (const stepFields of formConfig.fields) {
       for (const field of stepFields) {
         if (field.type !== 'file' && field.type !== 'checkbox') {
-          payload.formData[field.name] = formData[field.name] || '';
+          textFormData[field.name] = formData[field.name] || '';
         }
       }
     }
 
-    // Count uploaded files
-    const fileFields = formConfig.fields.flat().filter(f => f.type === 'file');
-    const uploadedFiles = fileFields.filter(f => formData[f.name]).map(f => ({
-      fieldName: f.name,
-      fileName: formData[f.name]?.name || 'uploaded',
-      label: f.label
-    }));
-    payload.uploadedDocuments = uploadedFiles;
+    const body = new FormData();
+    body.append('serviceId', serviceId);
+    body.append('serviceTitle', formConfig.title);
+    body.append('applicantName', formData.fullName || '');
+    body.append('applicantEmail', formData.email || '');
+    body.append('applicantPhone', formData.phone ? `+2519${formData.phone}` : '');
+    body.append('companyName', formData.companyName || '');
+    body.append('formData', JSON.stringify(textFormData));
+
+    const fileFields = formConfig.fields.flat().filter((f) => f.type === 'file');
+    for (const field of fileFields) {
+      const file = formData[field.name];
+      if (file instanceof File) {
+        body.append(field.name, file);
+        body.append(`label_${field.name}`, field.label || field.name);
+      }
+    }
 
     try {
       const res = await fetch('/api/applications', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body
       });
 
       const data = await res.json();

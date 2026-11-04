@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import { connectDB } from './config/db.js';
 import { seedIfEmpty } from './config/seed.js';
+import { ensureUploadDirs } from './config/uploads.js';
 
 import authRoutes from './routes/authRoutes.js';
 import opportunityRoutes from './routes/opportunityRoutes.js';
@@ -17,9 +18,12 @@ import applicationRoutes from './routes/applicationRoutes.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+ensureUploadDirs();
+
 // Middleware
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || true }));
 app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
 
 // Request logger
 app.use((req, res, next) => {
